@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>MindFusion Charting Sample - Thermometer</title>
+	<link href="common/jquery-ui.min.css" rel="stylesheet" />
+	<link href="common/samples.css" rel="stylesheet" />
+	<script type="text/javascript" src="common/jquery.min.js"></script>
+	<script type="text/javascript" src="common/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="common/samples.js"></script>
+	<script type="text/javascript" src="Scripts/config.js"></script>
+	<script data-main="Thermometer" src="Scripts/require.js"></script>
+</head>
+<body>
+	<input type="hidden" id="collapsed" />
+	<div id="header" style="height: 49px;">
+		<a href="index.html">Home</a>
+		<div style="float: right; margin-right: 5px; margin-top: 17px;">
+			<button id="expandButton" onclick="onExpandCollapse()">
+				&gt;
+			</button>
+		</div>
+	</div>
+	<div id="info" style="top: 60px; bottom: 24px;">
+		<div id="infoTab" style="padding: 10px;">
+			<h1>
+				About this sample
+			</h1>
+			<p>
+				This example shows how to handle various prepaint and paint event to create and
+				style an Oval gauge.
+			</p>
+		</div>
+	</div>
+	<div id="content" style="top: 60px; bottom: 24px; overflow-y: scroll;">
+		<canvas id="gauge" width="120" height="320">
+		</canvas>
+	</div>
+	<div id="footer" style="height: 24px;">
+		<span id="copyright"></span>
+	</div>
+</body>
+</html>

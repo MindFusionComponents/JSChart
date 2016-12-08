@@ -1,0 +1,110 @@
+define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require, exports, m) {
+    "use strict";
+    var Charting = m.MindFusion.Charting;
+    var Controls = m.MindFusion.Charting.Controls;
+    var Collections = m.MindFusion.Charting.Collections;
+    var Drawing = m.MindFusion.Charting.Drawing;
+    var Components = m.MindFusion.Charting.Components;
+    // create the dashboard
+    var dashboardEl = document.getElementById('dashboard');
+    dashboardEl.width = dashboardEl.offsetParent.clientWidth;
+    dashboardEl.height = dashboardEl.offsetParent.clientHeight;
+    var dashboard = new Controls.Dashboard(dashboardEl);
+    dashboard.theme.plotBackground = new Drawing.Brush("lightBlue");
+    dashboard.theme.commonSeriesFills = getFills();
+    dashboard.theme.commonSeriesStrokes = getFills();
+    var mainGrid = new Components.GridPanel();
+    mainGrid.horizontalAlignment = Components.LayoutAlignment.Stretch;
+    mainGrid.verticalAlignment = Components.LayoutAlignment.Stretch;
+    mainGrid.columns.add(new Components.GridColumn());
+    dashboard.rootPanel.children.add(mainGrid);
+    // create plots grid
+    var plotGrid = new Components.GridPanel();
+    plotGrid.gridColumn = 1;
+    plotGrid.gridRow = 0;
+    plotGrid.columns.add(new Components.GridColumn());
+    plotGrid.columns.add(new Components.GridColumn());
+    mainGrid.children.add(plotGrid);
+    // add plot1
+    var plot1 = new Charting.Plot2D();
+    plot1.gridColumn = 0;
+    plot1.verticalScroll = false;
+    plot1.allowPan = false;
+    plot1.highlightStroke = new Drawing.Brush("tomato");
+    plot1.highlightStrokeThickness = 1;
+    var lineRenderer = new Charting.LineRenderer(getSeriesCollection());
+    plot1.seriesRenderers.add(lineRenderer);
+    plotGrid.children.add(plot1);
+    // add plot2
+    var plot2 = new Charting.Plot2D();
+    plot2.gridColumn = 1;
+    plot2.allowPan = false;
+    plot2.verticalScroll = false;
+    plot2.highlightStroke = new Drawing.Brush("tomato");
+    plot2.highlightStrokeThickness = 1;
+    var barRenderer = new Charting.BarRenderer(getSeriesCollection());
+    plot2.seriesRenderers.add(barRenderer);
+    plotGrid.children.add(plot2);
+    // add plot3
+    var plot3 = new Charting.Plot2D();
+    plot3.allowPan = false;
+    plot3.gridColumn = 2;
+    plot3.verticalScroll = false;
+    plot3.highlightStroke = new Drawing.Brush("tomato");
+    plot1.highlightStrokeThickness = 1;
+    plot3.seriesRenderers.add(new Charting.StepRenderer(getSeriesCollection()));
+    plotGrid.children.add(plot3);
+    // add axis
+    var xa = new Charting.Axis();
+    xa.title = "Months";
+    var ya = new Charting.Axis();
+    ya.minValue = 0;
+    ya.maxValue = 100000;
+    ya.interval = 5000;
+    ya.title = "Revenues";
+    ya.numberFormat = "C";
+    var yAxis = new Charting.YAxisRenderer(ya, xa);
+    yAxis.gridColumn = 0;
+    yAxis.plotLeftSide = true;
+    yAxis.labelsSource = plot1;
+    yAxis.axisStroke = new Drawing.Brush("steelBlue");
+    yAxis.axisStrokeThickness = 1;
+    yAxis.titleBrush = new Drawing.Brush("steelBlue");
+    yAxis.titleFontSize = 10;
+    yAxis.titleFontStyle = Drawing.FontStyle.Bold;
+    yAxis.labelBrush = new Drawing.Brush("steelBlue");
+    mainGrid.children.add(yAxis);
+    // attach plots to axis
+    plot1.xAxis = plot2.xAxis = plot3.xAxis = xa;
+    plot1.yAxis = plot2.yAxis = plot3.yAxis = ya;
+    function getSeriesCollection() {
+        var collection = new Collections.ObservableCollection();
+        var s;
+        for (var i = 0; i < 3; i++) {
+            if (i == 0) {
+                s = new Charting.Series2D(new Collections.List([0, 1, 2, 3]), new Collections.List([25000, 50000, 40000, 55000]), new Collections.List(["January", "February", "March", "April"]));
+                s.title = "Series 1";
+                collection.add(s);
+            }
+            if (i == 1) {
+                s = new Charting.Series2D(new Collections.List([0, 1, 2, 3]), new Collections.List([30000, 70000, 65000, 15000]), new Collections.List(["May", "June", "July", "August"]));
+                s.title = "Series 2";
+                collection.add(s);
+            }
+            if (i == 2) {
+                s = new Charting.Series2D(new Collections.List([0, 1, 2, 3]), new Collections.List([25000, 45000, 35000, 65000]), new Collections.List(["September", "October", "November", "December"]));
+                s.title = "Series 3";
+                collection.add(s);
+            }
+        }
+        return collection;
+    }
+    function getFills() {
+        var fills = new Collections.List();
+        fills.add(new Drawing.Brush("orange"));
+        fills.add(new Drawing.Brush("orangeRed"));
+        fills.add(new Drawing.Brush("orchid"));
+        return fills;
+    }
+});
+//# sourceMappingURL=MultiplePlots.js.map
