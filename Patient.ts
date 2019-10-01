@@ -57,6 +57,7 @@ export class PatientSeries
 
 	public get supportedLabels(): m.MindFusion.Charting.LabelKinds { return m.MindFusion.Charting.LabelKinds.InnerLabel | m.MindFusion.Charting.LabelKinds.ToolTip; }
 
+	public toJson():any { }
 	dataChanged = new m.MindFusion.Charting.Common.EventDispatcher<EventArgs>();
 
 	values: Array<Patient>;

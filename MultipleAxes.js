@@ -10,6 +10,7 @@ define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require,
     dashboardEl.width = dashboardEl.offsetParent.clientWidth;
     dashboardEl.height = dashboardEl.offsetParent.clientHeight;
     var dashboard = new Controls.Dashboard(dashboardEl);
+    dashboard.theme.loadFrom('Resources/DefaultExt.xml');
     var plot = new Charting.Plot2D();
     // sample temperature data for bar graphics
     var barSeries = new Charting.Series2D(new Collections.List([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]), //x
@@ -24,10 +25,10 @@ define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require,
     lineSeries.title = "Pressure";
     // draw bars
     var barRenderer = new Charting.BarRenderer(new Collections.ObservableCollection([barSeries]));
-    barRenderer.seriesStyle = new Charting.UniformSeriesStyle(new Drawing.Brush("lightSkyBlue"), new Drawing.Brush("black"), 2);
+    barRenderer.seriesStyle = new Charting.UniformSeriesStyle(new Drawing.Brush("#9caac6"), new Drawing.Brush("#616a7f"), 2);
     // draw lines
     var lineRenderer = new Charting.LineRenderer(new Collections.ObservableCollection([lineSeries]));
-    lineRenderer.seriesStyle = new Charting.UniformSeriesStyle(new Drawing.Brush("darkOliveGreen"), new Drawing.Brush("darkOliveGreen"), 4);
+    lineRenderer.seriesStyle = new Charting.UniformSeriesStyle(new Drawing.Brush("#ce0000"), new Drawing.Brush("#ce0000"), 4);
     // add graphics to plot
     plot.seriesRenderers.add(barRenderer);
     plot.seriesRenderers.add(lineRenderer);
@@ -69,7 +70,7 @@ define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require,
     // add legend
     var legendRenderer = new Charting.LegendRenderer();
     legendRenderer.content = new Collections.ObservableCollection([barRenderer, lineRenderer]);
-    legendRenderer.background = new Drawing.Brush("lightYellow");
+    legendRenderer.background = new Drawing.Brush("#e0e9e9");
     dashboard.rootPanel.children.add(legendRenderer);
     // create dashboard layout
     var xAxisRenderer = new Charting.XAxisRenderer(monthAxis);

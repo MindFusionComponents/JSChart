@@ -10,24 +10,37 @@ define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require,
     funnelhartEl.width = funnelhartEl.offsetParent.clientWidth;
     funnelhartEl.height = funnelhartEl.offsetParent.clientHeight;
     var funnelChart = new Controls.FunnelChart(funnelhartEl);
+    funnelChart.theme.loadFrom('Resources/DefaultExt.xml');
     // create sample data
     var values = new Collections.List([70, 60, 50, 30, 20, 15, 10, 4]);
     var labels = new Collections.List(["Unqualified prospects", "Leads", "Initial communication",
         "Customer evaluation", "Negotiation", "Purchase order received", "Delivery", "Payment"]);
     funnelChart.series = new Charting.SimpleSeries(values, labels);
     var brushes = new Collections.List([
-        new Drawing.Brush("skyBlue"),
-        new Drawing.Brush("yellow"),
-        new Drawing.Brush("lightGreen"),
-        new Drawing.Brush("orange"),
-        new Drawing.Brush("cyan"),
-        new Drawing.Brush("pink"),
-        new Drawing.Brush("purple"),
-        new Drawing.Brush("greenYellow")
+        new Drawing.Brush("#669acc"),
+        new Drawing.Brush("#616a7f"),
+        new Drawing.Brush("#e0e9e9"),
+        new Drawing.Brush("#003466"),
+        new Drawing.Brush("#c0c0c0"),
+        new Drawing.Brush("#ce0000"),
+        new Drawing.Brush("#9caac6"),
+        new Drawing.Brush("#000063")
+    ]);
+    var strokes = new Collections.List([
+        new Drawing.Brush("#FFFFFF")
     ]);
     var seriesBrushes = new Collections.List();
     seriesBrushes.add(brushes);
-    funnelChart.plot.seriesStyle = new Charting.PerElementSeriesStyle(seriesBrushes);
+    var seriesStrokes = new Collections.List();
+    seriesStrokes.add(strokes);
+    var thicknesses = new Collections.List([
+        6
+    ]);
+    var seriesThicknesses = new Collections.List();
+    seriesThicknesses.add(thicknesses);
+    funnelChart.plot.seriesStyle = new Charting.PerElementSeriesStyle(seriesBrushes, seriesStrokes, seriesThicknesses);
+    funnelChart.theme.dataLabelsFontSize = 12;
+    funnelChart.theme.highlightStroke = new Drawing.Brush("#ce0000");
     // create a custom legend renderer
     var seriesList = new Collections.ObservableCollection();
     var series = new Charting.SimpleSeries(null, null);
@@ -59,8 +72,8 @@ define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require,
     ren.labelFontSize = 12.0;
     ren.seriesStyle = new Charting.PerSeriesStyle(brushes);
     funnelChart.legendRenderer.content.clear();
-    funnelChart.legendRenderer.background = new Drawing.Brush("LightGray");
-    funnelChart.legendRenderer.borderStroke = new Drawing.Brush("Black");
+    funnelChart.legendRenderer.background = new Drawing.Brush("#e0e9e9");
+    funnelChart.legendRenderer.borderStroke = new Drawing.Brush("#c0c0c0");
     funnelChart.legendRenderer.titleFontSize = 14.0;
     funnelChart.legendRenderer.content.add(ren);
     funnelChart.legendVerticalAlignment = Charting.Components.LayoutAlignment.Far;
@@ -80,11 +93,11 @@ define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require,
         funnelChart.segmentSpacing = segmentSpacing.valueAsNumber;
         funnelChart.draw();
     };
-    var bottomBase = document.getElementById('bottomBase');
-    bottomBase.valueAsNumber = funnelChart.bottomBase;
-    bottomBase.max = (funnelChart.series.getValue(funnelChart.series.size - 1, 0) * 0.75).toString();
-    bottomBase.onchange = function () {
-        funnelChart.bottomBase = bottomBase.valueAsNumber;
+    var stemWidth = document.getElementById('stemWidth');
+    stemWidth.valueAsNumber = funnelChart.stemWidth;
+    stemWidth.max = "33";
+    stemWidth.onchange = function () {
+        funnelChart.stemWidth = stemWidth.valueAsNumber / 100.0;
         funnelChart.draw();
     };
     var marginLeft = document.getElementById('marginLeft');

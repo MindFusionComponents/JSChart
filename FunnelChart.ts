@@ -12,6 +12,7 @@ let funnelhartEl = <HTMLCanvasElement>document.getElementById('funnelChart');
 funnelhartEl.width = funnelhartEl.offsetParent.clientWidth;
 funnelhartEl.height = funnelhartEl.offsetParent.clientHeight;
 let funnelChart = new Controls.FunnelChart(funnelhartEl);
+funnelChart.theme.loadFrom('Resources/DefaultExt.xml');
 
 // create sample data
 let values = new Collections.List<number>([70, 60, 50, 30, 20, 15, 10, 4]);
@@ -21,19 +22,37 @@ funnelChart.series = new Charting.SimpleSeries(values, labels);
 
 let brushes = new Collections.List<m.MindFusion.Charting.Drawing.Brush>(
 	[
-		new Drawing.Brush("skyBlue"),
-		new Drawing.Brush("yellow"),
-		new Drawing.Brush("lightGreen"),
-		new Drawing.Brush("orange"),
-		new Drawing.Brush("cyan"),
-		new Drawing.Brush("pink"),
-		new Drawing.Brush("purple"),
-		new Drawing.Brush("greenYellow")
-	]);
+        new Drawing.Brush("#669acc"),
+        new Drawing.Brush("#616a7f"),
+        new Drawing.Brush("#e0e9e9"),
+        new Drawing.Brush("#003466"),
+        new Drawing.Brush("#c0c0c0"),
+        new Drawing.Brush("#ce0000"),
+        new Drawing.Brush("#9caac6"),
+        new Drawing.Brush("#000063")
+    ]);
+
+let strokes = new Collections.List<m.MindFusion.Charting.Drawing.Brush>(
+    [
+        new Drawing.Brush("#FFFFFF")
+    ]);
 
 let seriesBrushes = new Collections.List<m.MindFusion.Charting.Collections.List<m.MindFusion.Charting.Drawing.Brush>>();
 seriesBrushes.add(brushes);
-funnelChart.plot.seriesStyle = new Charting.PerElementSeriesStyle(seriesBrushes);
+let seriesStrokes = new Collections.List<m.MindFusion.Charting.Collections.List<m.MindFusion.Charting.Drawing.Brush>>();
+seriesStrokes.add(strokes);
+
+let thicknesses = new Collections.List<number>(
+    [
+        6
+    ]);
+
+let seriesThicknesses = new Collections.List<m.MindFusion.Charting.Collections.List<number>>();
+seriesThicknesses.add(thicknesses);
+
+funnelChart.plot.seriesStyle = new Charting.PerElementSeriesStyle(seriesBrushes, seriesStrokes, seriesThicknesses);
+funnelChart.theme.dataLabelsFontSize = 12;
+funnelChart.theme.highlightStroke = new Drawing.Brush("#ce0000");
 
 // create a custom legend renderer
 let seriesList = new Collections.ObservableCollection<m.MindFusion.Charting.Series>();
@@ -69,8 +88,8 @@ ren.seriesStyle = new Charting.PerSeriesStyle(brushes);
 
 funnelChart.legendRenderer.content.clear();
 
-funnelChart.legendRenderer.background = new Drawing.Brush("LightGray");
-funnelChart.legendRenderer.borderStroke = new Drawing.Brush("Black");
+funnelChart.legendRenderer.background = new Drawing.Brush("#e0e9e9");
+funnelChart.legendRenderer.borderStroke = new Drawing.Brush("#c0c0c0");
 funnelChart.legendRenderer.titleFontSize = 14.0;
 funnelChart.legendRenderer.content.add(ren);
 
@@ -97,12 +116,12 @@ segmentSpacing.onchange = () =>
 	funnelChart.draw();
 };
 
-let bottomBase = document.getElementById('bottomBase') as HTMLInputElement;
-bottomBase.valueAsNumber = funnelChart.bottomBase;
-bottomBase.max = (funnelChart.series.getValue(funnelChart.series.size - 1, 0) * 0.75).toString();
-bottomBase.onchange = () =>
+let stemWidth = document.getElementById('stemWidth') as HTMLInputElement;
+stemWidth.valueAsNumber = funnelChart.stemWidth;
+stemWidth.max = "33";
+stemWidth.onchange = () =>
 {
-	funnelChart.bottomBase = bottomBase.valueAsNumber;
+	funnelChart.stemWidth = stemWidth.valueAsNumber / 100.0;
 	funnelChart.draw();
 };
 

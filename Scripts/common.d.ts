@@ -1,13 +1,4 @@
 ﻿/**
- * Copyright (c) 2015-2016, MindFusion LLC - Bulgaria.
- *
- * This source code is provided to you as part of the MindFusion software components
- * package you have purchased. You may use the source code to trace and/or fix
- * problems or customize the library as needed for your application. To get permission
- * to use the source code in any other way, please contact us at support@mindfusion.eu.
- */
- 
-/**
 * Represents a point in 2D space.
 */
 interface Point

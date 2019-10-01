@@ -131,7 +131,7 @@ range.setStartWidth(new Length(0));
 range.setEndWidth(new Length(10));
 range.setFill(g.Utils.createLinearGradient(90, [
 	0.25, "Yellow",
-	0.90, "Red"]));
+    0.90, "#ce0000"]));
 range.setStroke("White");
 scale2.addRange(range);
 

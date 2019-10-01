@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2015-2016, MindFusion LLC - Bulgaria.
+ * Copyright (c) 2015-2017, MindFusion LLC - Bulgaria.
  *
  * This source code is provided to you as part of the MindFusion software components
  * package you have purchased. You may use the source code to trace and/or fix
@@ -7,7 +7,7 @@
  * to use the source code in any other way, please contact us at support@mindfusion.eu.
  */
  
- export declare module MindFusion.Charting.Common {
+export declare module MindFusion.Charting.Common {
     class AnimationTimer {
         constructor(callback: any, autoStart?: boolean);
         stop(): void;
@@ -21,11 +21,11 @@
         /**
         * Subcribes an event listener to this event.
         */
-        addEventListener: (handler: (args: T) => void) => void;
+        addEventListener: (handler: (sender: any, args: T) => void) => void;
         /**
         * Removes an event listener from this event.
         */
-        removeEventListener: (handler: (args: T) => void) => void;
+        removeEventListener: (handler: (sender: any, args: T) => void) => void;
     }
     /**
     * @class Represents a dispatcher for an event.
@@ -34,15 +34,15 @@
         /**
         * Subcribes an event listener to this event.
         */
-        addEventListener(handler: (args: T) => void): void;
+        addEventListener(handler: (sender: any, args: T) => void): void;
         /**
         * Removes an event listener from this event.
         */
-        removeEventListener(handler: (args: T) => void): void;
+        removeEventListener(handler: (sender: any, args: T) => void): void;
         /**
         * Raises this event.
         */
-        raiseEvent(args: T): void;
+        raiseEvent(sender: any, args: T): void;
     }
     /**
     * @class Represents a dispatcher for PropertyChanged events.
@@ -75,6 +75,10 @@
         * The contents of the collection changed dramatically.
         */
         Reset = 2,
+    }
+    class EmptyEventArgs extends EventArgs {
+        /** Initializes a new instance of the EmptyEventArgs class. */
+        constructor();
     }
     class ElapsedEventArgs extends EventArgs {
         /** Initializes a new instance of the ElapsedEventArgs class. */
@@ -216,7 +220,8 @@ export declare module MindFusion.Charting.Drawing {
         * @param {Object} The object to compare with.
         * @returns {Boolean} true if the specified object is equal to this Brush; otherwise, false.
         */
-        equals(obj: any): boolean;        /**
+        equals(obj: any): boolean;
+        /**
          * Gets the color of this brush.
          * @returns {MindFusion.Charting.Drawing.Color} The color of this brush.
          */
@@ -269,7 +274,8 @@ export declare module MindFusion.Charting.Drawing {
         * @param {Object} The object to compare with.
         * @returns {Boolean} true if the specified object is equal to this LinearGradientBrush; otherwise, false.
         */
-        equals(obj: any): boolean;        /**
+        equals(obj: any): boolean;
+        /**
          * Gets the starting color of the gradient.
          * @returns {MindFusion.Charting.Drawing.Color} The starting color of the gradient.
          */
@@ -277,7 +283,8 @@ export declare module MindFusion.Charting.Drawing {
          * Sets the starting color of the gradient.
          * @param {MindFusion.Charting.Drawing.Color} value The starting color of the gradient.
          */
-        startColor: Color;        /**
+        startColor: Color;
+        /**
          * Gets the ending color of the gradient.
          * @returns {MindFusion.Charting.Drawing.Color} The ending color of the gradient.
          */
@@ -321,7 +328,8 @@ export declare module MindFusion.Charting.Drawing {
          * @param {Number} blue The blue value.
          * @returns {MindFusion.Charting.Drawing.Color} The new Color instance.
          */
-        static fromArgb(r: number, g: number, b: number): Color; value: string;
+        static fromArgb(r: number, g: number, b: number): Color;
+        value: string;
         R: number;
         G: number;
         B: number;
@@ -610,7 +618,8 @@ export declare module MindFusion.Charting.Drawing {
          * Returns a string representation of this font.
          * @returns {String} The string representation of this font.
          */
-        toString(): string;        /**
+        toString(): string;
+        /**
          * Gets the name of this font.
          * @returns {String} The name of this font.
          */
@@ -816,7 +825,8 @@ export declare module MindFusion.Charting.Drawing {
          * @param {Number} [width] The maximum width.
          * @returns {MindFusion.Drawing.Size} The size of the given string when drawn with the given font.
          */
-        measureString(text: string, font: Font, width?: number): Size;        /**
+        measureString(text: string, font: Font, width?: number): Size;
+        /**
          * Gets the underlying CanvasRenderingContext2D object.
          * @returns {CanvasRenderingContext2D} The underlying CanvasRenderingContext2D object.
          */
@@ -861,7 +871,8 @@ export declare module MindFusion.Charting.Drawing {
         * @param {Object} The object to compare with.
         * @returns {Boolean} true if the specified object is equal to this LinearGradientBrush; otherwise, false.
         */
-        equals(obj: any): boolean;        /**
+        equals(obj: any): boolean;
+        /**
          * Gets the color of this pen.
          * @returns {MindFusion.Charting.Drawing.Color} The color of this pen.
          */
@@ -869,7 +880,8 @@ export declare module MindFusion.Charting.Drawing {
          * Sets the color of this pen.
          * @param {MindFusion.Charting.Drawing.Color} value The color of this pen.
          */
-        color: Color;        /**
+        color: Color;
+        /**
          * Gets the width of this pen.
          * @returns {Number} The width of this pen.
          */
@@ -877,7 +889,8 @@ export declare module MindFusion.Charting.Drawing {
          * Sets the width of this pen.
          * @param {Number} value The width of this pen.
          */
-        width: number;        /**
+        width: number;
+        /**
          * Gets the dash style of this pen.
          * @returns {MindFusion.Charting.Drawing.DashStyle} The dash style of this pen.
          */
@@ -885,7 +898,8 @@ export declare module MindFusion.Charting.Drawing {
          * Sets the line join of this pen.
          * @param {MindFusion.Charting.Drawing.DashStyle} value The line join of this pen.
          */
-        dashStyle: DashStyle;        /**
+        dashStyle: DashStyle;
+        /**
          * Gets the line join of this pen.
          * @returns {MindFusion.Charting.Drawing.LineJoin} The line join of this pen.
          */
@@ -927,7 +941,8 @@ export declare module MindFusion.Charting.Collections {
          * Initializes a new instance of the IEnumerable class.
          * @param {Array<T>} [items] The underlying array data structure of the collection.
          */
-        constructor(items?: Array<T>);        /**
+        constructor(items?: Array<T>);
+        /**
          * Gets the collection as an array.
         * @returns {Array<T>} The underlying array data structure of the collection.
         */
@@ -1078,15 +1093,18 @@ export declare module MindFusion.Charting.Collections {
         * @param {TKey} key The key to locate in the dictionary.
            * @returns {Boolean} true if the element exists in the collection, otherwise false.
         */
-        contains(key: any): boolean;
+        contains(key: TKey): boolean;
         /**
            * Removes the element with the specified key from the dictionary.
         * @param {TKey} key The key of the element to remove.
         */
         remove(key: any): void;
+        /** Gets the number of key/value pairs contained in the dictionary */
+        count: number;
+        /** Gets an array with all keys in the dictionary. */
         keys: List<TKey>;
+        /** Gets an array with all values in the dictionary. */
         values: List<TValue>;
-        /** Gets an array with all keys in the dictionary. */        /** Gets an array with all values in the dictionary. */
     }
     /**
      * @class Represents a collection of arbitrary objects.
@@ -1107,7 +1125,8 @@ export declare module MindFusion.Charting.Collections {
         /**
          * Occurs when an item is added, removed, changed, moved, or the entire list is refreshed.
          */
-        collectionChanged: NotifyCollectionChangedEventDispatcher;        /**
+        collectionChanged: NotifyCollectionChangedEventDispatcher;
+        /**
         * Raises the propertyChanged event.
         * @param {PropertyChangedEventArgs} args An instance of the PropertyChangedEventArgs class.
         */
@@ -1115,7 +1134,8 @@ export declare module MindFusion.Charting.Collections {
         /**
          * Occurs when a property value changes.
          */
-        propertyChanged: PropertyChangedEventDispatcher;        /**
+        propertyChanged: PropertyChangedEventDispatcher;
+        /**
          * Adds an object to the collection.
          * @param {T} item The item to add.
          */
@@ -1178,7 +1198,8 @@ export declare module MindFusion.Charting.Commands {
         /**
          * Sets the UndoManager that contains this command.
          */
-        manager: UndoManager;        /**
+        manager: UndoManager;
+        /**
          * Gets a value indicating whether the command does anything.
          */
         hasEffect: boolean;
@@ -1233,7 +1254,8 @@ export declare module MindFusion.Charting.Commands {
      */
     class TrackChangesCommand extends DisposableCommand {
         constructor(manager: UndoManager, target: INotifyPropertyValueChanged);
-        clean(): void; registerChange(change: ObjectChange): void;
+        clean(): void;
+        registerChange(change: ObjectChange): void;
         /**
          * DisposableCommand.Undo override.
          */
@@ -1278,7 +1300,8 @@ export declare module MindFusion.Charting.Commands {
     }
     class UndoManager {
         constructor();
-        executeCommand(command: Command): void; startComposite(): CompositeCommand;
+        executeCommand(command: Command): void;
+        startComposite(): CompositeCommand;
         endComposite(addToHistory?: boolean): void;
         /**
          * Creates a Command object to track subsequent changes on the specified target.
@@ -1339,6 +1362,7 @@ export declare module MindFusion.Charting.Components {
     import FontStyle = MindFusion.Charting.Drawing.FontStyle;
     import ObservableCollection = MindFusion.Charting.Collections.ObservableCollection;
     import List = MindFusion.Charting.Collections.List;
+    import StringAlignment = MindFusion.Charting.Drawing.StringAlignment;
     import ImageAlign = MindFusion.Charting.Drawing.ImageAlign;
     import Brush = MindFusion.Charting.Drawing.Brush;
     import EventDispatcher = MindFusion.Charting.Common.EventDispatcher;
@@ -1361,7 +1385,8 @@ export declare module MindFusion.Charting.Components {
         /**
          * Gets the Graphics surface where the event handler should draw.
          */
-        graphics: Graphics;        /**
+        graphics: Graphics;
+        /**
          * Gets the current clip rectangle.
          */
         /**
@@ -1437,6 +1462,13 @@ export declare module MindFusion.Charting.Components {
          */
         createController(context: RenderContext): ComponentController;
         /**
+         * Invoked while the mouse is moved to let your application set the mouse cursor.
+         * @param {Number} x A double value specifying the horizontal position of mouse pointer.
+         * @param {Number} y A double value specifying the vertical position of mouse pointer.
+         * @returns {CursorHint} A member of the CursorHint enumeration.
+         */
+        getCursorHint(x: number, y: number): CursorHint;
+        /**
          * Sums specified nullable number values.
          * @param {Number} value1 The first term to sum.
          * @param {Number} value2 The second term to sum.
@@ -1491,53 +1523,62 @@ export declare module MindFusion.Charting.Components {
         /**
          * Sets a nullable number value specifying the component's desired width. Valid only after calling Measure.
          */
-        desiredWidth: number;        /**
+        desiredWidth: number;
+        /**
          * Gets a nullable number value specifying the component's desired height. Valid only after calling Measure.
          */
         /**
          * Sets a nullable number value specifying the component's desired height. Valid only after calling Measure.
          */
-        desiredHeight: number;        /**
+        desiredHeight: number;
+        /**
          * TGets a number value specifying the component's assigned width. Valid only after calling Arrange.
          */
         /**
          * Sets a number value specifying the component's assigned width. Valid only after calling Arrange.
          */
-        actualWidth: number;        /**
+        actualWidth: number;
+        /**
          * Gets a number value specifying the component's assigned height. Valid only after calling Arrange.
          */
         /**
          * Sets a number value specifying the component's assigned height. Valid only after calling Arrange.
          */
-        actualHeight: number;        /**
+        actualHeight: number;
+        /**
          * Gets a number value specifying the component's horizontal position relative to its parent.
          */
         /**
          * Sets a number value specifying the component's horizontal position relative to its parent.
          */
-        xInParent: number;        /**
+        xInParent: number;
+        /**
          * A number value specifying the component's vertical position relative to its parent.
          */
         /**
          * A number value specifying the component's vertical position relative to its parent.
          */
-        yInParent: number;        /**
+        yInParent: number;
+        /**
          * Gets the boundaries of this component relative to its parent.
          */
-        rectInParent: Rect;        /**
+        rectInParent: Rect;
+        /**
          * Gets or sets the row index of this component when placed inside a GridPanel.
          */
         /**
          * Gets or sets the row index of this component when placed inside a GridPanel.
          */
-        gridRow: number;        /**
+        gridRow: number;
+        /**
          * Gets or sets the column index of this component when placed inside a GridPanel.
          */
         /**
          * Gets or sets the column index of this component when placed inside a GridPanel.
          */
         gridColumn: number;
-        parent: Component;        /**
+        parent: Component;
+        /**
          * Gets the horizontal alignment of this component inside the
          * layout rectangle allocated by its parent panel.
          */
@@ -1584,7 +1625,8 @@ export declare module MindFusion.Charting.Components {
         /**
          * Sets the component's tooltip text.
          */
-        toolTip: string;        /**
+        toolTip: string;
+        /**
          * Gets a fixed width for this component.
          */
         /**
@@ -1602,6 +1644,10 @@ export declare module MindFusion.Charting.Components {
         desiredHeightMargins(): number;
         effectiveMeasuredWidth(): number;
         effectiveMeasuredHeight(): number;
+        m_id: number;
+        id(): number;
+        fromJson(obj: any): any;
+        toJson(): any;
     }
     /**
      * @class Represents an animation.
@@ -1648,6 +1694,13 @@ export declare module MindFusion.Charting.Components {
          */
         drawInteraction(graphics: Graphics): void;
         /**
+         * Invoked while the mouse is moved to let your application set the mouse cursor.
+         * @param {Number} x A double value specifying the horizontal position of mouse pointer.
+         * @param {Number} y A double value specifying the vertical position of mouse pointer.
+         * @returns {CursorHint} A member of the CursorHint enumeration.
+         */
+        getCursorHint(x: number, y: number): CursorHint;
+        /**
          * For internal use.
          * @returns {ComponentAnimation} An instance of a ComponentAnimation -derived class.
          */
@@ -1671,6 +1724,62 @@ export declare module MindFusion.Charting.Components {
          * @param {Plot} plot A Plot instance.
          */
         visitPlot(plot: Plot): void;
+    }
+    /**
+    * Specifies what mouse cursor to display while a user interacts with the control.
+    * @enum
+    * @name CursorHint
+    * @param [Move] Indicates the cursor specified by the MoveCursor property.
+    * @param [Rotate] Indicates the cursor specified by the RotateCursor property.
+    * @param [HorizontalResize] Indicates the cursor specified by the HorizontalResizeCursor property.
+    * @param [VerticalResize] Indicates the cursor specified by the VerticalResize property.
+    * @param [DiagonalResize] Indicates the cursor specified by the DiagonalResize property.
+    * @param [CounterDiagonalResize] Indicates the cursor specified by the CounterDiagonalResize property.
+    * @param [Pointer] Indicates the cursor specified by the PointerCursor property.
+    * @param [Disallow] Indicates the cursor specified by the DisallowCursor property.
+    * @param [DontChange] Indicates the cursor specified by the Cursor property.
+    */
+    enum CursorHint {
+        /**
+         * Indicates the cursor specified by the MoveCursor property.
+         */
+        Move,
+        /**
+         * Indicates the cursor specified by the RotateCursor property.
+         */
+        Rotate,
+        /**
+     * Indicates the cursor specified by the HorizontalResizeCursor property.
+     */
+        HorizontalResize,
+        /**
+         * Indicates the cursor specified by the VerticalResizeCursor property.
+         */
+        VerticalResize,
+        /**
+        * Indicates the cursor specified by the DiagonalResizeCursor property.
+        */
+        DiagonalResize,
+        /**
+         * Indicates the cursor specified by the CounterDiagonalResizeCursor property.
+         */
+        CounterDiagonalResize,
+        /**
+        * Indicates the cursor specified by the PointerCursor property.
+        */
+        Pointer,
+        /**
+         * Indicates the cursor specified by the DisallowCursor property.
+         */
+        NotAllowed,
+        /**
+        * Indicates the cursor specified by the Cursor property.
+        */
+        DontChange,
+        /**
+        * Indicates the default browser cursor
+        */
+        Default,
     }
     /**
     * Identifies hit-test visibility of a component.
@@ -1756,6 +1865,126 @@ export declare module MindFusion.Charting.Components {
          * Vertical orientation.
          */
         Vertical = 1,
+    }
+    /**
+    * @class Represents a control that handles zooming and scrolling of axes.
+    * @property {Axis} axis Gets or sets the Axis that will be handled by this component.
+    * @property {Number} minValue Gets or sets the smallest value of the displayed range.
+    * @property {Number} maxValue Gets or sets the largest value of the displayed range.
+    * @property {Number} size Gets or sets the width or height of the component.
+    * @property {Number} handleSize Gets or sets the width or height of resize handles.
+    * @property {Brush} brush Gets or sets the Brush used to paint the component's background.
+    * @property {Brush} thumbBrush Gets or sets the Brush used to paint the thumb.
+    * @property {Brush} handleBrush Gets or sets the Brush used to paint resize handles.
+    * @property {Orientation} orientation Gets or sets the orientation of the component.
+    * @property {SeriesContainer} axesSource Gets or sets the object whose Axes will be handled by this component.
+    */
+    class RangeSelector extends Component {
+        /**
+         * Initializes a new instance of the RangeSelector class.
+         */
+        constructor(axis: Axis, minValue: number, maxValue: number);
+        /**
+         * Component.Measure override. Measures the desired size of this component.
+         * @param {Number} maxWidth The maximum width provided by parent component.
+         * @param {Number} maxHeight The maximum height provided by parent component.
+         * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
+         */
+        measure(maxWidth: number, maxHeight: number, context: RenderContext): void;
+        /**
+         * Component.Arrange override. Sets the location and size of this component relatively to its parent.
+         * @param {Number} x A number value specifying horizontal position.
+         * @param {Number} y A number value specifying vertical position.
+         * @param {Number} w A number value specifying the component's width.
+         * @param {Number} h A number value specifying the component's height.
+         * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
+         */
+        arrange(x: number, y: number, w: number, h: number, context: RenderContext): void;
+        /**
+         * Component.Draw override. Draws this component in specified RenderContext.
+         * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
+         */
+        draw(context: RenderContext): void;
+        getCursorHint(x: number, y: number): CursorHint;
+        getZoomMode(x: number, y: number): StringAlignment;
+        /**
+         * Component.CreateController override. Returns a controller used to interact with this component.
+         * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
+         * @returns {ComponentController} Instance of a ComponentController -derived class.
+         */
+        createController(context: RenderContext): ComponentController;
+        effectiveMinValue: number;
+        effectiveMaxValue: number;
+        /**
+        * Gets the object whose Axes will be handled by this component.
+        */
+        /**
+         * Gets the object whose Axes will be handled by this component.
+         */
+        axesSource: SeriesContainer;
+        /**
+         * Gets the Axis that will be handled by this component.
+         */
+        /**
+         * Sets the Axis that will be handled by this component.
+         */
+        axis: Axis;
+        /**
+         * Gets the orientation of the component.
+         */
+        /**
+         * Sets the orientation of the component.
+         */
+        orientation: Orientation;
+        /**
+         * Gets the smallest value of the displayed range.
+         */
+        /**
+         * Sets the smallest value of the displayed range.
+         */
+        minValue: number;
+        /**
+         * Gets the largest value of the displayed range.
+         */
+        /**
+         * Sets the largest value of the displayed range.
+         */
+        maxValue: number;
+        /**
+         * Gets the width or height of the component.
+         */
+        /**
+         * Sets the width or height of the component.
+         */
+        size: number;
+        /**
+         * Gets the width or height of resize handles.
+         */
+        /**
+         * Sets the width or height of resize handles.
+         */
+        handleSize: number;
+        /**
+         * Gets the Brush used to paint the component's background.
+         */
+        /**
+         * Sets the Brush used to paint the component's background.
+         */
+        brush: Brush;
+        /**
+        * Gets the Brush used to paint the thumb.
+        */
+        /**
+         * Sets the Brush used to paint the thumb.
+         */
+        thumbBrush: Brush;
+        /**
+        * Gets the Brush used to paint the resize handles.
+        */
+        /**
+         * Sets the Brush used to paint the resize handles.
+         */
+        handleBrush: Brush;
     }
     /**
      * @class Interface used to communicate with host DOM element.
@@ -1910,10 +2139,12 @@ export declare module MindFusion.Charting.Components {
         /**
         * Raised when the user clicks on this button.
         */
-        clicked: EventDispatcher<EventArgs>;        /**
+        clicked: EventDispatcher<EventArgs>;
+        /**
         * Raised to let you custom-draw button graphics.
         */
-        customDraw: ButtonDrawEventDispatcher;        /**
+        customDraw: ButtonDrawEventDispatcher;
+        /**
          * Gets or sets the content displayed inside this button.
          */
         /**
@@ -1951,7 +2182,8 @@ export declare module MindFusion.Charting.Components {
         /**
          * Gets or sets the column's sizing mode.
          */
-        lengthType: LengthType;        /**
+        lengthType: LengthType;
+        /**
          * Gets whether the column should be sized relatively to other columns in the grid panel.
          * @returns {Boolean} true to apply relative size to this column, or false otherwise.
          */
@@ -1962,7 +2194,11 @@ export declare module MindFusion.Charting.Components {
         /**
          * Gets or sets fixed width for this column.
          */
-        width: number; xInParent: number; measuredWidth: number;
+        width: number;
+        xInParent: number;
+        measuredWidth: number;
+        fromJson(obj: any): any;
+        toJson(): any;
     }
     /**
     * @class Represents a row in a GridPanel.
@@ -1986,7 +2222,8 @@ export declare module MindFusion.Charting.Components {
         /**
          * Gets or sets the row's sizing mode.
          */
-        lengthType: LengthType;        /**
+        lengthType: LengthType;
+        /**
          * Gets whether the row should be sized relatively to other rows in the grid panel.
          * @return true to apply relative size to this row, or false otherwise.
          */
@@ -1997,7 +2234,11 @@ export declare module MindFusion.Charting.Components {
         /**
          * Gets or sets fixed height for this row.
          */
-        height: number; yInParent: number; measuredHeight: number;
+        height: number;
+        yInParent: number;
+        measuredHeight: number;
+        fromJson(obj: any): any;
+        toJson(): any;
     }
     /**
     * @class Represents a component that draws a bitmap image.
@@ -2016,17 +2257,20 @@ export declare module MindFusion.Charting.Components {
          * @param {Number} maxHeight The maximum height provided by parent component.
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
          */
-        measure(maxWidth: number, maxHeight: number, context: RenderContext): void;        /**
+        measure(maxWidth: number, maxHeight: number, context: RenderContext): void;
+        /**
          * Component.Draw override. Draws associated Image in specified RenderContext.
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
          */
-        draw(context: RenderContext): void;        /**
+        draw(context: RenderContext): void;
+        /**
          * Gets or sets Image by its file location.
          */
         /**
          * Gets or sets Image by its file location.
          */
-        location: string;        /**
+        location: string;
+        /**
          * Gets or sets a value indicating whether the component
          * should auto-size to match the dimensions of its Image.
          */
@@ -2034,13 +2278,16 @@ export declare module MindFusion.Charting.Components {
          * Gets or sets a value indicating whether the component
          * should auto-size to match the dimensions of its Image.
          */
-        autoSize: boolean;        /**
+        autoSize: boolean;
+        /**
          * Gets or sets the image alignment relative to the component.
          */
         /**
          * Gets or sets the image alignment relative to the component.
          */
         imageAlign: ImageAlign;
+        fromJson(json: string): any;
+        toJson(): any;
     }
     /**
     * @class Represents a component that contains multiple child components and manages their layout.
@@ -2086,17 +2333,21 @@ export declare module MindFusion.Charting.Components {
          * Component.InvalidateLayout override. Invalidates the current layout
          * and runs a new layout pass before next draw operation.
          */
-        invalidateLayout(): void; measureChild(child: Component, maxWidth: number, maxHeight: number, context: RenderContext): Size;
+        invalidateLayout(): void;
+        measureChild(child: Component, maxWidth: number, maxHeight: number, context: RenderContext): Size;
         /**
         * Gets the list of child components of this panel.
         */
-        children: ObservableCollection<Component>;        /**
+        children: ObservableCollection<Component>;
+        /**
          * Gets or sets a reference to the control containing this panel.
          */
         /**
          * Gets or sets a reference to the control containing this panel.
          */
         parentControl: RootControl;
+        fromJson(json: string): any;
+        toJson(): any;
     }
     /**
     * @class Represents a Component that draws text.
@@ -2119,37 +2370,43 @@ export declare module MindFusion.Charting.Components {
          * Component.Draw override. Draws associated Text in specified RenderContext.
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
          */
-        draw(context: RenderContext): void;        /**
+        draw(context: RenderContext): void;
+        /**
          * Gets or sets the text that should be drawn inside this component.
          */
         /**
          * Gets or sets the text that should be drawn inside this component.
          */
-        text: string;        /**
+        text: string;
+        /**
          * Gets or sets the name of the font that should be used to draw the component's text.
          */
         /**
          * Gets or sets the name of the font that should be used to draw the component's text.
          */
-        fontName: string;        /**
+        fontName: string;
+        /**
          * Gets or sets the size of the font that should be used to draw the component's text.
          */
         /**
          * Gets or sets the size of the font that should be used to draw the component's text.
          */
-        fontSize: number;        /**
+        fontSize: number;
+        /**
          * Gets or sets the style of the font that should be used to draw the component's text.
          */
         /**
          * Gets or sets the style of the font that should be used to draw the component's text.
          */
-        fontStyle: FontStyle;        /**
+        fontStyle: FontStyle;
+        /**
          * Gets or sets the Brush that should be used to draw the component's text.
          */
         /**
          * Gets or sets the Brush that should be used to draw the component's text.
          */
-        textBrush: Brush;        /**
+        textBrush: Brush;
+        /**
          * Gets or sets a value indicating which attribute values this component should inherit
          * from current Theme if its local text appearance properties are not set.
          */
@@ -2158,6 +2415,8 @@ export declare module MindFusion.Charting.Components {
          * from current Theme if its local text appearance properties are not set.
          */
         styleHint: TextStyleHint;
+        fromJson(json: string): any;
+        toJson(): any;
     }
     /**
     * @class Represents a layout panel that arranges its child components in a grid.
@@ -2175,7 +2434,8 @@ export declare module MindFusion.Charting.Components {
          * @param maxHeight The maximum height provided by parent component.
          * @param context A RenderContext instance.
          */
-        measure(maxWidth: number, maxHeight: number, context: RenderContext): void;        /**
+        measure(maxWidth: number, maxHeight: number, context: RenderContext): void;
+        /**
          * Component.Arrange override. Sets the location and size
          * of this panel and arranges its child components.
          * @param x A number value specifying horizontal position.
@@ -2191,13 +2451,16 @@ export declare module MindFusion.Charting.Components {
         /**
          * Gets or sets a list of GridRow objects specifying row attributes.
          */
-        rows: List<GridRow>;        /**
+        rows: List<GridRow>;
+        /**
          * Gets or sets a list of GridColumn objects specifying column attributes.
          */
         /**
          * Gets or sets a list of GridColumn objects specifying column attributes.
          */
         columns: List<GridColumn>;
+        fromJson(json: string): any;
+        toJson(): any;
     }
     /**
      * @class Represents a layout panel that arranges its child components over each other.
@@ -2242,13 +2505,16 @@ export declare module MindFusion.Charting.Components {
          * @param {Number} h A number value specifying the component's height.
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
          */
-        arrange(x: number, y: number, w: number, h: number, context: RenderContext): void;        /**
+        arrange(x: number, y: number, w: number, h: number, context: RenderContext): void;
+        /**
          * Gets or sets the stack orientation.
          */
         /**
          * Gets or sets the stack orientation.
          */
         orientation: Orientation;
+        fromJson(json: string): any;
+        toJson(): any;
     }
 }
 export declare module MindFusion.Charting.ThreeD {
@@ -2290,7 +2556,8 @@ export declare module MindFusion.Charting.ThreeD {
         * Multiplys the current matrix times a second matrix.
         * @param {Matrix3D} mat The right matrix.
         */
-        multiply(mat: Matrix3D): void;        /**
+        multiply(mat: Matrix3D): void;
+        /**
         * A 4x4 Identety Matrix
         * @return {Matrix3D} Identety Matrix:
         */
@@ -2337,7 +2604,8 @@ export declare module MindFusion.Charting.ThreeD {
         * @param {number} far The furthest coordinate, where the object will still be drawn.
         * @return {Matrix3D} Perspective Matrix:
         */
-        static Perspective(fieldOfView: number, aspectRatio: number, near: number, far: number): Matrix3D; width: number;
+        static Perspective(fieldOfView: number, aspectRatio: number, near: number, far: number): Matrix3D;
+        width: number;
         height: number;
     }
     /**
@@ -2414,7 +2682,8 @@ export declare module MindFusion.Charting.ThreeD {
          * Draws a projection of this scene in specified RenderContext.
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
          */
-        draw(context: RenderContext): void;        /**
+        draw(context: RenderContext): void;
+        /**
          * Projects specified point on projection plane.
          * @param {Point3D} point A Point3D to project.
          * @returns {Point3D} A Point3D containing projection coordinates.
@@ -2438,31 +2707,36 @@ export declare module MindFusion.Charting.ThreeD {
         /**
          * Gets or sets a list of models in this scene.
          */
-        models: List<Model3D>;        /**
+        models: List<Model3D>;
+        /**
          * Gets or sets a list of projections in this scene.
          */
         /**
          * Gets or sets a list of projections in this scene.
          */
-        projections: List<Projection>;        /**
+        projections: List<Projection>;
+        /**
          * Gets or sets the camera position.
          */
         /**
          * Gets or sets the camera position.
          */
-        cameraPosition: Point3D;        /**
+        cameraPosition: Point3D;
+        /**
          * Gets or sets the camera orientation.
          */
         /**
          * Gets or sets the camera orientation.
          */
-        cameraOrientation: Point3D;        /**
+        cameraOrientation: Point3D;
+        /**
          * Gets or sets the camera focal length.
          */
         /**
          * Gets or sets the camera focal length.
          */
-        focalLength: number;        /**
+        focalLength: number;
+        /**
          * Gets or sets the viewport center.
          */
         /**
@@ -2518,13 +2792,15 @@ export declare module MindFusion.Charting.ThreeD {
         /**
          * Gets or sets the X component of this vector.
          */
-        x: number;        /**
+        x: number;
+        /**
          * Gets or sets the Y component of this vector.
          */
         /**
          * Gets or sets the Y component of this vector.
          */
-        y: number;        /**
+        y: number;
+        /**
          * Gets or sets the Z component of this vector.
          */
         /**
@@ -2547,31 +2823,36 @@ export declare module MindFusion.Charting.ThreeD {
         /**
          * Gets or sets the top-right corner of label's layout rectangle.
          */
-        topRight: Point3D;        /**
+        topRight: Point3D;
+        /**
          * Gets or sets the bottom-left corner of label's layout rectangle.
          */
         /**
          * Gets or sets the bottom-left corner of label's layout rectangle.
          */
-        bottomLeft: Point3D;        /**
+        bottomLeft: Point3D;
+        /**
          * Gets or sets the label's text.
          */
         /**
          * Gets or sets the label's text.
          */
-        text: string;        /**
+        text: string;
+        /**
          * Gets or sets the label's font.
          */
         /**
          * Gets or sets the label's font.
          */
-        font: Font;        /**
+        font: Font;
+        /**
          * Gets or sets the label's rotation angle.
          */
         /**
          * Gets or sets the label's rotation angle.
          */
-        rotationAngle: number; drawLabel: DrawLabelDelegate;
+        rotationAngle: number;
+        drawLabel: DrawLabelDelegate;
     }
     /**
     * Gets or sets the signature of callback methods used to render text at projected point.
@@ -2600,19 +2881,22 @@ export declare module MindFusion.Charting.ThreeD {
         /**
          * Gets ot sets the projected Label3D.
          */
-        label: Label3D;        /**
+        label: Label3D;
+        /**
          * Gets or sets the projection of top-left corner of label's layout rectangle.
          */
         /**
          * Gets or sets the projection of top-left corner of label's layout rectangle.
          */
-        projectionTopLeft: Point3D;        /**
+        projectionTopLeft: Point3D;
+        /**
          * Gets or sets the projection of bottom-right corner of label's layout rectangle.
          */
         /**
          * Gets or sets the projection of bottom-right corner of label's layout rectangle.
          */
-        projectionBottomRight: Point3D;        /**
+        projectionBottomRight: Point3D;
+        /**
          * A value by which projections are sorted in depth buffer.
          */
         /**
@@ -2663,7 +2947,8 @@ export declare module MindFusion.Charting.ThreeD {
          * Draws this projection in specified RenderContext.
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
          */
-        drawAsProjection(context: RenderContext): void;        /**
+        drawAsProjection(context: RenderContext): void;
+        /**
          * Gets the polygon's normal vector.
          * @returns {Vector3D} A Vector3D representing the polygon's normal vector.
          */
@@ -2687,23 +2972,29 @@ export declare module MindFusion.Charting.ThreeD {
          * @returns {Point3D} A Point3D instance representing the middle point.
          */
         midPoint(): Point3D;
-        calculateIllumination(): void;        /**
+        calculateIllumination(): void;
+        /**
          * Gets or sets the polygon's vertices.
          */
         /**
          * Gets or sets the polygon's vertices.
          */
-        points: List<Point3D>; normals: Vector3D[];
-        owner: Object;        /**
+        points: List<Point3D>;
+        normals: Vector3D[];
+        owner: Object;
+        /**
          * A value by which projections are sorted in depth buffer.
          */
         /**
          * A value by which projections are sorted in depth buffer.
          */
-        zSort: number; brush: Brush; pen: Pen;
+        zSort: number;
+        brush: Brush;
+        pen: Pen;
     }
     class Graphics3D {
-        constructor(context: WebGLRenderingContext, flength: number, width: number, height: number); loadObject(poly: Polygon3D): {
+        constructor(context: WebGLRenderingContext, flength: number, width: number, height: number);
+        loadObject(poly: Polygon3D): {
             buffer: WebGLBuffer;
             numItems: number;
             itemSize: number;
@@ -2714,7 +3005,9 @@ export declare module MindFusion.Charting.ThreeD {
         drawObject(obj: any): void;
         getMatrices(): Matrix3D;
         moveCamera(mat: Matrix3D): void;
-        reloadScene(): void; projection: Matrix3D; context: WebGLRenderingContext;
+        reloadScene(): void;
+        projection: Matrix3D;
+        context: WebGLRenderingContext;
     }
 }
 export declare module MindFusion.Charting {
@@ -2725,6 +3018,7 @@ export declare module MindFusion.Charting {
     import Scene3D = MindFusion.Charting.ThreeD.Scene3D;
     import BiaxialChart = MindFusion.Charting.Controls.BiaxialChart;
     import Graphics = MindFusion.Charting.Drawing.Graphics;
+    import CursorHint = MindFusion.Charting.Components.CursorHint;
     import ComponentAnimation = MindFusion.Charting.Components.ComponentAnimation;
     import ComponentController = MindFusion.Charting.Components.ComponentController;
     import IEnumerable = MindFusion.Charting.Collections.IEnumerable;
@@ -2770,7 +3064,8 @@ export declare module MindFusion.Charting {
          * @param {String} propertyName Specifies the name of changed property.
          */
         protected onPropertyChanged(propertyName: string): void;
-        propertyChanged: PropertyChangedEventDispatcher;        /**
+        propertyChanged: PropertyChangedEventDispatcher;
+        /**
          * Gets or sets the axis title.
          */
         /**
@@ -2805,8 +3100,11 @@ export declare module MindFusion.Charting {
          * Gets or sets the number format of coordinate labels.
          */
         numberFormat: string;
-        enumerateIntervals(alignToView: boolean, process: ProcessInterval, partial?: boolean): void; numIntervals(): number;
-        measuredMinValue: number; measuredMaxValue: number; effectiveMinValue: number;
+        enumerateIntervals(alignToView: boolean, process: ProcessInterval, partial?: boolean): void;
+        numIntervals(): number;
+        measuredMinValue: number;
+        measuredMaxValue: number;
+        effectiveMinValue: number;
         effectiveMaxValue: number;
         /**
          * Maps a value from this axis' coordinate system to a pixel position in specified view.
@@ -2822,6 +3120,18 @@ export declare module MindFusion.Charting {
          * @returns {Number} Y coordinate of pixel.
          */
         mapValueToPixelY(value: number, viewSize: number): number;
+        m_id: number;
+        id(): number;
+        fromJson(obj: any): void;
+        toJson(): {
+            __type: any;
+            id: number;
+            interval: number;
+            minValue: number;
+            maxValue: number;
+            numberFormat: string;
+            title: string;
+        };
     }
     /**
     * @class A base class for components that render Axis ranges.
@@ -2850,19 +3160,22 @@ export declare module MindFusion.Charting {
          * Initializes a new instance of the AxisRenderer class.
          * @param {MindFusion.Charting.Axis} axis The Axis that will be drawn by this object.
          */
-        constructor(axis: Axis);        /**
+        constructor(axis: Axis);
+        /**
          * The Axis that will be drawn by this object.
          */
         /**
          * The Axis that will be drawn by this object.
          */
-        axis: Axis;        /**
+        axis: Axis;
+        /**
          * Gets the effective Axis in current context, getting one from Plot2D
          * or chart control if there's no local Axis associated with this renderer.
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
          * @returns {MindFusion.Charting.Axis} An Axis instance.
          */
-        abstract effectiveAxis(context: RenderContext): Axis;        /**
+        abstract effectiveAxis(context: RenderContext): Axis;
+        /**
          * Gets or sets a value indicating whether coordinate labels should be pinned
          * in place or scroll together with the plot when users pan it.
          */
@@ -2878,25 +3191,29 @@ export declare module MindFusion.Charting {
         /**
          * Gets or sets the object whose Series labels should be rendered along this axis.
          */
-        labelsSource: SeriesContainer;        /**
+        labelsSource: SeriesContainer;
+        /**
          * Gets or sets a value indicating whether this AxisRenderer should draw axis coordinates.
          */
         /**
          * Gets or sets a value indicating whether this AxisRenderer should draw axis coordinates.
          */
-        showCoordinates: boolean;        /**
+        showCoordinates: boolean;
+        /**
          * Gets or sets a value indicating whether this AxisRenderer should draw data labels.
          */
         /**
          * Gets or sets a value indicating whether this AxisRenderer should draw data labels.
          */
-        showSeriesLabels: boolean;        /**
+        showSeriesLabels: boolean;
+        /**
          * Gets or sets a value indicating whether this AxisRenderer should draw axis ticks.
          */
         /**
          * Gets or sets a value indicating whether this AxisRenderer should draw axis ticks.
          */
-        showTicks: boolean; tickLength: number;
+        showTicks: boolean;
+        tickLength: number;
         /**
          * Gets the Font that should be used to draw axis labels.
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
@@ -2990,25 +3307,29 @@ export declare module MindFusion.Charting {
         /**
          * Gets or sets the style of font that should be used to draw the axis Title.
          */
-        titleFontStyle: FontStyle;        /**
+        titleFontStyle: FontStyle;
+        /**
          * Gets or sets the Brush that should be used to draw axis lines.
          */
         /**
          * Gets or sets the Brush that should be used to draw axis lines.
          */
-        axisStroke: Brush;        /**
+        axisStroke: Brush;
+        /**
          * Gets or sets the thickness axis lines should be stroked with.
          */
         /**
          * Gets or sets the thickness axis lines should be stroked with.
          */
-        axisStrokeThickness: number;        /**
+        axisStrokeThickness: number;
+        /**
          * Gets or sets the dash style axis lines should be stroked with.
          */
         /**
          * Gets or sets the dash style axis lines should be stroked with.
          */
-        axisStrokeDashStyle: DashStyle;        /**
+        axisStrokeDashStyle: DashStyle;
+        /**
          * Gets the Pen that should be used to draw axis lines.
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
          * @returns {MindFusion.Charting.Drawing.Pen} A System.Pen instance.
@@ -3032,6 +3353,8 @@ export declare module MindFusion.Charting {
          * @returns {MindFusion.Charting.Drawing.DashStyle} A member of the DashStyle enumeration.
          */
         effectiveAxisDashStyle(context: RenderContext): DashStyle;
+        fromJson(json: any): any;
+        toJson(): any;
         dataReader: DataReader;
     }
     /**
@@ -3087,12 +3410,45 @@ export declare module MindFusion.Charting {
         external: number;
         seriesOffset: number;
     }
+    /**
+    * Specifies the alignment of a label relative to its associated bubble.
+    * @enum
+    * @name BubbleLabelAlignment
+    * @param [Center] Indicates that the label is centered inside the bubble.
+    * @param [Above] Indicates that the label is positioned above the bubble.
+    * @param [Below] Indicates that the label is positioned below the bubble.
+    * @param [Left] Indicates that the label is positioned to the left of the bubble.
+    * @param [Right] Indicates that the label is positioned to the right of the bubble.
+    */
+    enum BubbleLabelAlignment {
+        /**
+        * Indicates that the label is centered inside the bubble.
+        */
+        Center = 0,
+        /**
+        * Indicates that the label is positioned above the bubble.
+        */
+        Above = 1,
+        /**
+        * Indicates that the label is positioned below the bubble.
+        */
+        Below = 2,
+        /**
+        * Indicates that the label is positioned to the left of the bubble.
+        */
+        Left = 3,
+        /**
+        * Indicates that the label is positioned to the right of the bubble.
+        */
+        Right = 4,
+    }
     interface AxisData {
         (series: Series, dataIndex: number): number;
     }
     class DataReader {
         constructor();
-        domainDimension: number; xData(series: Series, dataIndex: number): number;
+        domainDimension: number;
+        xData(series: Series, dataIndex: number): number;
         yData(series: Series, dataIndex: number): number;
         xSorted(series: Series): boolean;
         ySorted(series: Series): boolean;
@@ -3205,25 +3561,29 @@ export declare module MindFusion.Charting {
         /**
          * Gets the Plot that has been hit.
          */
-        plot: Plot;        /**
+        plot: Plot;
+        /**
          * Gets the SeriesRenderer that has been hit.
          */
         /**
          * Gets the SeriesRenderer that has been hit.
          */
-        renderer: SeriesRenderer;        /**
+        renderer: SeriesRenderer;
+        /**
          * Gets the data item index within its Series.
          */
         /**
          * Gets the data item index within its Series.
          */
-        index: number;        /**
+        index: number;
+        /**
          * Gets the data item value.
          */
         /**
          * Gets the data item value.
          */
-        value: number;        /**
+        value: number;
+        /**
          * Gets the Series that has been hit.
          */
         /**
@@ -3294,6 +3654,9 @@ export declare module MindFusion.Charting {
     * @property {MindFusion.Charting.Drawing.Brush} borderStroke Gets or sets the Brush that should be used to stroke the borders of this legend.
     * @property {Number} borderStrokeThickness Gets or sets the stroke thickness of legend borders.
     * @property {MindFusion.Charting.Drawing.DashStyle} borderStrokeDashStyle Gets or sets the stroke dash style of legend borders.
+    * @property {LabelKinds} elementLabelKind Gets or sets the type of label to show for series elements. This property is used only when showSeriesElements is set to true.
+    * @property {Boolean} showSeriesElements Gets or sets a value, indicatating whether this legend will display individual series element labels instead of the series titles.
+    * @property {Number} maxItemsPerColumn Gets or sets the maximum number ot items per display column.
     */
     class LegendRenderer extends Component {
         /**
@@ -3306,7 +3669,8 @@ export declare module MindFusion.Charting {
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
          * @returns {ComponentController} Instance of the LegendController class.
          */
-        createController(context: RenderContext): ComponentController;        /**
+        createController(context: RenderContext): ComponentController;
+        /**
          * Component.Draw override. Draws legend elements in specified RenderContext.
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
          */
@@ -3431,31 +3795,62 @@ export declare module MindFusion.Charting {
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
          * @returns {MindFusion.Charting.Drawing.DashStyle} A member of the DashStyle enumeration.
          */
-        effectiveStrokeDashStyle(context: RenderContext): DashStyle;        /**
+        effectiveStrokeDashStyle(context: RenderContext): DashStyle;
+        /**
          * Gets or sets the Brush that should be used to fill the background of this legend.
          */
         /**
          * Gets or sets the Brush that should be used to fill the background of this legend.
          */
-        background: Brush;        /**
+        background: Brush;
+        /**
          * Gets or sets the Brush that should be used to stroke the borders of this legend.
          */
         /**
          * Gets or sets the Brush that should be used to stroke the borders of this legend.
          */
-        borderStroke: Brush;        /**
+        borderStroke: Brush;
+        /**
          * Gets or sets the stroke thickness of legend borders.
          */
         /**
          * Gets or sets the stroke thickness of legend borders.
          */
-        borderStrokeThickness: number;        /**
+        borderStrokeThickness: number;
+        /**
          * Gets or sets the stroke dash style of legend borders.
          */
         /**
          * Gets or sets the stroke dash style of legend borders.
          */
         borderStrokeDashStyle: DashStyle;
+        /**
+        * Gets or sets a value, indicatating whether this legend will display individual
+        * series element labels instead of the series titles.
+        */
+        /**
+    * Gets or sets a value, indicatating whether this legend will display individual
+    * series element labels instead of the series titles.
+    */
+        showSeriesElements: boolean;
+        /**
+        * Gets or sets the type of label to show for series elements.
+        * This property is used only when showSeriesElements is set to true.
+        */
+        /**
+        * Gets or sets the type of label to show for series elements.
+        * This property is used only when showSeriesElements is set to true.
+        */
+        elementLabelKind: LabelKinds;
+        /**
+        * Gets or sets the maximum number ot items per display column.
+        */
+        /**
+    * Gets or sets the maximum number ot items per display column.
+    */
+        maxItemsPerColumn: number;
+        fromJson(obj: any): void;
+        toJson(): any;
     }
     /**
     * Identifies how to connect adjacent data points in line and area charts.
@@ -3529,6 +3924,8 @@ export declare module MindFusion.Charting {
          * Returns the sum of Top and Bottom margins.
          */
         height: number;
+        fromJson(obj: any): void;
+        toJson(): any;
     }
     /**
     * @class Contains two values.
@@ -3553,7 +3950,8 @@ export declare module MindFusion.Charting {
         /**
          * Gets or sets the first value.
          */
-        first: T1;        /**
+        first: T1;
+        /**
          * Gets or sets the second value.
          */
         /**
@@ -3567,7 +3965,8 @@ export declare module MindFusion.Charting {
     class PanControllerAnimation implements ComponentAnimation {
         constructor(controller: PanController, dir: Vector);
         start(): void;
-        stop(): void; setFriction: number;
+        stop(): void;
+        setFriction: number;
         getFriction: number;
     }
     /**
@@ -3616,6 +4015,11 @@ export declare module MindFusion.Charting {
          * @returns {ComponentAnimation} An instance of a ComponentAnimation -derived class.
          */
         getRunningAnimation(): ComponentAnimation;
+        /**
+         * For internal use.
+         * @returns {CursorHint} A member of the CursorHint enumeration.
+         */
+        getCursorHint(x: number, y: number): CursorHint;
         /**
          * Gets the component controlled by this PlotController.
          */
@@ -3666,13 +4070,15 @@ export declare module MindFusion.Charting {
         /**
          * Gets or sets the X coordinate of this point.
          */
-        x: number;        /**
+        x: number;
+        /**
          * Gets or sets the Y coordinate of this point.
          */
         /**
          * Gets or sets the Y coordinate of this point.
          */
-        y: number;        /**
+        y: number;
+        /**
          * Gets or sets the Z coordinate of this point.
          */
         /**
@@ -3737,13 +4143,15 @@ export declare module MindFusion.Charting {
         /**
          * Gets or sets the current drawing surface.
          */
-        graphics: Graphics;        /**
+        graphics: Graphics;
+        /**
          * Gets or sets the component currently being painted.
          */
         /**
          * Gets or sets the component currently being painted.
          */
-        component: Component;        /**
+        component: Component;
+        /**
          * Gets the X axis assigned to a Renderer2D or returns one from parent plot or chart.
          * @param {Renderer2D} [series] A Renderer2D instance.
          * @returns {Axis} An Axis instance.
@@ -3754,7 +4162,8 @@ export declare module MindFusion.Charting {
          * @param {Renderer2D} [series] A Renderer2D instance.
          * @returns {Axis} An Axis instance.
          */
-        getYAxis(series?: Renderer2D): Axis;        /**
+        getYAxis(series?: Renderer2D): Axis;
+        /**
          * Gets the chart's XAxis.
          */
         xAxis: Axis;
@@ -3768,7 +4177,9 @@ export declare module MindFusion.Charting {
         /**
          * Gets or sets the Theme used to resolve appearance attributes.
          */
-        theme: Theme; clipRect: Rect;        /**
+        theme: Theme;
+        clipRect: Rect;
+        /**
          * Gets the clip rectangle relative to specified Component.
          * @param {Component} relativeTo A Component instance.
          * @returns {Rect} A Rect instance.
@@ -3903,6 +4314,7 @@ export declare module MindFusion.Charting {
         * Raised when the values in this series change.
         */
         dataChanged: EventDispatcher<EventArgs>;
+        toJson(): any;
     }
     /**
      * @class Defines an interface for enumerating all series associated with a component of the dashboard.
@@ -3919,6 +4331,8 @@ export declare module MindFusion.Charting {
         * @returns The dimension index.
         */
         domainDimension(series: Series): number;
+        toJson(): any;
+        fromJson(json: any): any;
     }
     /**
      * @class Defines appearance attributes of series elements.
@@ -3952,6 +4366,7 @@ export declare module MindFusion.Charting {
          * @returns {MindFusion.Charting.Drawing.DashStyle} A nullable DashStyle value specifying stroke dash style.
          */
         strokeDashStyle(seriesIndex: number, dataIndex: number): DashStyle;
+        toJson(): any;
     }
     class ShapeBuilder {
         constructor(scene: Scene3D);
@@ -3984,7 +4399,8 @@ export declare module MindFusion.Charting {
         /**
          * Gets or sets the brush used to draw labels.
          */
-        textBrush: Brush;        /**
+        textBrush: Brush;
+        /**
          * Draws the specified label centered at specified location.
          * @param {Series} series A Series whose label to draw.
          * @param {Number} index An integer index of the label.
@@ -4046,19 +4462,22 @@ export declare module MindFusion.Charting {
         /**
          * Gets or sets font name.
          */
-        fontName: string;        /**
+        fontName: string;
+        /**
          * Gets or sets font size.
          */
         /**
          * Gets or sets font size.
          */
-        fontSize: number;        /**
+        fontSize: number;
+        /**
          * Gets or sets font style.
          */
         /**
          * Gets or sets font style.
          */
-        fontStyle: FontStyle;        /**
+        fontStyle: FontStyle;
+        /**
          * Gets or sets a Brush used to draw text.
          */
         /**
@@ -4194,7 +4613,8 @@ export declare module MindFusion.Charting {
          * @param {Number} strokeThickness Uniform thickness of series elements' strokes.
          * @param {MindFusion.Charting.Drawing.DashStyle} strokeDashStyle Uniform dash style of series elements' strokes.
          */
-        constructor(fill?: Brush, stroke?: Brush, strokeThickness?: number, strokeDashStyle?: DashStyle);        /**
+        constructor(fill?: Brush, stroke?: Brush, strokeThickness?: number, strokeDashStyle?: DashStyle);
+        /**
          * Loads the theme values from an XML file.
          * @param {String} fileUrl The URL of an XML file where the data should be read from.
          */
@@ -4203,7 +4623,17 @@ export declare module MindFusion.Charting {
         * Saves the theme values to specified file.
         * @param {String} fileUrl The URL where the theme's XML should be posted to.
         */
-        saveTo(url: string): void; propertyChanged: PropertyChangedEventDispatcher; seriesStyle: MixedSeriesStyle; titleStyle: TextStyle; subtitleStyle: TextStyle; axisLabelsStyle: TextStyle; axisTitleStyle: TextStyle; dataLabelsStyle: TextStyle; widgetStyle: TextStyle; legendTitleStyle: TextStyle;        /**
+        saveTo(url: string): void;
+        propertyChanged: PropertyChangedEventDispatcher;
+        seriesStyle: MixedSeriesStyle;
+        titleStyle: TextStyle;
+        subtitleStyle: TextStyle;
+        axisLabelsStyle: TextStyle;
+        axisTitleStyle: TextStyle;
+        dataLabelsStyle: TextStyle;
+        widgetStyle: TextStyle;
+        legendTitleStyle: TextStyle;
+        /**
          * Gets or sets the name of font used to draw the chart title.
          */
         /**
@@ -4490,31 +4920,36 @@ export declare module MindFusion.Charting {
          * Gets or sets a list of DashStyle lists, each list used to stroke a different series,
          * and each DashStyle value specifying style of individual elements of a series.
          */
-        seriesStrokeDashStyles: List<List<DashStyle>>;        /**
+        seriesStrokeDashStyles: List<List<DashStyle>>;
+        /**
          * Gets or sets a Brush used to draw the background of plots.
          */
         /**
          * Gets or sets a Brush used to draw the background of plots.
          */
-        plotBackground: Brush;        /**
+        plotBackground: Brush;
+        /**
          * Gets or sets a Brush used to stroke plot borders.
          */
         /**
          * Gets or sets a Brush used to stroke plot borders.
          */
-        plotBorderStroke: Brush;        /**
+        plotBorderStroke: Brush;
+        /**
          * Gets or sets the thickness of plot borders.
          */
         /**
          * Gets or sets the thickness of plot borders.
          */
-        plotBorderStrokeThickness: number;        /**
+        plotBorderStrokeThickness: number;
+        /**
          * Gets or sets the dash style of plot borders.
          */
         /**
          * Gets or sets the dash style of plot borders.
          */
-        plotBorderStrokeDashStyle: DashStyle;        /**
+        plotBorderStrokeDashStyle: DashStyle;
+        /**
          * Gets or sets a Brush used to draw legend background.
          */
         /**
@@ -4527,49 +4962,57 @@ export declare module MindFusion.Charting {
         /**
          * Gets or sets a Brush used to stroke highlighted items.
          */
-        highlightStroke: Brush;        /**
+        highlightStroke: Brush;
+        /**
          * Gets or sets the thickness of highlight strokes.
          */
         /**
          * Gets or sets the thickness of highlight strokes.
          */
-        highlightStrokeThickness: number;        /**
+        highlightStrokeThickness: number;
+        /**
          * Gets or sets the dash style of highlight strokes.
          */
         /**
          * Gets or sets the dash style of highlight strokes.
          */
-        highlightStrokeDashStyle: DashStyle;        /**
+        highlightStrokeDashStyle: DashStyle;
+        /**
          * Gets or sets a Brush used to stroke axis lines.
          */
         /**
          * Gets or sets a Brush used to stroke axis lines.
          */
-        axisStroke: Brush;        /**
+        axisStroke: Brush;
+        /**
          * Gets or sets the thickness of axis lines.
          */
         /**
          * Gets or sets the thickness of axis lines.
          */
-        axisStrokeThickness: number;        /**
+        axisStrokeThickness: number;
+        /**
          * Gets or sets the dash style of axis lines.
          */
         /**
          * Gets or sets the dash style of axis lines.
          */
-        axisStrokeDashStyle: DashStyle;        /**
+        axisStrokeDashStyle: DashStyle;
+        /**
          * Gets or sets a Brush used to draw legend borders.
          */
         /**
          * Gets or sets a Brush used to draw legend borders.
          */
-        legendBorderStroke: Brush;        /**
+        legendBorderStroke: Brush;
+        /**
          * Gets or sets the thickness of legend borders.
          */
         /**
          * Gets or sets the thickness of legend borders.
          */
-        legendBorderStrokeThickness: number;        /**
+        legendBorderStrokeThickness: number;
+        /**
          * Gets or sets the dash style of legend borders.
          */
         /**
@@ -4582,115 +5025,134 @@ export declare module MindFusion.Charting {
         /**
         * Gets or sets the line color of plot grid.
         */
-        gridLineColor: Color;        /**
+        gridLineColor: Color;
+        /**
         * Gets or sets the thickness of plot grid lines.
         */
         /**
         * Gets or sets the thickness of plot grid lines.
         */
-        gridLineThickness: number;        /**
+        gridLineThickness: number;
+        /**
         * Gets or sets the style of plot grid lines.
         */
         /**
         * Gets or sets the style of plot grid lines.
         */
-        gridLineStyle: DashStyle;        /**
+        gridLineStyle: DashStyle;
+        /**
          * Gets or sets the main color of plot grid.
          */
         /**
          * Gets or sets the main color of plot grid.
          */
-        gridColor1: Color;        /**
+        gridColor1: Color;
+        /**
          * Gets or sets the alternating color of plot grid.
          */
         /**
          * Gets or sets the alternating color of plot grid.
          */
-        gridColor2: Color;        /**
+        gridColor2: Color;
+        /**
          * Gets or sets a Brush used to draw gauge backgrounds.
          */
         /**
          * Gets or sets a Brush used to draw gauge backgrounds.
          */
-        gaugeBackground: Brush;        /**
+        gaugeBackground: Brush;
+        /**
          * Gets or sets a Brush used to stroke gauge borders.
          */
         /**
          * Gets or sets a Brush used to stroke gauge borders.
          */
-        gaugeStroke: Brush;        /**
+        gaugeStroke: Brush;
+        /**
          * Gets or sets the thickness of gauge borders.
          */
         /**
          * Gets or sets the thickness of gauge borders.
          */
-        gaugeStrokeThickness: number;        /**
+        gaugeStrokeThickness: number;
+        /**
          * Gets or sets a Brush used to draw the background of gauge scales.
          */
         /**
          * Gets or sets a Brush used to draw the background of gauge scales.
          */
-        gaugeScaleBackground: Brush;        /**
+        gaugeScaleBackground: Brush;
+        /**
          * Gets or sets a Brush used to stroke gauge scales.
          */
         /**
          * Gets or sets a Brush used to stroke gauge scales.
          */
-        gaugeScaleStroke: Brush;        /**
+        gaugeScaleStroke: Brush;
+        /**
          * Gets or sets the thickness of gauge scale strokes.
          */
         /**
          * Gets or sets the thickness of gauge scale strokes.
          */
-        gaugeScaleStrokeThickness: number;        /**
+        gaugeScaleStrokeThickness: number;
+        /**
          * Gets or sets a Brush used to draw gauge pointer backgrounds.
          */
         /**
          * Gets or sets a Brush used to draw gauge pointer backgrounds.
          */
-        gaugePointerBackground: Brush;        /**
+        gaugePointerBackground: Brush;
+        /**
          * Gets or sets a Brush used to stroke gauge pointers.
          */
         /**
          * Gets or sets a Brush used to stroke gauge pointers.
          */
-        gaugePointerStroke: Brush;        /**
+        gaugePointerStroke: Brush;
+        /**
          * Gets or sets the thickness of gauge pointer strokes.
          */
         /**
          * Gets or sets the thickness of gauge pointer strokes.
          */
-        gaugePointerStrokeThickness: number;        /**
+        gaugePointerStrokeThickness: number;
+        /**
          * Gets or sets a Brush used to draw gauge tick backgrounds.
          */
         /**
          * Gets or sets a Brush used to draw gauge tick backgrounds.
          */
-        gaugeTickBackground: Brush;        /**
+        gaugeTickBackground: Brush;
+        /**
          * Gets or sets a Brush used to stroke gauge ticks.
          */
         /**
          * Gets or sets a Brush used to stroke gauge ticks.
          */
-        gaugeTickStroke: Brush;        /**
+        gaugeTickStroke: Brush;
+        /**
          * Gets or sets the thickness of gauge tick strokes.
          */
         /**
          * Gets or sets the thickness of gauge tick strokes.
          */
-        gaugeTickStrokeThickness: number;        /**
+        gaugeTickStrokeThickness: number;
+        /**
          * Gets or sets the name of font used to draw text in gauges.
          */
         /**
          * Gets or sets the name of font used to draw text in gauges.
          */
-        gaugeFontName: string;        /**
+        gaugeFontName: string;
+        /**
          * Gets or sets the style of font used to draw text in gauges.
          */
         /**
          * Gets or sets the style of font used to draw text in gauges.
          */
-        gaugeFontStyle: FontStyle;        /**
+        gaugeFontStyle: FontStyle;
+        /**
          * Gets or sets the size of font used to draw text in gauges.
          */
         /**
@@ -4698,6 +5160,8 @@ export declare module MindFusion.Charting {
          */
         gaugeFontSize: number;
         fileVersion: number;
+        fromJson(obj: any): void;
+        toJson(): any;
     }
     /**
      * @class Represents current tooltip.
@@ -4711,7 +5175,8 @@ export declare module MindFusion.Charting {
         /**
          * Gets or sets the tooltip text.
          */
-        static text: string;        /**
+        static text: string;
+        /**
          * Gets or sets the tooltip position.
          */
         /**
@@ -4732,7 +5197,8 @@ export declare module MindFusion.Charting {
         static deg(radians: number): number;
         static rotatePoint(pointToRotate: Point, centerPoint: Point, angleInDegrees: number): Point;
         static opacityBrush(brush: Brush, opacity: number): Brush;
-        static getShapePoly(point: Point, shape: ScatterType, shapeSize: number): Point[]; static formatDateTime(ticks: number, dateTimeFormat: DateTimeFormat, customDateTimeFormat: string, labelPrefix: string, labelSuffix: string): string;
+        static getShapePoly(point: Point, shape: ScatterType, shapeSize: number): Point[];
+        static formatDateTime(ticks: number, dateTimeFormat: DateTimeFormat, customDateTimeFormat: string, labelPrefix: string, labelSuffix: string): string;
         static isInfinity(value: number): boolean;
         static isNullOrEmpty(value: string): boolean;
         static pointInEllipse(pt: Point, rc: Rect): boolean;
@@ -4760,6 +5226,15 @@ export declare module MindFusion.Charting {
         static compareTo(num: number, other: number): number;
         static isFloat(n: number): boolean;
         static isInteger(n: number): boolean;
+        static parseType(typeName: string): any;
+        static getType(obj: any): any;
+        static genId(): number;
+    }
+    class Serializer {
+        static componentsIn: Dictionary<number, any>;
+        static componentsOut: Dictionary<any, number>;
+        static serializeComponent(component: any): any;
+        static deserializeComponent(obj: any): any;
     }
     /**
      * @class Represents a two-dimensional vector.
@@ -4959,9 +5434,10 @@ export declare module MindFusion.Charting {
         writeColor(color: Color, elementName: string, parentElement: Element): Element;
         /**
          * Writes the specified object under the specified name.
-         */        /**
-        * Reads a string value with the specified name.
-        */
+         */
+        /**
+         * Reads a string value with the specified name.
+         */
         readString(elementName: string, parentElement: Element, defaultValue?: string): string;
         /**
          * Reads a boolean value with the specified name.
@@ -5034,7 +5510,9 @@ export declare module MindFusion.Charting {
         merge(axes: IEnumerable<Axis>): void;
         register(axes: IEnumerable<Axis>): void;
         restore(): void;
-        reset(): void; changed: EventDispatcher<EventArgs>; canRestore: boolean;
+        reset(): void;
+        changed: EventDispatcher<EventArgs>;
+        canRestore: boolean;
         isZoomedOut: boolean;
     }
     /**
@@ -5081,13 +5559,16 @@ export declare module MindFusion.Charting {
         /**
          * Gets or sets a Brush used to fill candlesticks, which open value is smaller or equal to its close value.
          */
-        risingBrush: Brush;        /**
+        risingBrush: Brush;
+        /**
          * Gets or sets a Brush used to fill candlesticks, which open value is greater than its close value.
          */
         /**
          * Gets or sets a Brush used to fill candlesticks, which open value is greater than its close value.
          */
         fallingBrush: Brush;
+        fromJson(obj: any): void;
+        toJson(): any;
     }
     /**
     * @class Represents a series whose data items are retrieved from a data source.
@@ -5119,7 +5600,8 @@ export declare module MindFusion.Charting {
         /**
          * Gets or sets the data source this series is bound to.
          */
-        dataSource: any; enumerableDataSource: boolean;
+        dataSource: any;
+        enumerableDataSource: boolean;
         arrayDataSource: boolean;
         /**
          * Gets or sets the name of X data field in the data source.
@@ -5183,7 +5665,8 @@ export declare module MindFusion.Charting {
         /**
          * Gets or sets the name of Z axis labels data field in the data source.
          */
-        zAxisLabelsDataField: string;        /**
+        zAxisLabelsDataField: string;
+        /**
          * Implements Series.GetValue. Returns a value for the specified data item in the data source.
          * @param {Number} index An integer value specifying the index of a data item.
          * @param {Number} dimension An integer value specifying the dimension whose coordinate to return.
@@ -5224,10 +5707,12 @@ export declare module MindFusion.Charting {
         /**
          * Implements Series.Title. Gets or sets the title of this series.
          */
-        title: string;        /**
+        title: string;
+        /**
          * Implements Series.SupportedLabels. Result depends on which *LabelsDataField properties are set.
          */
-        supportedLabels: LabelKinds;        /**
+        supportedLabels: LabelKinds;
+        /**
         * Raised when the values in this series change.
         */
         dataChanged: EventDispatcher<EventArgs>;
@@ -5235,6 +5720,21 @@ export declare module MindFusion.Charting {
          * Raises the DataChanged event.
          */
         protected onDataChanged(): void;
+        fromJson(obj: any): void;
+        toJson(): {
+            __type: any;
+            innerLabelsDataField: string;
+            outerLabelsDataField: string;
+            toolTipsDataField: string;
+            xAxisLabelsDataField: string;
+            yAxisLabelsDataField: string;
+            zAxisLabelsDataField: string;
+            xDataField: string;
+            yDataField: string;
+            zDataField: string;
+            title: string;
+            dataSource: any;
+        };
     }
     /**
     * @class Represents a series that contains Date values as X coordinates and number values as Y coordinates.
@@ -5302,7 +5802,8 @@ export declare module MindFusion.Charting {
         /**
          * Implements Series.Title. Gets or sets the title of this series.
          */
-        title: string;        /**
+        title: string;
+        /**
          * Implements Series.SupportedLabels. Returns LabelKinds.XAxisLabel.
          */
         supportedLabels: LabelKinds;
@@ -5368,7 +5869,8 @@ export declare module MindFusion.Charting {
         /**
          * Gets or sets a suffix appended to formatted Date labels.
          */
-        labelSuffix: string;        /**
+        labelSuffix: string;
+        /**
         * Raised when the values in this series change.
         */
         dataChanged: EventDispatcher<EventArgs>;
@@ -5376,6 +5878,18 @@ export declare module MindFusion.Charting {
          * Raises the DataChanged event.
          */
         protected onDataChanged(): void;
+        fromJson(obj: any): void;
+        toJson(): {
+            __type: any;
+            values: number[];
+            minDate: number;
+            maxDate: number;
+            title: string;
+            labelPrefix: string;
+            labelSuffix: string;
+            dateTimeFormat: DateTimeFormat;
+            customDateTimeFormat: string;
+        };
     }
     /**
     * @class Lets users move a legend within the boundaries of its parent Panel.
@@ -5461,49 +5975,57 @@ export declare module MindFusion.Charting {
         /**
          * Gets or sets a Brush used to fill all elements of all series uniformly.
          */
-        uniformFill: Brush;        /**
+        uniformFill: Brush;
+        /**
          * Gets or sets a Brush used to stroke all elements of all series uniformly.
          */
         /**
          * Gets or sets a Brush used to stroke all elements of all series uniformly.
          */
-        uniformStroke: Brush;        /**
+        uniformStroke: Brush;
+        /**
          * Gets or sets uniform stroke thickness for all elements of all series.
          */
         /**
          * Gets or sets uniform stroke thickness for all elements of all series.
          */
-        uniformStrokeThickness: number;        /**
+        uniformStrokeThickness: number;
+        /**
          * Gets or sets uniform stroke dash style for all elements of all series.
          */
         /**
          * Gets or sets uniform stroke dash style for all elements of all series.
          */
-        uniformStrokeDashStyle: DashStyle;        /**
+        uniformStrokeDashStyle: DashStyle;
+        /**
          * Gets or sets a list of brushes, each Brush used to fill all elements of a series.
          */
         /**
          * Gets or sets a list of brushes, each Brush used to fill all elements of a series.
          */
-        commonFills: List<Brush>;        /**
+        commonFills: List<Brush>;
+        /**
          * Gets or sets a list of brushes, each Brush used to stroke all elements of a series.
          */
         /**
          * Gets or sets a list of brushes, each Brush used to stroke all elements of a series.
          */
-        commonStrokes: List<Brush>;        /**
+        commonStrokes: List<Brush>;
+        /**
          * Gets or sets a list of stroke thicknesses, each thickness applied to all elements of a series.
          */
         /**
          * Gets or sets a list of stroke thicknesses, each thickness applied to all elements of a series.
          */
-        commonStrokeThicknesses: List<number>;        /**
+        commonStrokeThicknesses: List<number>;
+        /**
          * Gets or sets a list of dash styles, each style applied to all elements of a series.
          */
         /**
          * Gets or sets a list of dash styles, each style applied to all elements of a series.
          */
-        commonStrokeDashStyles: List<DashStyle>;        /**
+        commonStrokeDashStyles: List<DashStyle>;
+        /**
          * Gets or sets a list of Brush lists, each list used to draw a different series,
          * and each Brush used to fill individual elements of a series.
          */
@@ -5511,7 +6033,8 @@ export declare module MindFusion.Charting {
          * Gets or sets a list of Brush lists, each list used to draw a different series,
          * and each Brush used to fill individual elements of a series.
          */
-        fills: List<List<Brush>>;        /**
+        fills: List<List<Brush>>;
+        /**
          * Gets or sets a list of Brush lists, each list used to stroke a different series,
          * and each Brush used to stroke individual elements of a series.
          */
@@ -5519,7 +6042,8 @@ export declare module MindFusion.Charting {
          * Gets or sets a list of Brush lists, each list used to stroke a different series,
          * and each Brush used to stroke individual elements of a series.
          */
-        strokes: List<List<Brush>>;        /**
+        strokes: List<List<Brush>>;
+        /**
          * Gets or sets a list of number lists, each list used to stroke a different series,
          * and each number value specifying thickness of individual elements of a series.
          */
@@ -5527,7 +6051,8 @@ export declare module MindFusion.Charting {
          * Gets or sets a list of number lists, each list used to stroke a different series,
          * and each number value specifying thickness of individual elements of a series.
          */
-        strokeThicknesses: List<List<number>>;        /**
+        strokeThicknesses: List<List<number>>;
+        /**
          * Gets or sets a list of DashStyle lists, each list used to stroke a different series,
          * and each DashStyle value specifying style of individual elements of a series.
          */
@@ -5536,6 +6061,8 @@ export declare module MindFusion.Charting {
          * and each DashStyle value specifying style of individual elements of a series.
          */
         strokeDashStyles: List<List<DashStyle>>;
+        fromJson(obj: any): void;
+        toJson(): any;
     }
     /**
     * @class Implements SeriesStyle using different attributes for each data item.
@@ -5605,7 +6132,8 @@ export declare module MindFusion.Charting {
          * Gets or sets a list of Brush lists, each list used to draw a different series,
          * and each Brush used to fill individual elements of a series.
          */
-        fills: List<List<Brush>>;        /**
+        fills: List<List<Brush>>;
+        /**
          * Gets or sets a list of Brush lists, each list used to stroke a different series,
          * and each Brush used to stroke individual elements of a series.
          */
@@ -5613,7 +6141,8 @@ export declare module MindFusion.Charting {
          * Gets or sets a list of Brush lists, each list used to stroke a different series,
          * and each Brush used to stroke individual elements of a series.
          */
-        strokes: List<List<Brush>>;        /**
+        strokes: List<List<Brush>>;
+        /**
          * Gets or sets a list of number lists, each list used to stroke a different series,
          * and each number value specifying thickness of individual elements of a series.
          */
@@ -5621,7 +6150,8 @@ export declare module MindFusion.Charting {
          * Gets or sets a list of number lists, each list used to stroke a different series,
          * and each number value specifying thickness of individual elements of a series.
          */
-        strokeThicknesses: List<List<number>>;        /**
+        strokeThicknesses: List<List<number>>;
+        /**
          * Gets or sets a list of DashStyle lists, each list used to stroke a different series,
          * and each DashStyle value specifying style of individual elements of a series.
          */
@@ -5630,6 +6160,8 @@ export declare module MindFusion.Charting {
          * and each DashStyle value specifying style of individual elements of a series.
          */
         strokeDashStyles: List<List<DashStyle>>;
+        fromJson(obj: any): void;
+        toJson(): any;
     }
     /**
     * @class Implements SeriesStyle using a different set of attributes for each series,
@@ -5686,25 +6218,30 @@ export declare module MindFusion.Charting {
         /**
          * Gets or sets a list of Brushes, each Brush used to fill all elements of a series.
          */
-        fills: List<Brush>;        /**
+        fills: List<Brush>;
+        /**
          * Gets or sets a list of Brushes, each Brush used to stroke all elements of a series.
          */
         /**
          * Gets or sets a list of Brushes, each Brush used to stroke all elements of a series.
          */
-        strokes: List<Brush>;        /**
+        strokes: List<Brush>;
+        /**
          * Gets or sets a list of stroke thicknesses, each thickness applied to all elements of a series.
          */
         /**
          * Gets or sets a list of stroke thicknesses, each thickness applied to all elements of a series.
          */
-        strokeThicknesses: List<number>;        /**
+        strokeThicknesses: List<number>;
+        /**
          * Gets or sets a list of dash styles, each style applied to all elements of a series.
          */
         /**
          * Gets or sets a list of dash styles, each style applied to all elements of a series.
          */
         strokeDashStyles: List<DashStyle>;
+        fromJson(obj: any): void;
+        toJson(): any;
     }
     /**
     * @class The base class for components used to draw chart graphics.
@@ -5719,7 +6256,8 @@ export declare module MindFusion.Charting {
     * @property {Number} highlightStrokeThickness Gets or sets the stroke thickness of highlighted item.
     * @property {MindFusion.Charting.Drawing.DashStyle} highlightStrokeDashStyle Gets or sets the stroke dash style of highlighted item.
     */
-    class Plot extends Component implements SeriesContainer {        /**
+    class Plot extends Component implements SeriesContainer {
+        /**
          * Gets or sets a SeriesStyle whose attributes should be used to
          * draw series inside this plot, unless their own renderers
          * have a local SeriesStyle value set for respetive attribute.
@@ -5729,7 +6267,8 @@ export declare module MindFusion.Charting {
          * draw series inside this plot, unless their own renderers
          * have a local SeriesStyle value set for respetive attribute.
          */
-        seriesStyle: SeriesStyle;        /**
+        seriesStyle: SeriesStyle;
+        /**
          * Gets or sets the data item that should be drawn highlighted.
          */
         /**
@@ -5773,22 +6312,26 @@ export declare module MindFusion.Charting {
          * Draws the plot's grid.
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
          */
-        drawGrid(context: RenderContext): void;        /**
+        drawGrid(context: RenderContext): void;
+        /**
          * Gets or sets the SeriesRenderer objects that should draw inside this plot.
          */
         /**
          * Gets or sets the SeriesRenderer objects that should draw inside this plot.
          */
-        seriesRenderers: ObservableCollection<SeriesRenderer>;        /**
+        seriesRenderers: ObservableCollection<SeriesRenderer>;
+        /**
          * Unsubscribes from DataChanged and PropertyChanged events
          * of all SeriesRenderer objects in specified list.
          * @param {MindFusion.Charting.Collections.ObservableCollection<SeriesRenderer>} seriesRenderers A list of SeriesRenderer objects.
-         */        /**
+         */
+        /**
          * Called when a Series raises its DataChanged event.
          * @param {Object} sender The event sender.
          * @param {EventArgs} e An EventArgs instance.
          */
-        onRendererDataChanged(e: EventArgs): void;        /**
+        onRendererDataChanged(e: EventArgs): void;
+        /**
          * Implements SeriesContainer.
          * @returns {IEnumerable<Series>} An instance of the IEnumerable&lt;Series&gt; class.
          */
@@ -5829,43 +6372,50 @@ export declare module MindFusion.Charting {
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
          * @returns {MindFusion.Charting.Drawing.DashStyle} A member of the DashStyle enumeration.
          */
-        effectiveStrokeDashStyle(context: RenderContext): DashStyle;        /**
+        effectiveStrokeDashStyle(context: RenderContext): DashStyle;
+        /**
          * Gets or sets the Brush that should be used to fill the background of this plot.
          */
         /**
          * Gets or sets the Brush that should be used to fill the background of this plot.
          */
-        background: Brush;        /**
+        background: Brush;
+        /**
          * Gets or sets the Brush that should be used to stroke the borders of this plot.
          */
         /**
          * Gets or sets the Brush that should be used to stroke the borders of this plot.
          */
-        borderStroke: Brush;        /**
+        borderStroke: Brush;
+        /**
          * Gets or sets the stroke thickness of plot borders.
          */
         /**
          * Gets or sets the stroke thickness of plot borders.
          */
-        borderStrokeThickness: number;        /**
+        borderStrokeThickness: number;
+        /**
          * Gets or sets the stroke dash style of plot borders.
          */
         /**
          * Gets or sets the stroke dash style of plot borders.
          */
-        borderStrokeDashStyle: DashStyle;        /**
+        borderStrokeDashStyle: DashStyle;
+        /**
          * Gets or sets the Brush used to stroke highlighted item.
          */
         /**
          * Gets or sets the Brush used to stroke highlighted item.
          */
-        highlightStroke: Brush;        /**
+        highlightStroke: Brush;
+        /**
          * Gets or sets the stroke thickness of highlighted item.
          */
         /**
          * Gets or sets the stroke thickness of highlighted item.
          */
-        highlightStrokeThickness: number;        /**
+        highlightStrokeThickness: number;
+        /**
          * Gets or sets the stroke dash style of highlighted item.
          */
         /**
@@ -5876,6 +6426,8 @@ export declare module MindFusion.Charting {
         effectiveHighlightStroke(context: RenderContext): Brush;
         effectiveHighlightStrokeThickness(context: RenderContext): number;
         effectiveHighlightDashStyle(context: RenderContext): DashStyle;
+        fromJson(json: any): any;
+        toJson(): any;
     }
     /**
     * @class A base class for controllers that let users interact with Plot2D objects.
@@ -5911,7 +6463,8 @@ export declare module MindFusion.Charting {
         /**
          * Gets or sets a value indicating whether interaction is done along the X or Y axis.
          */
-        vertical: boolean;        /**
+        vertical: boolean;
+        /**
         * Contains information about Axis ranges processed by this controller.
         */
         axisRanges: Dictionary<Axis, AxisInfo>;
@@ -6014,7 +6567,8 @@ export declare module MindFusion.Charting {
         /**
          * Implements Series.Title. Gets or sets the title of this series.
          */
-        title: string;        /**
+        title: string;
+        /**
         * Raised when the values in this series change.
         */
         dataChanged: EventDispatcher<EventArgs>;
@@ -6022,6 +6576,13 @@ export declare module MindFusion.Charting {
          * Raises the DataChanged event.
          */
         protected onDataChanged(): void;
+        fromJson(obj: any): void;
+        toJson(): {
+            __type: any;
+            points: Point[];
+            labels: string[];
+            title: string;
+        };
     }
     /**
     * @class Represents a data series defined by a list of Point3D objects.
@@ -6098,7 +6659,8 @@ export declare module MindFusion.Charting {
         /**
          * Implements Series.Title. Gets or sets the title of this series.
          */
-        title: string;        /**
+        title: string;
+        /**
         * Raised when the values in this series change.
         */
         dataChanged: EventDispatcher<EventArgs>;
@@ -6106,6 +6668,13 @@ export declare module MindFusion.Charting {
          * Raises the DataChanged event.
          */
         protected onDataChanged(): void;
+        fromJson(obj: any): void;
+        toJson(): {
+            __type: any;
+            points: Point3D[];
+            labels: string[];
+            title: string;
+        };
     }
     /**
      * @class Provides properties for customizing axis rendering in radar charts.
@@ -6179,7 +6748,7 @@ export declare module MindFusion.Charting {
     * @property {MindFusion.Charting.Collections.List<Number>} xData Gets or sets the X coordinates of data items.
     * @property {MindFusion.Charting.Collections.List<Number>} yData Gets or sets the Y coordinates of data items.
     * @property {MindFusion.Charting.Collections.List<String>} labels Gets or sets the data labels.
-    * @property {String} labels Implements Series.Title. Gets or sets the title of this series.
+    * @property {String} title Implements Series.Title. Gets or sets the title of this series.
     * @property {EventDispatcher<EventArgs>} dataChanged Raised when the values in this series change.
     */
     class Series2D implements Series {
@@ -6223,7 +6792,8 @@ export declare module MindFusion.Charting {
         /**
          * Implements Series.Dimensions. Returns 2.
          */
-        dimensions: number;        /**
+        dimensions: number;
+        /**
          * Implements Series.SupportedLabels. Gets or sets the kind of labels
          * reported as supported by this series.
          */
@@ -6259,7 +6829,8 @@ export declare module MindFusion.Charting {
         /**
          * Implements Series.Title. Gets or sets the title of this series.
          */
-        title: string;        /**
+        title: string;
+        /**
         * Raised when the values in this series change.
         */
         dataChanged: EventDispatcher<EventArgs>;
@@ -6267,6 +6838,14 @@ export declare module MindFusion.Charting {
          * Raises the DataChanged event.
          */
         protected onDataChanged(): void;
+        fromJson(obj: any): void;
+        toJson(): {
+            __type: any;
+            xValues: number[];
+            yValues: number[];
+            labels: string[];
+            title: string;
+        };
     }
     /**
     * @class Represents a data series defined by three lists of values containing
@@ -6278,7 +6857,7 @@ export declare module MindFusion.Charting {
     * @property {MindFusion.Charting.Collections.List<Number>} yData Gets or sets the Y coordinates of data items.
     * @property {MindFusion.Charting.Collections.List<Number>} zData Gets or sets the Z coordinates of data items.
     * @property {MindFusion.Charting.Collections.List<String>} labels Gets or sets the data labels.
-    * @property {String} labels Implements Series.Title. Gets or sets the title of this series.
+    * @property {String} title Implements Series.Title. Gets or sets the title of this series.
     * @property {EventDispatcher<EventArgs>} dataChanged Raised when the values in this series change.
     */
     class Series3D implements Series {
@@ -6362,7 +6941,8 @@ export declare module MindFusion.Charting {
         /**
          * Implements Series.Title. Gets or sets the title of this series.
          */
-        title: string;        /**
+        title: string;
+        /**
         * Raised when the values in this series change.
         */
         dataChanged: EventDispatcher<EventArgs>;
@@ -6370,6 +6950,14 @@ export declare module MindFusion.Charting {
          * Raises the DataChanged event.
          */
         protected onDataChanged(): void;
+        fromJson(obj: any): void;
+        toJson(): {
+            __type: any;
+            xValues: number[];
+            yValues: number[];
+            zValues: number[];
+            labels: string[];
+        };
     }
     interface StyleCheck {
         (style: SeriesStyle): any;
@@ -6391,7 +6979,8 @@ export declare module MindFusion.Charting {
          * Initializes a new instance of the SeriesRenderer class.
          */
         constructor();
-        dataReader: DataReader;        /**
+        dataReader: DataReader;
+        /**
          * Gets the brush that should be used to fill the representation of specified data item.
          * @param {Number} seriesIndex An integer index of a Series within the list of series rendered by this SeriesRenderer.
          * @param {Number} dataIndex An integer index of the data item in specified series.
@@ -6437,7 +7026,8 @@ export declare module MindFusion.Charting {
         /**
          * A SeriesStyle instance specifying the appearance of series associated with this renderer.
          */
-        seriesStyle: SeriesStyle;        /**
+        seriesStyle: SeriesStyle;
+        /**
          * Returns a SeriesStyle object that meets specified criteria.
          * @param check A StyleCheck delegate that tests SeriesStyle for some criteria.
          * @param context A RenderContext instance used to access styles and theme from the dashboard hierarchy.
@@ -6518,7 +7108,8 @@ export declare module MindFusion.Charting {
         /**
          * Gets or sets the kind of data labels to draw.
          */
-        showDataLabels: LabelKinds;        /**
+        showDataLabels: LabelKinds;
+        /**
         * Gets a value indicating whether to show highlights on data items.
         */
         /**
@@ -6553,7 +7144,8 @@ export declare module MindFusion.Charting {
          * @param propertyName Specifies the name of changed property.
          */
         protected onPropertyChanged(propertyName: string): void;
-        propertyChanged: PropertyChangedEventDispatcher;        /**
+        propertyChanged: PropertyChangedEventDispatcher;
+        /**
          * Implements the SeriesContainer interface. Enumerates the series associated with this component.
          * @returns An instance of the IEnumerable&lt;Series&gt; class.
          */
@@ -6582,6 +7174,11 @@ export declare module MindFusion.Charting {
          */
         protected onSeriesDataChanged(e: EventArgs): void;
         dataChanged: EventDispatcher<EventArgs>;
+        m_id: number;
+        id(): number;
+        fromJson(obj: any): any;
+        toJson(): any;
+        static seriesFromJson(obj: any): Series | ObservableCollection<Series>;
     }
     /**
     * @class Represents one-dimensional series defined by e list of data values and a list of labels.
@@ -6644,7 +7241,8 @@ export declare module MindFusion.Charting {
         /**
          * Implements Series.Title. Gets or sets the title of this series.
          */
-        title: string;        /**
+        title: string;
+        /**
          * Gets or sets the data values contained in this series.
          */
         /**
@@ -6653,7 +7251,8 @@ export declare module MindFusion.Charting {
         data: List<number>;
         protected values: List<number>;
         protected labels: List<string>;
-        protected emphasizedIndices: List<number>;        /**
+        protected emphasizedIndices: List<number>;
+        /**
         * Raised when the values in this series change.
         */
         dataChanged: EventDispatcher<EventArgs>;
@@ -6661,6 +7260,8 @@ export declare module MindFusion.Charting {
          * Raises the DataChanged event.
          */
         protected onDataChanged(): void;
+        fromJson(json: any): void;
+        toJson(): any;
     }
     /**
     * @class Represents a data series defined by a list of StockPrice objects.
@@ -6732,7 +7333,8 @@ export declare module MindFusion.Charting {
         /**
          * Implements Series.Title. Gets or sets the title of this series.
          */
-        title: string;        /**
+        title: string;
+        /**
          * Gets or sets a value indicating how to format DateTime values as labels.
          */
         /**
@@ -6759,7 +7361,8 @@ export declare module MindFusion.Charting {
         /**
          * Gets or sets a suffix appended to formatted DateTime labels.
          */
-        labelSuffix: string;        /**
+        labelSuffix: string;
+        /**
         * Raised when the values in this series change.
         */
         dataChanged: EventDispatcher<EventArgs>;
@@ -6767,6 +7370,15 @@ export declare module MindFusion.Charting {
          * Raises the DataChanged event.
          */
         protected onDataChanged(): void;
+        fromJson(obj: any): void;
+        toJson(): {
+            __type: any;
+            title: string;
+            labelPrefix: string;
+            labelSuffix: string;
+            dateTimeFormat: DateTimeFormat;
+            customDateTimeFormat: string;
+        };
     }
     /**
      * Represents a data object, containing open, close, low and high values for a certain date.
@@ -6787,31 +7399,37 @@ export declare module MindFusion.Charting {
         /**
          * Gets or sets the open value.
          */
-        open: number;        /**
+        open: number;
+        /**
          * Gets or sets the close value.
          */
         /**
          * Gets or sets the close value.
          */
-        close: number;        /**
+        close: number;
+        /**
          * Gets or sets the low value.
          */
         /**
          * Gets or sets the low value.
          */
-        low: number;        /**
+        low: number;
+        /**
          * Gets or sets the high value.
          */
         /**
          * Gets or sets the high value.
          */
-        high: number;        /**
+        high: number;
+        /**
          * Gets or sets the date.
          */
         /**
          * Gets or sets the date.
          */
         date: Date;
+        fromJson(obj: any): any;
+        toJson(): any;
     }
     /**
      * @class Implements SeriesStyle using uniform attributes for all elements in all series.
@@ -6863,25 +7481,30 @@ export declare module MindFusion.Charting {
         /**
          * Gets or sets a Brush used to fill all elements of all series uniformly.
          */
-        uniformFill: Brush;        /**
+        uniformFill: Brush;
+        /**
          * Gets or sets a Brush used to stroke all elements of all series uniformly.
          */
         /**
          * Gets or sets a Brush used to stroke all elements of all series uniformly.
          */
-        uniformStroke: Brush;        /**
+        uniformStroke: Brush;
+        /**
          * Gets or sets uniform stroke thickness for all elements of all series.
          */
         /**
          * Gets or sets uniform stroke thickness for all elements of all series.
          */
-        uniformStrokeThickness: number;        /**
+        uniformStrokeThickness: number;
+        /**
          * Gets or sets uniform stroke dash style for all elements of all series.
          */
         /**
          * Gets or sets uniform stroke dash style for all elements of all series.
          */
         uniformStrokeDashStyle: DashStyle;
+        fromJson(obj: any): void;
+        toJson(): any;
     }
     /**
      * @class A Component that renders horizontal Axis ranges.
@@ -6892,7 +7515,8 @@ export declare module MindFusion.Charting {
          * Initializes a new instance of the XAxisRenderer class.
          * @param {MindFusion.Charting.Axis} axis The Axis that will be drawn by this object.
          */
-        constructor(axis: Axis);        /**
+        constructor(axis: Axis);
+        /**
          * AxisRenderer.effectiveAxis override. Gets the effective horizontal Axis in current context,
          * getting one from Plot2D or chart control if there's no local Axis associated with this renderer.
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
@@ -6905,24 +7529,29 @@ export declare module MindFusion.Charting {
          * @param {Number} maxHeight The maximum height provided by parent component.
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
          */
-        measure(maxWidth: number, maxHeight: number, context: RenderContext): void;        /**
+        measure(maxWidth: number, maxHeight: number, context: RenderContext): void;
+        /**
          * Component.draw override. Draws this component in specified RenderContext.
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
          */
         draw(context: RenderContext): void;
-        maxLabelHeight: number;        /**
+        maxLabelHeight: number;
+        /**
          * Gets or sets whether this XAxisRenderer is shown at the bottom side of a plot.
          */
         /**
          * Gets or sets whether this XAxisRenderer is shown at the bottom side of a plot.
          */
         plotBottomSide: boolean;
+        fromJson(json: any): any;
+        toJson(): any;
     }
     /**
      * @class A Component that renders vertical Axis ranges.
      * @property {Boolean} plotLeftSide Gets or sets whether this YAxisRenderer is shown at the left side of a plot.
      */
-    class YAxisRenderer extends AxisRenderer {        /**
+    class YAxisRenderer extends AxisRenderer {
+        /**
          * Initializes a new instance of the YAxisRenderer class.
          * @param {MindFusion.Charting.Axis} axis The Axis that will be drawn by this object.
          * @param {MindFusion.Charting.Axis} [xAxis] The Axis used to check data item visibility.
@@ -6941,18 +7570,22 @@ export declare module MindFusion.Charting {
          * @param {Number} maxHeight The maximum height provided by parent component.
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
          */
-        measure(maxWidth: number, maxHeight: number, context: RenderContext): void;        /**
+        measure(maxWidth: number, maxHeight: number, context: RenderContext): void;
+        /**
          * Component.draw override. Draws this component in specified RenderContext.
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
          */
         draw(context: RenderContext): void;
-        maxLabelWidth: number;        /**
+        maxLabelWidth: number;
+        /**
          * Gets or sets whether this YAxisRenderer is shown at the left side of a plot.
          */
         /**
          * Gets or sets whether this YAxisRenderer is shown at the left side of a plot.
          */
         plotLeftSide: boolean;
+        fromJson(json: any): any;
+        toJson(): any;
     }
     /**
     * @class Represents one-dimensional series defined by e list of data values
@@ -7004,6 +7637,8 @@ export declare module MindFusion.Charting {
          * Gets or sets the X axis labels.
          */
         xAxisLabels: List<string>;
+        fromJson(obj: any): void;
+        toJson(): any;
     }
     /**
     * @class A SeriesRenderer that is used to represent stages in a sales process
@@ -7011,7 +7646,7 @@ export declare module MindFusion.Charting {
     * @property {Series} series Gets or sets the Series drawn by this FunnelRenderer.
     * @property {Number} dimension Gets or sets the dimension index that should be used to read data from the Series.
     * @property {Number} segmentSpacing Gets or sets the spacing between segments.
-    * @property {Number} bottomBase Gets or sets the size of the funnel base.
+    * @property {Number} stemWidth Gets or sets the width of the funnel stem.
     */
     class FunnelRenderer extends SeriesRenderer {
         /**
@@ -7030,7 +7665,8 @@ export declare module MindFusion.Charting {
          * param {MindFusion.Drawing.Point[]} points The defining points of the segment's bounding polygon.
          * @remarks The method is not expected to return a value.
          */
-        protected enumSegments(context: RenderContext, process: ProcessSegment): void;        /**
+        protected enumSegments(context: RenderContext, process: ProcessSegment): void;
+        /**
          * SeriesRenderer.Draw override. Draws the series data in specified RenderContext.
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
          */
@@ -7075,12 +7711,14 @@ export declare module MindFusion.Charting {
          */
         segmentSpacing: number;
         /**
-         * Gets or sets the size of the funnel base.
+         * Gets or sets the width of the funnel base.
          */
         /**
-         * Gets or sets the size of the funnel base.
+         * Gets or sets the width of the funnel base.
          */
-        bottomBase: number;
+        stemWidth: number;
+        fromJson(json: string): any;
+        toJson(): any;
     }
     interface ProcessSegment {
         (dataIndex: number, points: Point[]): any;
@@ -7149,7 +7787,8 @@ export declare module MindFusion.Charting {
         /**
          * Gets or sets the Series drawn by this PieRenderer.
          */
-        series: Series;        /**
+        series: Series;
+        /**
          * Enumerates the slices of the pie.
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
          * @param {ProcessSlice} process A ProcessBars callback.
@@ -7162,13 +7801,15 @@ export declare module MindFusion.Charting {
          * param {Number} sweepAngle The sweep angle of the slice' sector.
          * The method is not expected to return a value.
          */
-        enumSlices(context: RenderContext, process: ProcessSlice): void;        /**
+        enumSlices(context: RenderContext, process: ProcessSlice): void;
+        /**
          * Gets or sets a value indicating whether the pie should be rendered as a doughnut.
          */
         /**
          * Gets or sets a value indicating whether the pie should be rendered as a doughnut.
          */
-        doughnut: boolean;        /**
+        doughnut: boolean;
+        /**
          * Gets or sets the dimension index that should be used to read data from the Series.
          */
         /**
@@ -7192,11 +7833,14 @@ export declare module MindFusion.Charting {
          * @param {MindFusion.Drawing.Point} location A Point specifying where to look for a pie slice.
          * @returns {MindFusion.Charting.HitResult} A HitResult instance identifying the found data item.
          */
-        hitTest(context: RenderContext, location: Point): HitResult;        /**
+        hitTest(context: RenderContext, location: Point): HitResult;
+        /**
          * Implements the SeriesContainer interface.
          * @returns {IEnumerable<Series>} An instance of the IEnumerable&lt;Series&gt; class.
          */
         enumSeries(): IEnumerable<Series>;
+        fromJson(json: string): any;
+        toJson(): any;
     }
     /**
     * Defines the signature of delegates called to process pie slices.
@@ -7260,6 +7904,8 @@ export declare module MindFusion.Charting {
          * their corresponding slices as pulled out of the pie.
          */
         detachedSlices: List<number>;
+        fromJson(obj: any): void;
+        toJson(): any;
     }
     /**
     * @class A plot whose series are rendered relatively to a two-dimensional Cartesian coordinate system.
@@ -7286,8 +7932,11 @@ export declare module MindFusion.Charting {
          * @returns {ComponentController} An instance of the PanController class.
          */
         createController(context: RenderContext): ComponentController;
-        getDelta(): number; zoomChanged: EventDispatcher<EventArgs>; xAxes(renderContext: RenderContext): IEnumerable<Axis>;
-        yAxes(renderContext: RenderContext): IEnumerable<Axis>;        /**
+        getDelta(): number;
+        zoomChanged: EventDispatcher<EventArgs>;
+        xAxes(renderContext: RenderContext): IEnumerable<Axis>;
+        yAxes(renderContext: RenderContext): IEnumerable<Axis>;
+        /**
          * Gets or sets default Axis instance used to map X data coordinates of series
          * rendered inside this plot to the plot's pixels.
          */
@@ -7295,7 +7944,8 @@ export declare module MindFusion.Charting {
          * Gets or sets default Axis instance used to map X data coordinates of series
          * rendered inside this plot to the plot's pixels.
          */
-        xAxis: Axis;        /**
+        xAxis: Axis;
+        /**
          * Gets or sets default Axis instance used to map Y data coordinates of series
          * rendered inside this plot to the plot's pixels.
          */
@@ -7329,7 +7979,8 @@ export declare module MindFusion.Charting {
          * Plot.DrawGrid override. Draws the grid specified by GridType property.
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
          */
-        drawGrid(context: RenderContext): void;        /**
+        drawGrid(context: RenderContext): void;
+        /**
          * Zooms out from current data range.
          * @param {IEnumerable<Axis>} axes The axes whose ranges should be scaled.
          */
@@ -7355,19 +8006,45 @@ export declare module MindFusion.Charting {
         /**
          * Specifies whether the plot should scroll vertically when panned.
          */
-        verticalScroll: boolean;        /**
+        verticalScroll: boolean;
+        /**
          * Gets or sets the main color of the grid.
          */
         /**
          * Gets or sets the main color of the grid.
          */
-        gridColor1: Color;        /**
+        gridColor1: Color;
+        /**
          * Gets or sets the alternating color of the grid.
          */
         /**
          * Gets or sets the alternating color of the grid.
          */
-        gridColor2: Color; zoomHistory: ZoomHistory;
+        gridColor2: Color;
+        /**
+         * Gets or sets the color of the grid lines.
+         */
+        /**
+         * Gets or sets the color of the grid lines.
+         */
+        gridLineColor: Color;
+        /**
+        * Gets or sets the thickness of plot grid lines.
+        */
+        /**
+        * Gets or sets the thickness of plot grid lines.
+        */
+        gridLineThickness: number;
+        /**
+        * Gets or sets the style of plot grid lines.
+        */
+        /**
+        * Gets or sets the style of plot grid lines.
+        */
+        gridLineStyle: DashStyle;
+        zoomHistory: ZoomHistory;
+        fromJson(json: any): void;
+        toJson(): any;
     }
     /**
     * @class A plot used to draw graphics in polar coordinate system.
@@ -7406,19 +8083,23 @@ export declare module MindFusion.Charting {
         /**
          * Gets or set padding space between the plot's border and series graphics.
          */
-        padding: number;        /**
+        padding: number;
+        /**
          * Gets or set the angle where first data item of series should be drawn.
          */
         /**
          * Gets or set the angle where first data item of series should be drawn.
          */
-        startAngle: number;        /**
+        startAngle: number;
+        /**
          * Gets or sets a value indicating whether users are allowed to rotate this plot.
          */
         /**
          * Gets or sets a value indicating whether users are allowed to rotate this plot.
          */
         allowRotate: boolean;
+        fromJson(json: any): any;
+        toJson(): any;
     }
     /**
     * @class A SeriesRenderer that draws series as polygons in polar coordinate system,
@@ -7440,7 +8121,8 @@ export declare module MindFusion.Charting {
          * Gets or sets a list of Series drawn by this RadarRenderer.
          */
         series: ObservableCollection<Series>;
-        protected m_series: ObservableCollection<Series>;        /**
+        protected m_series: ObservableCollection<Series>;
+        /**
          * SeriesRenderer.Draw override. Draws the series data in specified RenderContext.
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
          */
@@ -7500,13 +8182,16 @@ export declare module MindFusion.Charting {
          * @param {Number} index An integer index of data element in the series.
          * @returns {Number} A number value representing the largest data element.
          */
-        getMaxValue(index: number): number;        /**
+        getMaxValue(index: number): number;
+        /**
          * Gets or sets the opacity of radar polygons.
          */
         /**
          * Gets or sets the opacity of radar polygons.
          */
         areaOpacity: number;
+        fromJson(json: string): any;
+        toJson(): any;
     }
     /**
     * Defines the signature of delegates called to process all points from current data range at once.
@@ -7535,7 +8220,8 @@ export declare module MindFusion.Charting {
         /**
          * Gets or sets a list of Series drawn by this Renderer2D.
          */
-        series: ObservableCollection<Series>;        /**
+        series: ObservableCollection<Series>;
+        /**
          * Enumerates the data values of rendered series mapped to plot 2D coordinates.
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
          * @param {ProcessPoint} process A ProcessPoint callback.
@@ -7625,13 +8311,15 @@ export declare module MindFusion.Charting {
         /**
          * Gets the X axis associated with this Renderer2D.
          */
-        xAxis: Axis;        /**
+        xAxis: Axis;
+        /**
          * Gets the Y axis associated with this Renderer2D.
          */
         /**
          * Gets the Y axis associated with this Renderer2D.
          */
-        yAxis: Axis;        /**
+        yAxis: Axis;
+        /**
          * SeriesRenderer.MeasureDataRange override. Measures the data range of
          * rendered series and assigns it to the associated Axis objects if
          * their MinValue and MaxValue are not set.
@@ -7727,6 +8415,8 @@ export declare module MindFusion.Charting {
         drawHighlight(context: RenderContext, hitResult: HitResult): void;
         midX(rect: Rect): number;
         midY(rect: Rect): number;
+        fromJson(json: any): any;
+        toJson(): any;
     }
     /**
     * Defines the signature of delegates called to process a data point one element at a time.
@@ -7814,6 +8504,8 @@ export declare module MindFusion.Charting {
          */
         draw(context: RenderContext): void;
         drawIn3DPlot(): boolean;
+        fromJson(json: any): any;
+        toJson(): any;
     }
     /**
     * @class A SeriesRenderer that draws each series as an area in its containing plot.
@@ -7829,13 +8521,16 @@ export declare module MindFusion.Charting {
          * Initializes a new instance of the AreaRenderer class.
          * @param {MindFusion.Charting.Collections.ObservableCollection<Series>} series A list of Series that should be rendered as areas.
          */
-        constructor(series: ObservableCollection<Series>);        /**
+        constructor(series: ObservableCollection<Series>);
+        /**
          * Gets or sets the opacity of area polygons.
          */
         /**
          * Gets or sets the opacity of area polygons.
          */
         areaOpacity: number;
+        fromJson(json: any): any;
+        toJson(): any;
     }
     /**
     * @class A SeriesRenderer that draws overlaying bars in its containing plot.
@@ -7854,7 +8549,8 @@ export declare module MindFusion.Charting {
         /**
          * Gets or sets a value identifying whether bars should be horizontal.
          */
-        horizontalBars: boolean;        /**
+        horizontalBars: boolean;
+        /**
          * Gets the ratio between widths of backmost and frontmost bars.
          * @returns {Number} 3
          */
@@ -7871,7 +8567,8 @@ export declare module MindFusion.Charting {
          * param {MindFusion.Drawing.Rect} bounds A RectangleF representing the boundaries of current bar.
          * The method is not expected to return a value.
          */
-        enumVisibleOverlays(context: RenderContext, frontToBack: boolean, process: ProcessBars): void;        /**
+        enumVisibleOverlays(context: RenderContext, frontToBack: boolean, process: ProcessBars): void;
+        /**
          * Gets or sets the ratio of empty space between adjacent bar groups to space occupied by bars.
          */
         /**
@@ -7910,6 +8607,8 @@ export declare module MindFusion.Charting {
          * @param {MindFusion.Charting.HitResult} hitResult A HitResult instance identifying highlighted data item.
          */
         drawHighlight(context: RenderContext, hitResult: HitResult): void;
+        fromJson(json: string): void;
+        toJson(): any;
     }
     /**
     * Defines the signature of delegates called to process bars.
@@ -7931,7 +8630,8 @@ export declare module MindFusion.Charting {
          * Initializes a new instance of the BarRenderer class.
          * @param {MindFusion.Charting.Collections.ObservableCollection<Series>} series A list of Series that should be rendered as bars.
          */
-        constructor(series: ObservableCollection<Series>);        /**
+        constructor(series: ObservableCollection<Series>);
+        /**
          * Gets or sets a value identifying whether bars should be horizontal.
          */
         /**
@@ -7949,7 +8649,8 @@ export declare module MindFusion.Charting {
          * param {MindFusion.Drawing.Rect} bounds A Rect representing the boundaries of current bar.
          * The method is not expected to return a value.
          */
-        enumVisibleBars(context: RenderContext, process: ProcessBars): void;        /**
+        enumVisibleBars(context: RenderContext, process: ProcessBars): void;
+        /**
          * Gets or sets the ratio of empty space to occupied space
          * in bar groups drawn for data items as same index in each series.
          */
@@ -7957,7 +8658,8 @@ export declare module MindFusion.Charting {
          * Gets or sets the ratio of empty space to occupied space
          * in bar groups drawn for data items as same index in each series.
          */
-        sameIndexSpacingRatio: number;        /**
+        sameIndexSpacingRatio: number;
+        /**
          * Gets or sets the ratio of empty space between adjacent bar groups to space occupied by bars.
          */
         /**
@@ -7996,6 +8698,8 @@ export declare module MindFusion.Charting {
          * @param {MindFusion.Charting.HitResult} hitResult A HitResult instance identifying highlighted data item.
          */
         drawHighlight(context: RenderContext, hitResult: HitResult): void;
+        fromJson(json: string): void;
+        toJson(): any;
     }
     /**
     * Defines the signature of delegates called to process bars.
@@ -8041,31 +8745,8 @@ export declare module MindFusion.Charting {
         * Sets the label alignment.
         */
         labelAlignment: BubbleLabelAlignment;
-    }
-    /**
-    * Specifies the alignment of a label relative to its associated bubble.
-    */
-    enum BubbleLabelAlignment {
-        /**
-        * Indicates that the label is centered inside the bubble.
-        */
-        Center = 0,
-        /**
-        * Indicates that the label is positioned above the bubble.
-        */
-        Above = 1,
-        /**
-        * Indicates that the label is positioned below the bubble.
-        */
-        Below = 2,
-        /**
-        * Indicates that the label is positioned to the left of the bubble.
-        */
-        Left = 3,
-        /**
-        * Indicates that the label is positioned to the right of the bubble.
-        */
-        Right = 4,
+        fromJson(json: string): any;
+        toJson(): any;
     }
     /**
     * @class A SeriesRenderer that draws candlesticks in its containing plot.
@@ -8093,7 +8774,8 @@ export declare module MindFusion.Charting {
          * param {MindFusion.Drawing.Rect} bounds A RectangleF representing the boundaries of current candlestick.
          * The method is not expected to return a value.
          */
-        enumVisibleCandlesticks(context: RenderContext, process: ProcessCandlesticks): void;        /**
+        enumVisibleCandlesticks(context: RenderContext, process: ProcessCandlesticks): void;
+        /**
          * Renderer2D.MeasureDataRange override. Measures the data range of
          * rendered series and assigns it to the associated Axis objects if
          * their MinValue and MaxValue are not set.
@@ -8118,31 +8800,36 @@ export declare module MindFusion.Charting {
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
          * @param {MindFusion.Charting.HitResult} hitResult A HitResult instance identifying highlighted data item.
          */
-        drawHighlight(context: RenderContext, hitResult: HitResult): void;        /**
+        drawHighlight(context: RenderContext, hitResult: HitResult): void;
+        /**
          * Gets or sets the index of the dimension, containing open values.
          */
         /**
          * Gets or sets the index of the dimension, containing open values.
          */
-        openDimension: number;        /**
+        openDimension: number;
+        /**
          * Gets or sets the index of the dimension, containing close values.
          */
         /**
          * Gets or sets the index of the dimension, containing close values.
          */
-        closeDimension: number;        /**
+        closeDimension: number;
+        /**
          * Gets or sets the index of the dimension, containing low values.
          */
         /**
          * Gets or sets the index of the dimension, containing low values.
          */
-        lowDimension: number;        /**
+        lowDimension: number;
+        /**
          * Gets or sets the index of the dimension, containing high values.
          */
         /**
          * Gets or sets the index of the dimension, containing high values.
          */
-        highDimension: number;        /**
+        highDimension: number;
+        /**
          * Gets or sets the width of the candlesticks.
          */
         /**
@@ -8157,6 +8844,8 @@ export declare module MindFusion.Charting {
          * @returns {MindFusion.Charting.Drawing.Brush} A Brush instance.
          */
         effectiveFill(seriesIndex: number, dataIndex: number, context: RenderContext): Brush;
+        fromJson(json: string): any;
+        toJson(): any;
     }
     /**
     * Defines the signature of delegates called to process candlesticks.
@@ -8182,6 +8871,8 @@ export declare module MindFusion.Charting {
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
          */
         draw(context: RenderContext): void;
+        fromJson(json: string): void;
+        toJson(): any;
     }
     /**
     * @class A SeriesRenderer that draws pie-radars, where data items are represented
@@ -8210,7 +8901,8 @@ export declare module MindFusion.Charting {
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
          * @param {MindFusion.Charting.HitResult} hitResult A HitResult instance identifying highlighted data item.
          */
-        drawHighlight(context: RenderContext, hitResult: HitResult): void;        /**
+        drawHighlight(context: RenderContext, hitResult: HitResult): void;
+        /**
          * Gets or sets a value indicating whether sectors should be aligned to
          * axes in the radar grid or centered around them.
          */
@@ -8219,6 +8911,8 @@ export declare module MindFusion.Charting {
          * axes in the radar grid or centered around them.
          */
         alignToAxis: boolean;
+        fromJson(json: string): void;
+        toJson(): any;
     }
     /**
     * Defines the signature of delegates called to process sectors generated for a series.
@@ -8240,7 +8934,8 @@ export declare module MindFusion.Charting {
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
          */
         draw(context: RenderContext): void;
-        getDelta(): number;        /**
+        getDelta(): number;
+        /**
          * Gets or sets default Axis instance used to map Z data coordinates of series
          * rendered inside this plot to the plot's pixels.
          */
@@ -8266,7 +8961,8 @@ export declare module MindFusion.Charting {
         /**
          * Initializes a new instance of the RadarPlot class.
          */
-        constructor();        /**
+        constructor();
+        /**
          * Gets the list of Axis objects representing ranges
          * of variables represented in the radar chart.
          */
@@ -8288,7 +8984,8 @@ export declare module MindFusion.Charting {
          * Gets a RadarAxisOptions object providing properties for customizing
          * axis rendering in radar charts.
          */
-        axisOptions: RadarAxisOptions;        /**
+        axisOptions: RadarAxisOptions;
+        /**
          * Gets the Axis representing the range for specified data variable index.
          * @param {Number} index An integer index of data items in series.
          * @returns {MindFusion.Charting.Axis} The associated Axis.
@@ -8342,13 +9039,17 @@ export declare module MindFusion.Charting {
         /**
          * Gets or sets the main color of the grid.
          */
-        gridColor1: Color;        /**
+        gridColor1: Color;
+        /**
          * Gets or sets the alternating color of the grid.
          */
         /**
          * Gets or sets the alternating color of the grid.
          */
-        gridColor2: Color; axesCount: number;
+        gridColor2: Color;
+        axesCount: number;
+        fromJson(json: any): void;
+        toJson(): any;
     }
     /**
     * @class A SeriesRenderer that draws scatter in its containing plot.
@@ -8390,13 +9091,15 @@ export declare module MindFusion.Charting {
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
          * @param {MindFusion.Charting.HitResult} hitResult A HitResult instance identifying highlighted data item.
          */
-        drawHighlight(context: RenderContext, hitResult: HitResult): void;        /**
+        drawHighlight(context: RenderContext, hitResult: HitResult): void;
+        /**
          * Gets or sets the size of scatter shapes.
          */
         /**
          * Gets or sets the size of scatter shapes.
          */
-        shapeSize: number;        /**
+        shapeSize: number;
+        /**
          * Gets or sets the type of scatter shapes.
          */
         /**
@@ -8404,6 +9107,8 @@ export declare module MindFusion.Charting {
          */
         shape: ScatterType;
         drawIn3DPlot(): boolean;
+        fromJson(json: string): void;
+        toJson(): any;
     }
     /**
      * @class A base SeriesRenderer for stacked graphics.
@@ -8501,13 +9206,16 @@ export declare module MindFusion.Charting {
          * SeriesRenderer.Draw override. Draws the series data in specified RenderContext.
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
          */
-        draw(context: RenderContext): void;        /**
+        draw(context: RenderContext): void;
+        /**
          * Gets or sets the opacity of area polygons.
          */
         /**
          * Gets or sets the opacity of area polygons.
          */
         areaOpacity: number;
+        fromJson(json: any): any;
+        toJson(): any;
     }
     /**
      * @class A SeriesRenderer that draws series as steps between data points.
@@ -8523,6 +9231,8 @@ export declare module MindFusion.Charting {
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
          */
         draw(context: RenderContext): void;
+        fromJson(json: string): void;
+        toJson(): any;
     }
     /**
      * @class A SeriesRenderer that draws stacked areas in its containing plot.
@@ -8596,7 +9306,8 @@ export declare module MindFusion.Charting {
         /**
          * Gets or sets a value identifying whether bars should be horizontal.
          */
-        horizontalBars: boolean;        /**
+        horizontalBars: boolean;
+        /**
          * Enumerates the bars visible in current data range.
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
          * @param {ProcessStackBars} process A ProcessStackBars callback.
@@ -8607,7 +9318,8 @@ export declare module MindFusion.Charting {
          * param {MindFusion.Drawing.Rect} bounds A RectangleF representing the boundaries of current bar.
          * The method is not expected to return a value.
          */
-        enumVisibleStackBars(context: RenderContext, process: ProcessStackBars): void;        /**
+        enumVisibleStackBars(context: RenderContext, process: ProcessStackBars): void;
+        /**
          * Gets or sets the ratio of empty space between adjacent bar groups to space occupied by bars.
          */
         /**
@@ -8641,6 +9353,8 @@ export declare module MindFusion.Charting {
          * @param {MindFusion.Charting.HitResult} hitResult A HitResult instance identifying highlighted data item.
          */
         drawHighlight(context: RenderContext, hitResult: HitResult): void;
+        fromJson(json: string): void;
+        toJson(): any;
     }
     /**
     * Defines the signature of delegates called to process stacked bars.
@@ -8665,6 +9379,8 @@ export declare module MindFusion.Charting {
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
          */
         draw(context: RenderContext): void;
+        fromJson(json: string): void;
+        toJson(): any;
     }
     /**
      * @class A SeriesRenderer that draws stacked areas in its containing plot.
@@ -8695,11 +9411,14 @@ export declare module MindFusion.Charting {
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
          */
         draw(context: RenderContext): void;
+        fromJson(json: string): void;
+        toJson(): any;
     }
     /**
      * @class A SeriesRenderer that draws scatter in radar plots.
      */
-    class RadarScatterRenderer extends ScatterRenderer {        /**
+    class RadarScatterRenderer extends ScatterRenderer {
+        /**
          * Initializes a new instance of the RadarScatterRenderer class.
          * @param {MindFusion.Charting.Collections.ObservableCollection<Series>} series A list of Series that should be rendered as scatter.
          */
@@ -8746,12 +9465,14 @@ export declare module MindFusion.Charting {
 export declare module MindFusion.Charting.Controls {
     import TextComponent = MindFusion.Charting.Components.TextComponent;
     import GridPanel = MindFusion.Charting.Components.GridPanel;
+    import CursorHint = MindFusion.Charting.Components.CursorHint;
     import Component = MindFusion.Charting.Components.Component;
     import LayoutAlignment = MindFusion.Charting.Components.LayoutAlignment;
     import StackPanel = MindFusion.Charting.Components.StackPanel;
     import Panel = MindFusion.Charting.Components.Panel;
     import RootControl = MindFusion.Charting.Components.RootControl;
     import EventDispatcher = MindFusion.Charting.Common.EventDispatcher;
+    import EmptyEventArgs = MindFusion.Charting.Common.EmptyEventArgs;
     import ObservableCollection = MindFusion.Charting.Collections.ObservableCollection;
     import List = MindFusion.Charting.Collections.List;
     import FontStyle = MindFusion.Charting.Drawing.FontStyle;
@@ -8780,17 +9501,20 @@ export declare module MindFusion.Charting.Controls {
     * @property {String} licenseLocation Gets or sets the path to the license file.
     * @property {EventDispatcher<HitResult>} dataItemClicked Raised when the user clicks on a data item inside a plot.
     */
-    class Dashboard implements RootControl {        /**
+    class Dashboard implements RootControl {
+        /**
         * Initializes a new instance of the Dashboard class.
             * @param {HTMLCanvasElement} element The canvas DOM element to associate this dashboard with.
         */
-        constructor(element: HTMLCanvasElement);        /**
+        constructor(element: HTMLCanvasElement);
+        /**
         * Gets the root Panel in the hierarchy of dashboard components.
         */
         /**
         * Gets the root Panel in the hierarchy of dashboard components.
         */
-        rootPanel: Panel;        /**
+        rootPanel: Panel;
+        /**
         * Gets a LayoutBuilder instance that provides shortcut methods for
         * building fragments of dashboard's user interface.
         */
@@ -8798,7 +9522,8 @@ export declare module MindFusion.Charting.Controls {
         * Gets a LayoutBuilder instance that provides shortcut methods for
         * building fragments of dashboard's user interface.
         */
-        layoutBuilder: LayoutBuilder;        /**
+        layoutBuilder: LayoutBuilder;
+        /**
         * Gets a Panel containing dashboard components that should participate
         * in layout measurements and be arranged relatively to each other.
         */
@@ -8811,7 +9536,8 @@ export declare module MindFusion.Charting.Controls {
         * Control.OnResize override. Invalidates the layout of child components and runs a new layout pass.
         * @param {EventArgs} e An EventArgs instance.
         */
-        onResize(e: EventArgs): void;
+        onResize(): void;
+        handleResize(): void;
         /**
         * Binds the chart to current DataSource.
         */
@@ -8825,13 +9551,16 @@ export declare module MindFusion.Charting.Controls {
         * @param {MindFusion.Drawing.Rect} layoutRect Current layout rectangle.
         * @param {MindFusion.Drawing.Rect} clipRect Current clip rectangle.
         */
-        draw(): void;        /**
+        draw(): void;
+        /**
         * Creates a RenderContext instance.
         * @param {MindFusion.Drawing.Graphics} graphics A Graphics surface where dashboard elements should be rendered.
         * @param {MindFusion.Drawing.Rect} clipRect The current clip rectangle.
         * @returns {MindFusion.Charting.RenderContext} A RenderContext instance.
         */
-        createRenderContext(graphics: Graphics, clipRect: Rect): RenderContext; dataItemClicked: EventDispatcher<HitResult>;        /**
+        createRenderContext(graphics: Graphics, clipRect: Rect): RenderContext;
+        dataItemClicked: EventDispatcher<HitResult>;
+        /**
         * Raises the DataItemClicked event
         * if the user has clicked on data element in a plot.
         * @param {MouseEvent} e A MouseEvent instance.
@@ -8841,17 +9570,23 @@ export declare module MindFusion.Charting.Controls {
         * Handles the HTMLCanvasElement mousedown event.
         * @param {MouseEvent} e A MouseEvent instance.
         */
-        protected onMouseDown(e: MouseEvent): void;        /**
+        protected onMouseDown(e: MouseEvent): void;
+        /**
         * Handles the HTMLCanvasElement mousemove event.
         * @param {MouseEvent} e A MouseEvent instance.
         */
-        onMouseMove(e: MouseEvent): void; tooltipBrush: Brush;
-        tooltipPen: Pen;        /**
+        onMouseMove(e: MouseEvent): void;
+        getCursorHint(x: number, y: number): CursorHint;
+        tooltipBrush: Brush;
+        tooltipPen: Pen;
+        toolTipTextBrush: Brush;
+        /**
         * Handles the HTMLCanvasElement mouseup event.
         * @param {MouseEvent} e A MouseEvent instance.
         */
         onMouseUp(e: MouseEvent): void;
-        protected onMouseLeave(e: MouseEvent): void;        /**
+        protected onMouseLeave(e: MouseEvent): void;
+        /**
         * Implements RootControl.InvalidateLayout. Invalidates layout of specified component.
         * @param {Components.Component} panel The component to invalidate.
         */
@@ -8861,19 +9596,22 @@ export declare module MindFusion.Charting.Controls {
         * @param {RectD} [rect] The area to invalidate and redraw.
         * @param {Components.Component} [panel] The reference Component.
         */
-        invalidate(rect?: Rect, panel?: Component): void;        /**
+        invalidate(rect?: Rect, panel?: Component): void;
+        /**
         * Gets or sets a Theme specifying appearance of dashboard elements.
         */
         /**
         * Gets or sets a Theme specifying appearance of dashboard elements.
         */
-        theme: Theme;        /**
+        theme: Theme;
+        /**
         * Gets or sets dashboard's back color.
         */
         /**
         * Gets or sets dashboard's back color.
         */
-        backColor: Color;        /**
+        backColor: Color;
+        /**
         * Gets or sets dashboard's background image.
         */
         /**
@@ -8893,7 +9631,8 @@ export declare module MindFusion.Charting.Controls {
         /**
         * Gets or sets the alignment of BackgroundImage relatively to dashboard boundaries.
         */
-        backgroundImageAlign: ImageAlign;        /**
+        backgroundImageAlign: ImageAlign;
+        /**
         * Gets or sets a value indicating whether users are allowed to zoom into plots' data ranges.
         */
         /**
@@ -8907,13 +9646,27 @@ export declare module MindFusion.Charting.Controls {
         /**
         * Gets or sets the path to the license file.
         */
-        licenseLocation: string;        /**
+        licenseLocation: string;
+        /**
         * Gets or sets the license key of the control.
         */
         /**
         * Gets or sets the license key of the control.
         */
         licenseKey: string;
+        /**
+        * Deserializes the control's data from JSON string.
+        */
+        fromJson(json: string): any;
+        /**
+        * Serializes the control's data to JSON string.
+        */
+        toJson(): any;
+        protected toJsonPre(): any;
+        initialize(): void;
+        preparePostback(sender: any, args: any): void;
+        onControlLoaded(): void;
+        controlLoaded: EventDispatcher<EmptyEventArgs>;
     }
     /**
     * @class A base class for chart controls.
@@ -8970,22 +9723,28 @@ export declare module MindFusion.Charting.Controls {
         /**
          * Gets the chart's Plot component.
          */
-        plot: Plot;        /**
+        plot: Plot;
+        /**
          * Gets the Panel that contains the chart's plot and associated elements.
          */
-        plotPanel: Panel;        /**
+        plotPanel: Panel;
+        /**
          * Contains series generated from DataSource data.
          */
         /**
          * Contains series generated from DataSource data.
          */
-        dataBoundSeries: List<Series>;        /**
+        dataBoundSeries: List<Series>;
+        /**
          * Gets the GridPanel that contains the chart's PlotPanel and axis renderers.
          */
         /**
          * Gets the GridPanel that contains the chart's PlotPanel and axis renderers.
          */
-        chartPanel: GridPanel; titlePanel: TextComponent; subtitlePanel: TextComponent;        /**
+        chartPanel: GridPanel;
+        titlePanel: TextComponent;
+        subtitlePanel: TextComponent;
+        /**
          * Creates the Plot type corresponding to this chart.
          * @returns {Plot} An instance of Plot -derived class.
          */
@@ -9007,7 +9766,8 @@ export declare module MindFusion.Charting.Controls {
          * Control.OnSizeChanged override.
          * @param {EventArgs} e An EventArgs instance.
          */
-        onSizeChanged(e: EventArgs): void;        /**
+        onSizeChanged(e: EventArgs): void;
+        /**
          * Gets or sets the title of this chart.
          */
         /**
@@ -9295,13 +10055,15 @@ export declare module MindFusion.Charting.Controls {
          * are shown as Z axis labels of rendered graphical elements.
          */
         zAxisLabelsDataFields: ObservableCollection<string>;
+        fromJson(json: string): any;
+        toJson(): any;
     }
     /**
     * @class A control used to draw funnel charts.
     * @property {Series} series Gets or sets the series whose data is drawn in this chart.
     * @property {Number} dimension Gets or sets the dimension index that should be used to read data from the Series.
     * @property {Number} segmentSpacing Gets or sets the spacing between segments.
-    * @property {Number} bottomBase Gets or sets the size of the funnel base.
+    * @property {Number} stemWidth Gets or sets the width of the funnel stem.
     */
     class FunnelChart extends Chart {
         /**
@@ -9334,12 +10096,14 @@ export declare module MindFusion.Charting.Controls {
          */
         segmentSpacing: number;
         /**
-         * Gets or sets the size of the funnel base.
+         * Gets or sets the width of the funnel stem.
          */
         /**
-         * Gets or sets the size of the funnel base.
+         * Gets or sets the width of the funnel stem.
          */
-        bottomBase: number;
+        stemWidth: number;
+        fromJson(json: string): void;
+        toJson(): string;
     }
     /**
     * @class A control used to draw pie charts.
@@ -9406,6 +10170,8 @@ export declare module MindFusion.Charting.Controls {
          * Gets or sets indices of detached slices.
          */
         detachedSlices: List<number>;
+        fromJson(json: string): void;
+        toJson(): string;
     }
     /**
     * @class A base class for charts that display X and Y axes.
@@ -9423,15 +10189,23 @@ export declare module MindFusion.Charting.Controls {
     * @property {Boolean} showYTicks Gets or sets a value indicating whether to show Y axis ticks.
     * @property {Number} xAxisTickLength Gets or sets the length of X axis ticks.
     * @property {Number} yAxisTickLength Gets or sets the length of Y axis ticks.
-    * @property {Number} xAxisLabelRotationAngle Gets the rotation angle of the X axis labels.
-    * @property {Number} yAxisLabelRotationAngle Gets the rotation angle of the Y axis labels.
+    * @property {Number} xAxisLabelRotationAngle Gets or sets the rotation angle of the X axis labels.
+    * @property {Number} yAxisLabelRotationAngle Gets or sets the rotation angle of the Y axis labels.
+    * @property {Boolean} showXRangeSelector Gets or sets a value indicating whether to show a RangeSelector for the X axis, to let users scroll or resize the currently visible horizontal data window.
+    * @property {Boolean} showYRangeSelector Gets or sets a value indicating whether to show a RangeSelector for the Y axis, to let users scroll or resize the currently visible vertical data window.
+    * @property {Number} xScrollRangeMin Gets or sets the smallest value allowed to scroll to using the X axis' RangeSelector.
+    * @property {Number} yScrollRangeMin Gets or sets the smallest value allowed to scroll to using the Y axis' RangeSelector.
+    * @property {Number} xScrollRangeMax Gets or sets the largest value allowed to scroll to using the X axis' RangeSelector.
+    * @property {Number} yScrollRangeMax Gets or sets the largest value allowed to scroll to using the Y axis' RangeSelector.
     */
-    abstract class BiaxialChart extends Chart {        /**
+    abstract class BiaxialChart extends Chart {
+        /**
          * Initializes a new instance of the BiaxialChart class.
          * @param {HTMLCanvasElement} element The canvas DOM element to associate this chart with.
          * @param {Renderer2D} [seriesRenderer] A SeriesRenderer used to draw chart's data series.
          */
-        constructor(element: HTMLCanvasElement, seriesRenderer?: Renderer2D);        /**
+        constructor(element: HTMLCanvasElement, seriesRenderer?: Renderer2D);
+        /**
          * Dashboard.CreateRenderContext override. Creates a RenderContext instance.
          * @param {MindFusion.Drawing.Graphics} graphics An Graphics surface where dashboard elements should be rendered.
          * @param {MindFusion.Drawing.Rect} clipRect The current clip rectangle.
@@ -9556,12 +10330,60 @@ export declare module MindFusion.Charting.Controls {
          */
         xAxisLabelRotationAngle: number;
         /**
-         * Gets the rotation angle of the X axis labels.
+         * Gets the rotation angle of the Y axis labels.
          */
         /**
          * Sets the rotation angle of the Y axis labels.
          */
         yAxisLabelRotationAngle: number;
+        /**
+         * Gets a value indicating whether to show a RangeSelector for the X axis,
+         * to let users scroll or resize the currently visible horizontal data window.
+         */
+        /**
+         * Sets a value indicating whether to show a RangeSelector for the X axis,
+         * to let users scroll or resize the currently visible horizontal data window.
+         */
+        showXRangeSelector: boolean;
+        /**
+         * Gets the smallest value allowed to scroll to using the X axis' RangeSelector.
+         */
+        /**
+         * Sets the smallest value allowed to scroll to using the X axis' RangeSelector.
+         */
+        xScrollRangeMin: number;
+        /**
+         * Gets the largest value allowed to scroll to using the X axis' RangeSelector.
+         */
+        /**
+         * Sets the largest value allowed to scroll to using the X axis' RangeSelector.
+         */
+        xScrollRangeMax: number;
+        /**
+         * Gets a value indicating whether to show a RangeSelector for the Y axis,
+         * to let users scroll or resize the currently visible vertical data window.
+         */
+        /**
+         * Sets a value indicating whether to show a RangeSelector for the Y axis,
+         * to let users scroll or resize the currently visible vertical data window.
+         */
+        showYRangeSelector: boolean;
+        /**
+         * Gets the smallest value allowed to scroll to using the Y axis' RangeSelector.
+         */
+        /**
+         * Sets the smallest value allowed to scroll to using the Y axis' RangeSelector.
+         */
+        yScrollRangeMin: number;
+        /**
+         * Gets the largest value allowed to scroll to using the Y axis' RangeSelector.
+         */
+        /**
+         * Sets the largest value allowed to scroll to using the Y axis' RangeSelector.
+         */
+        yScrollRangeMax: number;
+        fromJson(json: string): any;
+        toJson(): string;
     }
     /**
      * @class Provides shortcut methods for building fragments of dashboard's user interface.
@@ -9571,7 +10393,8 @@ export declare module MindFusion.Charting.Controls {
          * Initializes a new instance of the LayoutBuilder class.
          * @param {Dashboard} board A Dashboard instance.
          */
-        constructor(board: Dashboard);        /**
+        constructor(board: Dashboard);
+        /**
          * Creates a two-row stack panel whose second row is a horizontal stack of two components.
          * The panel is automatically added to the dashboard's LayoutPanel.
          * @param {Component} row1 The component on first row.
@@ -9916,6 +10739,7 @@ export declare module MindFusion.Charting.Controls {
          * @param {LineRenderer} [seriesRenderer] A LineRenderer used to draw chart's data series.
          */
         constructor(element: HTMLCanvasElement, seriesRenderer?: LineRenderer);
+        static createRenderer(series: ObservableCollection<Series>, lineType: LineType): Renderer2D;
         /**
          * BiaxialChart.Series override. Gets or sets the list of series whose data is drawn in this chart.
          */
@@ -9930,6 +10754,8 @@ export declare module MindFusion.Charting.Controls {
          * Gets or sets what type of line segments to draw between data points.
          */
         lineType: LineType;
+        fromJson(json: string): void;
+        toJson(): string;
     }
     class MeasureRangesVisitor extends ComponentVisitor {
         constructor(context: RenderContext);
@@ -9973,19 +10799,23 @@ export declare module MindFusion.Charting.Controls {
         /**
          * Gets or sets how to arrange bars when rendering multiple series.
          */
-        barLayout: BarLayout;        /**
+        barLayout: BarLayout;
+        /**
          * Gets or sets a value identifying whether bars should be horizontal.
          */
         /**
          * Gets or sets a value identifying whether bars should be horizontal.
          */
-        horizontalBars: boolean;        /**
+        horizontalBars: boolean;
+        /**
          * Gets or sets the ratio of empty space between bars to space occupied by bars.
          */
         /**
          * Gets or sets the ratio of empty space between bars to space occupied by bars.
          */
         barSpacingRatio: number;
+        fromJson(json: string): void;
+        toJson(): string;
     }
     /**
     * @class A control used to draw bubble charts.
@@ -10013,6 +10843,8 @@ export declare module MindFusion.Charting.Controls {
         * Sets the alignment of labels relative to their associated bubbles.
         */
         labelAlignment: BubbleLabelAlignment;
+        fromJson(json: string): void;
+        toJson(): string;
     }
     /**
     * @class A control used to draw candlestick charts.
@@ -10040,6 +10872,8 @@ export declare module MindFusion.Charting.Controls {
          * Gets or sets the width of the candlesticks.
          */
         candlestickWidth: number;
+        fromJson(json: string): any;
+        toJson(): string;
     }
     /**
     * @class A control used to draw radar charts.
@@ -10188,6 +11022,8 @@ export declare module MindFusion.Charting.Controls {
          * Gets or set padding space between the plot's border and series graphics.
          */
         chartPadding: number;
+        fromJson(json: string): void;
+        toJson(): string;
     }
     /**
     * @class A control used to draw area charts.
@@ -10225,6 +11061,8 @@ export declare module MindFusion.Charting.Controls {
          * Gets or sets the opacity of area polygons.
          */
         areaOpacity: number;
+        fromJson(json: string): void;
+        toJson(): string;
     }
     /**
     * @class A control used to draw scatter charts.
@@ -10260,6 +11098,8 @@ export declare module MindFusion.Charting.Controls {
          * Gets or sets the size of scatter shapes.
          */
         shapeSize: number;
+        fromJson(json: string): void;
+        toJson(): string;
     }
     /**
     * @class A control used to draw 3D bar charts.
@@ -10300,9 +11140,12 @@ export declare module MindFusion.Charting.Controls {
         * Gets or sets the model to be drawn
         */
         barModel: BarModel3D;
+        fromJson(json: string): void;
+        toJson(): string;
     }
 }
 export declare module MindFusion.Charting.Gauges {
+    import CursorHint = MindFusion.Charting.Components.CursorHint;
     import ComponentAnimation = MindFusion.Charting.Components.ComponentAnimation;
     import Graphics = MindFusion.Charting.Drawing.Graphics;
     import ComponentController = MindFusion.Charting.Components.ComponentController;
@@ -10447,8 +11290,8 @@ export declare module MindFusion.Charting.Gauges {
          * Gets or sets the size of font used to draw text in this gauge.
          */
         fontSize: number;
-        m_defaultLinearFill: LinearGradientBrush;
-        m_defaultPen: Pen;
+        fromJson(json: any): any;
+        toJson(): any;
     }
     /**
      * @class A Component that renders linear gauges in the dashboard.
@@ -10486,13 +11329,16 @@ export declare module MindFusion.Charting.Gauges {
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
          * @returns {ComponentController} An instance of the LinearGaugeController class.
          */
-        createController(context: RenderContext): ComponentController;        /**
+        createController(context: RenderContext): ComponentController;
+        /**
          * Gets or sets the LinearGauge represented by this renderer.
          */
         /**
          * Gets or sets the LinearGauge represented by this renderer.
          */
         gauge: LinearGauge;
+        fromJson(json: any): any;
+        toJson(): any;
     }
     /**
      * @class Controls user interaction with linear gauges.
@@ -10542,6 +11388,11 @@ export declare module MindFusion.Charting.Gauges {
          */
         getRunningAnimation(): ComponentAnimation;
         /**
+         * For internal use.
+         * @returns {CursorHint} A member of the CursorHint enumeration.
+         */
+        getCursorHint(x: number, y: number): CursorHint;
+        /**
          * Implements ComponentController.Component. Gets the component modified by this controller.
          */
         component: Component;
@@ -10582,13 +11433,16 @@ export declare module MindFusion.Charting.Gauges {
          * @param {MindFusion.Charting.RenderContext} context A RenderContext instance.
          * @returns {ComponentController} An instance of the OvalGaugeController class.
          */
-        createController(context: RenderContext): ComponentController;        /**
+        createController(context: RenderContext): ComponentController;
+        /**
          * Gets or sets the OvalGauge represented by this renderer.
          */
         /**
          * Gets or sets the OvalGauge represented by this renderer.
          */
         gauge: OvalGauge;
+        fromJson(json: any): any;
+        toJson(): any;
     }
     /**
      * @class Controls user interaction with oval gauges.
@@ -10637,6 +11491,11 @@ export declare module MindFusion.Charting.Gauges {
          * @returns {ComponentAnimation} An instance of a ComponentAnimation -derived class.
          */
         getRunningAnimation(): ComponentAnimation;
+        /**
+         * For internal use.
+         * @returns {CursorHint} A member of the CursorHint enumeration.
+         */
+        getCursorHint(x: number, y: number): CursorHint;
         /**
          * Implements ComponentController.Component. Gets the component modified by this controller.
          */

@@ -11,6 +11,7 @@ let radarChartEl = <HTMLCanvasElement>document.getElementById('radarChart');
 radarChartEl.width = radarChartEl.offsetParent.clientWidth;
 radarChartEl.height = radarChartEl.offsetParent.clientHeight;
 let radarChart = new Controls.RadarChart(radarChartEl);
+radarChart.theme.loadFrom('Resources/DefaultExt.xml');
 
 // create sample data
 let data = new Collections.ObservableCollection<m.MindFusion.Charting.Series>();
@@ -29,7 +30,7 @@ radarChart.series = data;
 radarChart.theme.axisLabelsBrush = new Drawing.Brush("black");
 radarChart.theme.axisLabelsFontStyle = Drawing.FontStyle.Bold;
 radarChart.theme.axisLabelsFontSize = 10;
-radarChart.theme.axisStroke = new Drawing.Brush("lightGray");
+radarChart.theme.axisStroke = new Drawing.Brush("#c0c0c0");
 
 radarChart.gridDivisions = 5;
 radarChart.defaultAxis.minValue = 0;
@@ -46,14 +47,20 @@ for (let i = 0; i < 8; i++) {
 radarChart.plot.seriesStyle = new Charting.PerSeriesStyle(
 	new Collections.List<m.MindFusion.Charting.Drawing.Brush>(
 		[
-			new Drawing.Brush("tomato"),
-			new Drawing.Brush("violet")
+            new Drawing.Brush("#ce0000"),
+            new Drawing.Brush("#2d3956")
 		]),
 	new Collections.List<m.MindFusion.Charting.Drawing.Brush>(
 		[
-			new Drawing.Brush("tomato"),
-			new Drawing.Brush("violet")
-		]));
+            new Drawing.Brush("#ce0000"),
+            new Drawing.Brush("#2d3956")
+        ]),
+    new Collections.List<number>(
+        [
+            4
+        ]));
+
+radarChart.theme.highlightStroke = new Drawing.Brush("#9caac6");
 
 radarChart.draw();
 

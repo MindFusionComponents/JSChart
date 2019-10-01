@@ -10,6 +10,7 @@ define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require,
     dashboardEl.width = dashboardEl.offsetParent.clientWidth;
     dashboardEl.height = dashboardEl.offsetParent.clientHeight;
     var dashboard = new Controls.Dashboard(dashboardEl);
+    dashboard.theme.loadFrom('Resources/DefaultExt.xml');
     // set up grid panel
     var grid = new Components.GridPanel();
     grid.columns.add(new Components.GridColumn());
@@ -61,17 +62,24 @@ define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require,
     var barRenderer = new Charting.BarRenderer(new Collections.ObservableCollection([
         new Charting.Series2D(new Collections.List([1, 2, 3, 4, 5, 6, 7]), new Collections.List([20.3, 12, 73.23, 21.2, 72, 66, 42.239]), null),
         new Charting.Series2D(new Collections.List([1, 2, 3, 4, 5, 6, 7]), new Collections.List([22.3, 15, 43.23, 11.2, 32, 12, 62.239]), null)]));
-    var lineRenderer = new Charting.LineRenderer(new Collections.ObservableCollection([
+    var lineRenderer = new Charting.CurveAreaRenderer(new Collections.ObservableCollection([
         new Charting.Series2D(new Collections.List([1, 2, 3, 4, 5, 6, 7]), new Collections.List([10.3, 22, 33.23, 41.2, 12, 26, 42.239]), null),
         new Charting.Series2D(new Collections.List([1, 2, 3, 4, 5, 6, 7]), new Collections.List([42.3, 45, 43.23, 21.2, 12, 22, 22.239]), null)]));
     plot1.seriesStyle = new Charting.PerSeriesStyle(new Collections.List([
-        new Drawing.Brush("purple"),
-        new Drawing.Brush("lightBlue")
+        new Drawing.Brush("#003466"),
+        new Drawing.Brush("#ce0000")
     ]));
-    plot2.seriesStyle = new Charting.PerSeriesStyle(null, new Collections.List([
-        new Drawing.Brush("purple"),
-        new Drawing.Brush("lightBlue")
+    plot1.gridType = Charting.GridType.Horizontal;
+    plot1.gridColor1 = plot1.gridColor2 = Drawing.Color.fromArgb(255, 255, 255);
+    plot2.seriesStyle = new Charting.PerSeriesStyle(new Collections.List([
+        new Drawing.Brush(Drawing.Color.fromArgb(0.7, 0, 52, 102)),
+        new Drawing.Brush(Drawing.Color.fromArgb(0.7, 206, 0, 0))
+    ]), new Collections.List([
+        new Drawing.Brush("#003466"),
+        new Drawing.Brush("#ce0000")
     ]));
+    plot2.gridType = Charting.GridType.Horizontal;
+    plot2.gridColor1 = plot2.gridColor2 = Drawing.Color.fromArgb(255, 255, 255);
     plot1.seriesRenderers.add(barRenderer);
     plot2.seriesRenderers.add(lineRenderer);
     // add the plots and axes to the dashboard

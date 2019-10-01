@@ -11,6 +11,7 @@ define(["require", "exports", 'Scripts/MindFusion.Charting', 'MindFusion.Gauges'
     element.width = element.offsetParent.clientWidth;
     element.height = element.offsetParent.clientHeight;
     var dashboard = new Controls.Dashboard(element);
+    dashboard.theme.loadFrom('Resources/DefaultExt.xml');
     var builder = new Controls.LayoutBuilder(dashboard);
     var label = new Components.TextComponent();
     label.horizontalAlignment = Components.LayoutAlignment.Center;
@@ -66,16 +67,16 @@ define(["require", "exports", 'Scripts/MindFusion.Charting', 'MindFusion.Gauges'
     var barRenderer = new Charting.BarRenderer(col1);
     var barStyle = new Charting.PerSeriesStyle();
     barStyle.fills = barStyle.strokes = new Collections.List([
-        new Drawing.Brush(Drawing.Color.knownColors.LightBlue),
-        new Drawing.Brush(Drawing.Color.knownColors.LightGreen),
-        new Drawing.Brush(Drawing.Color.knownColors.Orange)]);
+        new Drawing.Brush("#9caac6"),
+        new Drawing.Brush("#ce0000"),
+        new Drawing.Brush("#2d3956")]);
     barRenderer.seriesStyle = barStyle;
     barPlot.yAxis = barPlotYAxis;
     barPlot.xAxis = barPlotXAxis;
     barRenderer.yAxis = barPlotYAxis;
     // create line plot
     var linePlot = new Charting.Plot2D();
-    linePlot.background = new Drawing.Brush(Drawing.Color.knownColors.LightGray);
+    linePlot.background = new Drawing.Brush("#c0c0c0");
     // create sample data
     var yahooSeries = new Charting.Series2D(new Collections.List([
         0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
@@ -180,7 +181,7 @@ define(["require", "exports", 'Scripts/MindFusion.Charting', 'MindFusion.Gauges'
     ovalGauge.background = new Drawing.LinearGradientBrush(Drawing.Color.knownColors.White, Drawing.Color.knownColors.Gray);
     ovalGauge.pointerStroke = new Drawing.Brush(Drawing.Color.knownColors.Black);
     ovalGauge.pointerBackground = new Drawing.Brush("transparent");
-    ovalGauge.tickBackground = new Drawing.LinearGradientBrush("orangeRed", Drawing.Color.knownColors.Orange);
+    ovalGauge.tickBackground = new Drawing.LinearGradientBrush("#5a79a5", "#003466");
     var scale = ovalGauge.gauge.scales[0];
     scale.setEndAngle(270);
     scale.setStartAngle(90);
@@ -190,18 +191,18 @@ define(["require", "exports", 'Scripts/MindFusion.Charting', 'MindFusion.Gauges'
     var pointer1 = new g.Pointer();
     pointer1.setValue(1.8);
     pointer1.setShape(g.PointerShape.Needle);
-    pointer1.setFill("lightGreen");
+    pointer1.setFill("#5a79a5");
     scale.addPointer(pointer1);
     var pointer2 = new g.Pointer();
     pointer2.setValue(4.63);
     pointer2.setShape(g.PointerShape.Needle);
-    pointer2.setFill("lightBlue");
+    pointer2.setFill("#ce0000");
     scale.addPointer(pointer2);
     var ptr = scale.pointers[0];
     ptr.setIsInteractive(false);
     ptr.setShape(g.PointerShape.Needle);
     ptr.setValue(7.3);
-    ptr.setFill("orange");
+    ptr.setFill("#9caac6");
     scale.middleTickSettings.setShowLabels(false);
     var pnlGrid = new Components.GridPanel();
     for (var i = 0; i < 1; i++) {
@@ -235,7 +236,7 @@ define(["require", "exports", 'Scripts/MindFusion.Charting', 'MindFusion.Gauges'
     // create a legend
     var legend = new Charting.LegendRenderer();
     legend.content = new Collections.ObservableCollection([lineRenderer, barRenderer]);
-    legend.background = new Drawing.Brush(Drawing.Color.knownColors.lightyellow);
+    legend.background = new Drawing.Brush("#e0e9e9");
     legend.horizontalAlignment = Components.LayoutAlignment.Far;
     dashboard.rootPanel.children.add(legend);
     dashboard.layoutPanel.children.add(pnlGrid);

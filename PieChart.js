@@ -9,20 +9,28 @@ define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require,
     pieChartEl.width = pieChartEl.offsetParent.clientWidth;
     pieChartEl.height = pieChartEl.offsetParent.clientHeight;
     var pieChart = new Controls.PieChart(pieChartEl);
+    pieChart.theme.loadFrom('Resources/DefaultExt.xml');
     pieChart.startAngle = 45;
     pieChart.showLegend = false;
     // create sample data
-    var values = new Collections.List([20, 30, 10, 40]);
-    pieChart.series = new Charting.PieSeries(values, new Collections.List(["20", "30", "10", "40"]), new Collections.List(["twenty", "thirty", "ten", "forty"]));
+    var values = new Collections.List([20.00, 30.00, 10.00, 40.00]);
+    pieChart.series = new Charting.PieSeries(values, new Collections.List(["20", "30", "10", "40"]), new Collections.List(["2016", "2015", "2014", "2013"]));
     var brushes = new Collections.List([
-        new Drawing.Brush("aqua"),
-        new Drawing.Brush("aliceBlue"),
-        new Drawing.Brush("blue"),
-        new Drawing.Brush("lightBlue")
+        new Drawing.Brush("#9caac6"),
+        new Drawing.Brush("#003466"),
+        new Drawing.Brush("#ce0000"),
+        new Drawing.Brush("#e0e9e9")
     ]);
     var seriesBrushes = new Collections.List();
     seriesBrushes.add(brushes);
-    pieChart.plot.seriesStyle = new Charting.PerElementSeriesStyle(seriesBrushes);
+    var strokes = new Collections.List([
+        new Drawing.Brush("#c0c0c0")
+    ]);
+    var seriesStrokes = new Collections.List();
+    seriesStrokes.add(strokes);
+    pieChart.plot.seriesStyle = new Charting.PerElementSeriesStyle(seriesBrushes, seriesStrokes);
+    pieChart.theme.highlightStroke = new Drawing.Brush("#000063");
+    pieChart.theme.dataLabelsFontSize = 16;
     pieChart.draw();
     // handlers
     var chartPadding = document.getElementById('chartPadding');

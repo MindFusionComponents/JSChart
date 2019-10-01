@@ -10,7 +10,6 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
-    <TypeScriptToolsVersion>2.0</TypeScriptToolsVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -25,6 +24,7 @@
     <Content Include="BubbleChart.html" />
     <Content Include="CandlestickChart.html" />
     <Content Include="CarGauges.html" />
+    <Content Include="chart_lic.txt" />
     <Content Include="Clock.html" />
     <Content Include="common\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="common\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -51,6 +51,7 @@
     <Content Include="Equalizer.html" />
     <Content Include="Functions.html" />
     <Content Include="FunnelChart.html" />
+    <Content Include="Resources\DefaultExt.xml" />
     <Content Include="Scripts\config.js" />
     <Content Include="CustomData.html" />
     <Content Include="DateTimeSeries.html" />

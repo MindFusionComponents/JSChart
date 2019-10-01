@@ -9,6 +9,7 @@ let chartEl = <HTMLCanvasElement>document.getElementById('chart');
 chartEl.width = chartEl.offsetParent.clientWidth;
 chartEl.height = chartEl.offsetParent.clientHeight;
 let chart = new Controls.AreaChart(chartEl);
+chart.theme.loadFrom('Resources/DefaultExt.xml');
 
 // create sample data
 let data = new Collections.ObservableCollection<m.MindFusion.Charting.Series>();
@@ -44,9 +45,15 @@ chart.xAxis.title = "";
 chart.xAxis.minValue = 0;
 chart.xAxis.maxValue = 1;
 chart.xAxis.interval = 0.1;
+chart.gridType = Charting.GridType.Horizontal;
+chart.theme.gridLineColor = Drawing.Color.fromArgb(192, 192, 192);
+chart.theme.gridLineStyle = Drawing.DashStyle.Dash;
+chart.theme.gridColor1 = Drawing.Color.fromArgb(255, 255, 255);
+chart.theme.gridColor2 = Drawing.Color.fromArgb(255, 255, 255);
+chart.theme.titleFontSize = 20;
 
 chart.yAxis.title = "Income ($ in millions)";
 
-chart.theme.uniformSeriesFill = new Drawing.LinearGradientBrush("Cornsilk", "Crimson");
+chart.theme.uniformSeriesFill = new Drawing.LinearGradientBrush("#e0e9e9", "#616a7f");
 
 chart.draw();

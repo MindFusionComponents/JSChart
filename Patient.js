@@ -54,6 +54,7 @@ define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require,
             enumerable: true,
             configurable: true
         });
+        PatientSeries.prototype.toJson = function () { };
         return PatientSeries;
     }());
     exports.PatientSeries = PatientSeries;

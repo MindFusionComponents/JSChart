@@ -10,6 +10,7 @@ let chartEl = <HTMLCanvasElement>document.getElementById('chart');
 chartEl.width = chartEl.offsetParent.clientWidth;
 chartEl.height = chartEl.offsetParent.clientHeight;
 let chart = new Controls.BubbleChart(chartEl);
+//chart.theme.loadFrom('Resources/DefaultExt.xml');
 
 // bubble chart requires three dimensional data;
 // two dimensions for position and one for size
@@ -52,23 +53,23 @@ chart.yAxis.maxValue = 100;
 // background appearance
 chart.showZoomWidgets = true;
 chart.gridType = Charting.GridType.Vertical;
-chart.backColor = new Drawing.Color("black");
-chart.theme.gridColor1 = Drawing.Color.fromArgb(0.4, 0, 0, 0);
-chart.theme.gridColor2 = Drawing.Color.fromArgb(1, 40, 40, 40);
-chart.theme.legendBackground = new Drawing.Brush("#000000");
+chart.backColor = new Drawing.Color("#2d3956");
+chart.theme.gridColor1 = Drawing.Color.fromArgb(0.4, 45, 57, 86);
+chart.theme.gridColor2 = Drawing.Color.fromArgb(1, 97, 106, 127);
+chart.theme.legendBackground = new Drawing.Brush("#2d3956");
 
 
 // series colors
 chart.theme.commonSeriesFills = new Collections.List<m.MindFusion.Charting.Drawing.Brush>
 	([
-		new Drawing.LinearGradientBrush("Transparent", "Orange"),
-		new Drawing.LinearGradientBrush("Transparent", "SkyBlue")
+    new Drawing.LinearGradientBrush("Transparent", "#ce0000"),
+    new Drawing.LinearGradientBrush("Transparent", "#e0e9e9")
 	]);
-let white = new Drawing.Brush("White");
+let light = new Drawing.Brush("#e0e9e9");
 chart.theme.uniformSeriesStroke = chart.theme.highlightStroke =
 	chart.theme.dataLabelsBrush = chart.theme.legendTitleBrush =
 	chart.theme.legendBorderStroke = chart.theme.axisLabelsBrush =
-	chart.theme.axisTitleBrush = chart.theme.axisStroke = white;
+	chart.theme.axisTitleBrush = chart.theme.axisStroke = light;
 
 chart.theme.highlightStrokeDashStyle = Drawing.DashStyle.Dot;
 chart.draw();

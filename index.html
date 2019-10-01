@@ -12,6 +12,10 @@
 		a {
 			margin-left: 4px;
 		}
+
+		p {
+			font-size: 12px;
+		}
 	</style>
 </head>
 <body>
@@ -33,41 +37,79 @@
 			</p>
 		</div>
 	</div>
-	<div id="content" style="left: 8px; font-size: 14px; line-height: 21px;">
-		<div>
-			<b><u>Charts:</u></b>
-			<br />
-			<a href="AreaChart.html">AreaChart</a>
-			<a href="BarChart.html">BarChart</a>
-			<a href="BarChart3D.html">BarChart3D</a>
-			<a href="BubbleChart.html">BubbleChart</a>
-			<a href="CandlestickChart.html">CandlestickChart</a>
-
-			<a href="CustomData.html">CustomData</a>
-			<a href="Dashboard.html">Dashboard</a>
-			<a href="DateTimeSeries.html">DateTimeSeries</a>
-			<a href="FunnelChart.html">FunnelChart</a>
-			<a href="GroupLabels.html">GroupLabels</a>
-			<a href="Interactivity.html">Interactivity</a>
-			<a href="LineChart.html">LineChart</a>
-			<a href="ListBinding.html">ListBinding</a>
-			<a href="MultipleAxes.html">MultipleAxes</a>
-			<a href="MultiplePlots.html">MultiplePlots</a>
-			<a href="PieChart.html">PieChart</a>
-			<a href="RadarChart.html">RadarChart</a>
-			<a href="SynchronizedScroll.html">SynchronizedScroll</a>
-			<a href="Tutorial1.html">Tutorial1</a>
-		</div>
-		<div style="margin-top: 5px;">
-			<b><u>Gauges:</u></b>
-			<br />
-			<a href="CarGauges.html">CarGauges</a>
-			<a href="Clock.html">Clock</a>
-			<a href="Compass.html">Compass</a>
-			<a href="Equalizer.html">Equalizer</a>
-			<a href="Functions.html">Functions</a>
-			<a href="Thermometer.html">Thermometer</a>
+	<div id="content" style="left: 8px; top: 60px; bottom: 24px; overflow-y: auto; font-size: 14px; line-height: 21px;">
+		<div id="links">
+			<div>
+				<h3>Charts</h3>
+				<a href="AreaChart.html">AreaChart</a>
+				<p id="pAreaChart"></p>
+				<a href="BarChart.html">BarChart</a>
+				<p id="pBarChart"></p>
+				<a href="BarChart3D.html">BarChart3D</a>
+				<p id="pBarChart3D"></p>
+				<a href="BubbleChart.html">BubbleChart</a>
+				<p id="pBubbleChart"></p>
+				<a href="CandlestickChart.html">CandlestickChart</a>
+				<p id="pCandlestickChart"></p>
+				<a href="CustomData.html">CustomData</a>
+				<p id="pCustomData"></p>
+				<a href="Dashboard.html">Dashboard</a>
+				<p id="pDashboard"></p>
+				<a href="DateTimeSeries.html">DateTimeSeries</a>
+				<p id="pDateTimeSeries"></p>
+				<a href="FunnelChart.html">FunnelChart</a>
+				<p id="pFunnelChart"></p>
+				<a href="GroupLabels.html">GroupLabels</a>
+				<p id="pGroupLabels"></p>
+				<a href="Interactivity.html">Interactivity</a>
+				<p id="pInteractivity"></p>
+				<a href="LineChart.html">LineChart</a>
+				<p id="pLineChart"></p>
+				<a href="ListBinding.html">ListBinding</a>
+				<p id="pListBinding"></p>
+				<a href="MultipleAxes.html">MultipleAxes</a>
+				<p id="pMultipleAxes"></p>
+				<a href="MultiplePlots.html">MultiplePlots</a>
+				<p id="pMultiplePlots"></p>
+				<a href="PieChart.html">PieChart</a>
+				<p id="pPieChart"></p>
+				<a href="RadarChart.html">RadarChart</a>
+				<p id="pRadarChart"></p>
+				<a href="SynchronizedScroll.html">SynchronizedScroll</a>
+				<p id="pSynchronizedScroll"></p>
+				<a href="Tutorial1.html">Tutorial1</a>
+				<p id="pTutorial1"></p>
+			</div>
+			<div>
+				<h3>Gauges</h3>
+				<a href="CarGauges.html">CarGauges</a>
+				<p id="pCarGauges"></p>
+				<a href="Clock.html">Clock</a>
+				<p id="pClock"></p>
+				<a href="Compass.html">Compass</a>
+				<p id="pCompass"></p>
+				<a href="Equalizer.html">Equalizer</a>
+				<p id="pEqualizer"></p>
+				<a href="Functions.html">Functions</a>
+				<p id="pFunctions"></p>
+				<a href="Thermometer.html">Thermometer</a>
+				<p id="pThermometer"></p>
+			</div>
 		</div>
 	</div>
+	<div id="footer" style="height: 24px;">
+		<span id="copyright"></span>
+	</div>
+	<script type="text/javascript">
+
+		$(document).ready(function () {
+			$('#links > div > a').each(function (index, item) {
+				var href = item.getAttribute("href")
+				$('#p' + href.replace(".html", "")).load(href + ' p#pinfo')
+			});
+		});
+
+	</script>
+
 </body>
 </html>

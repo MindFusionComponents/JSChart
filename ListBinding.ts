@@ -26,6 +26,7 @@ chartEl.width = chartEl.offsetParent.clientWidth;
 chartEl.height = chartEl.offsetParent.clientHeight;
 // create the chart
 let radarChart = new Controls.RadarChart(chartEl);
+radarChart.theme.loadFrom('Resources/DefaultExt.xml');
 
 let plot = <m.MindFusion.Charting.RadarPlot>radarChart.plot;
 
@@ -60,18 +61,18 @@ radarChart.allowMoveLegend = false;
 // customize appearance
 radarChart.showCoordinates = false;
 radarChart.plot.margin = new Charting.Margins(0, 0, 0, 30);
-radarChart.backColor = new Drawing.Color("FloralWhite");
-radarChart.gridColor1 = new Drawing.Color("PaleGoldenrod");
-radarChart.gridColor2 = new Drawing.Color("PaleTurquoise");
-radarChart.theme.highlightStroke = new Drawing.Brush(new Drawing.Color("Gold"));
+radarChart.backColor = new Drawing.Color("#ffffff");
+radarChart.gridColor1 = new Drawing.Color("#e0e9e9");
+radarChart.gridColor2 = new Drawing.Color("#ffffff");
+radarChart.theme.highlightStroke = new Drawing.Brush(new Drawing.Color("#9caac6"));
 radarChart.theme.axisTitleFontStyle = Drawing.FontStyle.Underline;
 radarChart.theme.legendTitleFontStyle = Drawing.FontStyle.Underline;
-radarChart.theme.axisStroke = new Drawing.Brush(new Drawing.Color("LightGray"));
+radarChart.theme.axisStroke = new Drawing.Brush(new Drawing.Color("#c0c0c0"));
 radarChart.theme.commonSeriesFills = radarChart.theme.commonSeriesStrokes = new Collections.List<m.MindFusion.Charting.Drawing.Brush>
 	([
-		new Drawing.Brush(new Drawing.Color("Tomato")),
-		new Drawing.Brush(new Drawing.Color("Turquoise")),
-		new Drawing.Brush(new Drawing.Color("Violet"))
+    new Drawing.Brush(new Drawing.Color("#669acc")),
+    new Drawing.Brush(new Drawing.Color("#ce0000")),
+    new Drawing.Brush(new Drawing.Color("#000063"))
 	]);
 radarChart.theme.uniformSeriesStrokeThickness = 5;
 

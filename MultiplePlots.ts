@@ -11,8 +11,9 @@ let dashboardEl = <HTMLCanvasElement>document.getElementById('dashboard');
 dashboardEl.width = dashboardEl.offsetParent.clientWidth;
 dashboardEl.height = dashboardEl.offsetParent.clientHeight;
 let dashboard = new Controls.Dashboard(dashboardEl);
+dashboard.theme.loadFrom('Resources/DefaultExt.xml');
 
-dashboard.theme.plotBackground = new Drawing.Brush("lightBlue");
+dashboard.theme.plotBackground = new Drawing.Brush("#e0e9e9");
 dashboard.theme.commonSeriesFills = getFills();
 dashboard.theme.commonSeriesStrokes = getFills();
 
@@ -35,9 +36,9 @@ var plot1 = new Charting.Plot2D();
 plot1.gridColumn = 0;
 plot1.verticalScroll = false;
 plot1.allowPan = false;
-plot1.highlightStroke = new Drawing.Brush("tomato");
+plot1.highlightStroke = new Drawing.Brush("#000063");
 plot1.highlightStrokeThickness = 1;
-var lineRenderer = new Charting.LineRenderer(getSeriesCollection());
+var lineRenderer = new Charting.StepAreaRenderer(getSeriesCollection());
 plot1.seriesRenderers.add(lineRenderer);
 plotGrid.children.add(plot1);
 
@@ -46,7 +47,7 @@ var plot2 = new Charting.Plot2D();
 plot2.gridColumn = 1;
 plot2.allowPan = false;
 plot2.verticalScroll = false;
-plot2.highlightStroke = new Drawing.Brush("tomato");
+plot2.highlightStroke = new Drawing.Brush("#000063");
 plot2.highlightStrokeThickness = 1;
 var barRenderer = new Charting.BarRenderer(getSeriesCollection());
 plot2.seriesRenderers.add(barRenderer);
@@ -57,9 +58,9 @@ var plot3 = new Charting.Plot2D();
 plot3.allowPan = false;
 plot3.gridColumn = 2;
 plot3.verticalScroll = false;
-plot3.highlightStroke = new Drawing.Brush("tomato");
+plot3.highlightStroke = new Drawing.Brush("#000063");
 plot1.highlightStrokeThickness = 1;
-plot3.seriesRenderers.add(new Charting.StepRenderer(getSeriesCollection()));
+plot3.seriesRenderers.add(new Charting.ScatterRenderer(getSeriesCollection()));
 plotGrid.children.add(plot3);
 
 // add axis
@@ -76,12 +77,12 @@ var yAxis = new Charting.YAxisRenderer(ya, xa);
 yAxis.gridColumn = 0;
 yAxis.plotLeftSide = true;
 yAxis.labelsSource = plot1;
-yAxis.axisStroke = new Drawing.Brush("steelBlue");
+yAxis.axisStroke = new Drawing.Brush("#000063");
 yAxis.axisStrokeThickness = 1;
-yAxis.titleBrush = new Drawing.Brush("steelBlue");
+yAxis.titleBrush = new Drawing.Brush("#000063");
 yAxis.titleFontSize = 10;
 yAxis.titleFontStyle = Drawing.FontStyle.Bold;
-yAxis.labelBrush = new Drawing.Brush("steelBlue");
+yAxis.labelBrush = new Drawing.Brush("#000063");
 mainGrid.children.add(yAxis);
 
 // attach plots to axis
@@ -100,7 +101,7 @@ function getSeriesCollection(): m.MindFusion.Charting.Collections.ObservableColl
 			s = new Charting.Series2D(
 				new Collections.List<number>([0, 1, 2, 3]),
 				new Collections.List<number>([ 25000, 50000, 40000, 55000 ]),
-				new Collections.List<string>([ "January", "February", "March", "April" ]));
+				new Collections.List<string>([ "Jan", "Feb", "Mar", "Apr" ]));
 			s.title = "Series 1";
 			collection.add(s);
 		}
@@ -108,7 +109,7 @@ function getSeriesCollection(): m.MindFusion.Charting.Collections.ObservableColl
 			s = new Charting.Series2D(
 				new Collections.List<number>([0, 1, 2, 3]),
 				new Collections.List<number>([30000, 70000, 65000, 15000 ]),
-				new Collections.List<string>(["May", "June", "July", "August" ]));
+				new Collections.List<string>(["May", "Jun", "Jul", "Aug" ]));
 			s.title = "Series 2";
 			collection.add(s);
 		}
@@ -116,7 +117,7 @@ function getSeriesCollection(): m.MindFusion.Charting.Collections.ObservableColl
 			s = new Charting.Series2D(
 				new Collections.List<number>([0, 1, 2, 3]),
 				new Collections.List<number>([25000, 45000, 35000, 65000 ]),
-				new Collections.List<string>(["September", "October", "November", "December"]));
+				new Collections.List<string>(["Sep", "Oct", "Nov", "Dec"]));
 			s.title = "Series 3";
 			collection.add(s);
 		}
@@ -129,9 +130,9 @@ function getFills(): m.MindFusion.Charting.Collections.List<m.MindFusion.Chartin
 {
 	let fills = new Collections.List<m.MindFusion.Charting.Drawing.Brush>();
 
-	fills.add(new Drawing.Brush("orange"));
-	fills.add(new Drawing.Brush("orangeRed"));
-	fills.add(new Drawing.Brush("orchid"));
+    fills.add(new Drawing.Brush(Drawing.Color.fromArgb(0.6, 102, 154, 204)));
+    fills.add(new Drawing.Brush(Drawing.Color.fromArgb(0.6, 206, 0, 0)));
+    fills.add(new Drawing.Brush(Drawing.Color.fromArgb(0.6, 0, 52, 102)));
 
 	return fills;
 }

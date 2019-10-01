@@ -89,7 +89,7 @@ define(["require", "exports", 'MindFusion.Common', 'MindFusion.Gauges'], functio
         context.strokeStyle = 'rgba(122,123,124,1)';
         var gradient1 = context.createLinearGradient(0, 0, 90, 0);
         gradient1.addColorStop(0, "rgba(245,245,245,1)");
-        gradient1.addColorStop(1, "rgba(0,156,160,1)");
+        gradient1.addColorStop(1, "rgba(102, 154, 204,1)");
         context.fillStyle = gradient1;
         context.arc(bounds.center().x, bounds.center().y, bounds.width / 2, 2 * Math.PI, false);
         context.fill();

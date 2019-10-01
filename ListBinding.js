@@ -18,6 +18,7 @@ define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require,
     chartEl.height = chartEl.offsetParent.clientHeight;
     // create the chart
     var radarChart = new Controls.RadarChart(chartEl);
+    radarChart.theme.loadFrom('Resources/DefaultExt.xml');
     var plot = radarChart.plot;
     // create sample data, a list of .NET objects
     var data = createData();
@@ -45,17 +46,17 @@ define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require,
     // customize appearance
     radarChart.showCoordinates = false;
     radarChart.plot.margin = new Charting.Margins(0, 0, 0, 30);
-    radarChart.backColor = new Drawing.Color("FloralWhite");
-    radarChart.gridColor1 = new Drawing.Color("PaleGoldenrod");
-    radarChart.gridColor2 = new Drawing.Color("PaleTurquoise");
-    radarChart.theme.highlightStroke = new Drawing.Brush(new Drawing.Color("Gold"));
+    radarChart.backColor = new Drawing.Color("#ffffff");
+    radarChart.gridColor1 = new Drawing.Color("#e0e9e9");
+    radarChart.gridColor2 = new Drawing.Color("#ffffff");
+    radarChart.theme.highlightStroke = new Drawing.Brush(new Drawing.Color("#9caac6"));
     radarChart.theme.axisTitleFontStyle = Drawing.FontStyle.Underline;
     radarChart.theme.legendTitleFontStyle = Drawing.FontStyle.Underline;
-    radarChart.theme.axisStroke = new Drawing.Brush(new Drawing.Color("LightGray"));
+    radarChart.theme.axisStroke = new Drawing.Brush(new Drawing.Color("#c0c0c0"));
     radarChart.theme.commonSeriesFills = radarChart.theme.commonSeriesStrokes = new Collections.List([
-        new Drawing.Brush(new Drawing.Color("Tomato")),
-        new Drawing.Brush(new Drawing.Color("Turquoise")),
-        new Drawing.Brush(new Drawing.Color("Violet"))
+        new Drawing.Brush(new Drawing.Color("#669acc")),
+        new Drawing.Brush(new Drawing.Color("#ce0000")),
+        new Drawing.Brush(new Drawing.Color("#000063"))
     ]);
     radarChart.theme.uniformSeriesStrokeThickness = 5;
     function createData() {

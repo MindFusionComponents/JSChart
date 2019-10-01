@@ -10,6 +10,7 @@ let chartEl = <HTMLCanvasElement>document.getElementById('chart');
 chartEl.width = chartEl.offsetParent.clientWidth;
 chartEl.height = chartEl.offsetParent.clientHeight;
 let chart = new Controls.BubbleChart(chartEl);
+chart.theme.loadFrom('Resources/DefaultExt.xml');
 
 let collection = new Collections.ObservableCollection<m.MindFusion.Charting.Series>();
 for (let i = 0; i < 3; i++)
@@ -40,7 +41,7 @@ for (let i = 0; i < 3; i++)
 
 chart.series = collection;
 chart.title = "Patient BM Index by Age";
-chart.backColor = new Drawing.Color("LemonChiffon");
+chart.backColor = new Drawing.Color("#c0c0c0");
 
 chart.xAxis.minValue = 0;
 chart.xAxis.maxValue = 80;
@@ -51,17 +52,20 @@ chart.yAxis.title = "Weight";
 
 chart.theme.commonSeriesFills = chart.theme.commonSeriesStrokes = new Collections.List<m.MindFusion.Charting.Drawing.Brush>([
 
-	new Drawing.Brush("Orange"),
-	new Drawing.Brush("Red")
+    new Drawing.Brush(Drawing.Color.fromArgb(0.7, 206, 0, 0)),
+    new Drawing.Brush(Drawing.Color.fromArgb(0.7, 45, 57, 86))
 ]);
 
 chart.legendHorizontalAlignment = m.MindFusion.Charting.Components.LayoutAlignment.Far;
-chart.theme.legendBackground = new Drawing.Brush("White");
-chart.theme.highlightStroke = new Drawing.Brush("White");
+chart.theme.legendBackground = new Drawing.Brush("#9caac6");
+chart.theme.highlightStroke = new Drawing.Brush("#c0c0c0");
 chart.legendTitle = "";
 chart.allowMoveLegend = false;
+chart.gridType = Charting.GridType.Horizontal;
+chart.theme.gridColor1 = chart.theme.gridColor2 = Drawing.Color.fromArgb(224, 233, 233);
+chart.theme.gridLineStyle = Drawing.DashStyle.Dash;
 
-chart.theme.titleFontSize = 12;
+chart.theme.titleFontSize = 20;
 chart.theme.titleFontStyle = Drawing.FontStyle.Underline;
 
 chart.draw();

@@ -9,6 +9,7 @@ define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require,
     chartEl.width = chartEl.offsetParent.clientWidth;
     chartEl.height = chartEl.offsetParent.clientHeight;
     var barChart = new Controls.Dashboard(chartEl);
+    barChart.theme.loadFrom('Resources/DefaultExt.xml');
     // create sample data
     var series = new Collections.ObservableCollection();
     for (var i = 0; i < 4; i++) {
@@ -80,10 +81,10 @@ define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require,
     barChart.draw();
     function getFills() {
         var fills = new Collections.List();
-        fills.add(new Drawing.LinearGradientBrush("lightGray", "white"));
-        fills.add(new Drawing.LinearGradientBrush("white", "paleGreen"));
-        fills.add(new Drawing.LinearGradientBrush("white", "orange"));
-        fills.add(new Drawing.LinearGradientBrush("white", "powderBlue"));
+        fills.add(new Drawing.LinearGradientBrush("#e0e9e9", "#669acc"));
+        fills.add(new Drawing.LinearGradientBrush("#ffffff", "#e0e9e9"));
+        fills.add(new Drawing.LinearGradientBrush("#e0e9e9", "#c0c0c0"));
+        fills.add(new Drawing.LinearGradientBrush("#e0e9e9", "#9caac6"));
         return fills;
     }
 });

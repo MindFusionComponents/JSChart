@@ -8,6 +8,7 @@ define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require,
     chartEl.width = chartEl.offsetParent.clientWidth;
     chartEl.height = chartEl.offsetParent.clientHeight;
     var chart = new Controls.BarChart(chartEl, Charting.BarLayout.SideBySide);
+    chart.theme.loadFrom('Resources/DefaultExt.xml');
     chart.titleMargin = new Charting.Margins(0, 0, 0, 0);
     chart.barSpacingRatio = 2;
     chart.legendMargin = new Charting.Margins(10, 10, 10, 10);
@@ -15,23 +16,33 @@ define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require,
     chart.showLegend = true;
     chart.subtitleMargin = new Charting.Margins(0, 0, 0, 0);
     // create bar brushes
-    var firstBrush = new Drawing.LinearGradientBrush("LightGreen", "LightBlue");
-    var secondBrush = new Drawing.LinearGradientBrush("Yellow", "Red");
-    var thirdBrush = new Drawing.Brush("Khaki");
+    var thirdBrush = new Drawing.Brush("#ce0000");
+    var secondBrush = new Drawing.LinearGradientBrush("#003466", "#000063");
+    var firstBrush = new Drawing.LinearGradientBrush("#e0e9e9", "#669acc");
     var labels = new Collections.List([
-        "one", "two", "three", "four", "five", "six",
-        "seven", "eight", "nine", "ten", "eleven", "twelve"
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
     ]);
     var angle = 1;
     // create sample data series
     var series = new Collections.ObservableCollection(new Array(new Charting.BarSeries(new Collections.List([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]), labels), new Charting.BarSeries(new Collections.List([2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24]), labels), new Charting.BarSeries(new Collections.List([2, 8, 13, 15, 13, 8, 2, 8, 13, 15, 13, 8]), labels)));
-    series.item(0).title = "Series 1";
-    series.item(1).title = "Series 2";
-    series.item(2).title = "Series 3";
+    series.item(0).title = "2016";
+    series.item(1).title = "2015";
+    series.item(2).title = "2014";
+    chart.xAxis.title = "Profit (in mlns)";
+    chart.yAxis.title = "Turnover (in mlns)";
     chart.series = series;
     chart.xAxis.interval = 1;
     // assign one brush per series
     chart.plot.seriesStyle = new Charting.PerSeriesStyle(new Collections.List([firstBrush, secondBrush, thirdBrush]));
+    chart.theme.legendBackground = new Drawing.Brush("#e0e9e9");
+    chart.theme.legendBorderStroke = new Drawing.Brush("#000000");
+    chart.theme.axisTitleFontSize = 14;
+    chart.theme.axisTitleFontName = "Verdana";
+    chart.theme.axisLabelsFontName = "Verdana";
+    chart.theme.dataLabelsFontName = "Verdana";
+    chart.legendTitle = "Year";
+    chart.theme.gridColor1 = chart.theme.gridColor2 = new Drawing.Color("#ffffff");
     chart.draw();
     // handlers
     document.getElementById('chbHorizontalBars').onchange = function () {

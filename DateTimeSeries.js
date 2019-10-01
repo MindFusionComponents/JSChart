@@ -8,6 +8,7 @@ define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require,
     chartEl.width = chartEl.offsetParent.clientWidth;
     chartEl.height = chartEl.offsetParent.clientHeight;
     var chart = new Controls.AreaChart(chartEl);
+    chart.theme.loadFrom('Resources/DefaultExt.xml');
     // create sample data
     var data = new Collections.ObservableCollection();
     var years = new Collections.List();
@@ -34,8 +35,14 @@ define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require,
     chart.xAxis.minValue = 0;
     chart.xAxis.maxValue = 1;
     chart.xAxis.interval = 0.1;
+    chart.gridType = Charting.GridType.Horizontal;
+    chart.theme.gridLineColor = Drawing.Color.fromArgb(192, 192, 192);
+    chart.theme.gridLineStyle = Drawing.DashStyle.Dash;
+    chart.theme.gridColor1 = Drawing.Color.fromArgb(255, 255, 255);
+    chart.theme.gridColor2 = Drawing.Color.fromArgb(255, 255, 255);
+    chart.theme.titleFontSize = 20;
     chart.yAxis.title = "Income ($ in millions)";
-    chart.theme.uniformSeriesFill = new Drawing.LinearGradientBrush("Cornsilk", "Crimson");
+    chart.theme.uniformSeriesFill = new Drawing.LinearGradientBrush("#e0e9e9", "#616a7f");
     chart.draw();
 });
 //# sourceMappingURL=DateTimeSeries.js.map

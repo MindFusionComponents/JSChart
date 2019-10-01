@@ -10,6 +10,7 @@ let chartEl = <HTMLCanvasElement>document.getElementById('barChart');
 chartEl.width = chartEl.offsetParent.clientWidth;
 chartEl.height = chartEl.offsetParent.clientHeight;
 let barChart = new Controls.Dashboard(chartEl);
+barChart.theme.loadFrom('Resources/DefaultExt.xml');
 
 // create sample data
 var series = new Collections.ObservableCollection<m.MindFusion.Charting.Series>();
@@ -113,10 +114,10 @@ function getFills(): m.MindFusion.Charting.Collections.List<m.MindFusion.Chartin
 {
 	let fills = new Collections.List<m.MindFusion.Charting.Drawing.LinearGradientBrush>();
 
-	fills.add(new Drawing.LinearGradientBrush("lightGray", "white"));
-	fills.add(new Drawing.LinearGradientBrush("white", "paleGreen"));
-	fills.add(new Drawing.LinearGradientBrush("white", "orange"));
-	fills.add(new Drawing.LinearGradientBrush("white", "powderBlue"));
+    fills.add(new Drawing.LinearGradientBrush("#e0e9e9", "#669acc"));
+    fills.add(new Drawing.LinearGradientBrush("#ffffff", "#e0e9e9"));
+    fills.add(new Drawing.LinearGradientBrush("#e0e9e9", "#c0c0c0"));
+    fills.add(new Drawing.LinearGradientBrush("#e0e9e9", "#9caac6"));
 
 
 	return fills;

@@ -11,27 +11,42 @@ let pieChartEl = <HTMLCanvasElement>document.getElementById('pieChart');
 pieChartEl.width = pieChartEl.offsetParent.clientWidth;
 pieChartEl.height = pieChartEl.offsetParent.clientHeight;
 let pieChart = new Controls.PieChart(pieChartEl);
+pieChart.theme.loadFrom('Resources/DefaultExt.xml');
 pieChart.startAngle = 45;
 pieChart.showLegend = false; 
 
 // create sample data
-let values = new Collections.List<number>([20, 30, 10, 40]);
+let values = new Collections.List<number>([20.00, 30.00, 10.00, 40.00]);
 pieChart.series = new Charting.PieSeries(
 				values,
 				new Collections.List<string>(["20", "30", "10", "40"]),
-				new Collections.List<string>(["twenty", "thirty", "ten", "forty"]));
+				new Collections.List<string>(["2016", "2015", "2014", "2013"]));
 
 let brushes = new Collections.List<m.MindFusion.Charting.Drawing.Brush>(
 	[
-		new Drawing.Brush("aqua"),
-		new Drawing.Brush("aliceBlue"),
-		new Drawing.Brush("blue"),
-		new Drawing.Brush("lightBlue")
+        new Drawing.Brush("#9caac6"),
+        new Drawing.Brush("#003466"),
+        new Drawing.Brush("#ce0000"),
+        new Drawing.Brush("#e0e9e9")
 	]);
 
 let seriesBrushes = new Collections.List<m.MindFusion.Charting.Collections.List<m.MindFusion.Charting.Drawing.Brush>>();
 seriesBrushes.add(brushes);
-pieChart.plot.seriesStyle = new Charting.PerElementSeriesStyle(seriesBrushes);
+
+let strokes = new Collections.List<m.MindFusion.Charting.Drawing.Brush>(
+    [
+        new Drawing.Brush("#c0c0c0")
+    ]);
+
+let seriesStrokes = new Collections.List<m.MindFusion.Charting.Collections.List<m.MindFusion.Charting.Drawing.Brush>>();
+seriesStrokes.add(strokes);
+
+pieChart.plot.seriesStyle = new Charting.PerElementSeriesStyle(seriesBrushes, seriesStrokes);
+pieChart.theme.highlightStroke = new Drawing.Brush("#000063");
+pieChart.theme.dataLabelsFontSize = 16;
+
+
+
 
 pieChart.draw();
 

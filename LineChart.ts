@@ -10,24 +10,26 @@ chartEl.width = chartEl.offsetParent.clientWidth;
 chartEl.height = chartEl.offsetParent.clientHeight;
 // create the chart
 let lineChart = new Controls.LineChart(chartEl);
+lineChart.theme.loadFrom('Resources/DefaultExt.xml');
 
 // create line brushes
-let firstBrush = new Drawing.Brush("skyBlue");
-let secondBrush = new Drawing.Brush("deepPink");
-let thirdBrush = new Drawing.Brush("green");
+let firstBrush = new Drawing.Brush("#669acc");
+let secondBrush = new Drawing.Brush("#ce0000");
+let thirdBrush = new Drawing.Brush("#003466");
 
-lineChart.legendRenderer.background = new Drawing.Brush("khaki");
+lineChart.legendRenderer.background = new Drawing.Brush("#e0e9e9");
+lineChart.legendRenderer.borderStroke = new Drawing.Brush("#c0c0c0");
 
 lineChart.showZoomWidgets = true;
 // create sample data series
 let labels = new Collections.List<string>([
-	"one", "two", "three", "four", "five", "six",
-	"seven", "eight", "nine", "ten", "eleven", "twelve"
+	"Jan", "Feb", "Mar", "Apr", "May", "Jun",
+	"Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
 ]);
 
 let series1 = new Charting.Series2D(
-	new Collections.List<number>([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]),
-	new Collections.List<number>([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+    new Collections.List<number>([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+    new Collections.List<number>([0, 17, 22, 13, 4, 15, 26, 7, 28, 29, 10, 19]),
 	labels
 );
 series1.title = "Series 1";
@@ -35,7 +37,7 @@ lineChart.series.add(series1);
 				
 let series2 = new Charting.Series2D(
 	new Collections.List < number > ([ 0,1,2,3,4,5,6,7,8,9,10,11 ]),
-new Collections.List<number>([ 2,4,6,8,10,12,14,16,18,20,22,24 ]),
+new Collections.List<number>([ 2,3,7,6,9,11,13,10,14,18,21,24 ]),
 	labels
 );
 series2.title = "Series 2";
@@ -47,6 +49,14 @@ lineChart.series.add(series2);
 
 lineChart.xAxis.interval = 1;
 
+lineChart.showXRangeSelector = true;
+lineChart.xScrollRangeMin = -50;
+lineChart.xScrollRangeMax = 50;
+
+lineChart.showYRangeSelector = true;
+lineChart.yScrollRangeMin = -50;
+lineChart.yScrollRangeMax = 50;
+
 
 // assign one brush per series
 let style = new Charting.MixedSeriesStyle();
@@ -54,6 +64,10 @@ style.commonFills = new Collections.List<m.MindFusion.Charting.Drawing.Brush>([f
 style.commonStrokes = new Collections.List<m.MindFusion.Charting.Drawing.Brush>([firstBrush, secondBrush, thirdBrush]);
 style.uniformStrokeThickness = 5;
 lineChart.plot.seriesStyle = style;
+
+lineChart.theme.gridColor1 = Drawing.Color.fromArgb(255, 255, 255);
+lineChart.theme.gridColor2 = Drawing.Color.fromArgb(224, 233, 233);
+lineChart.theme.gridLineThickness = 0;
 
 lineChart.draw();
 
@@ -100,6 +114,38 @@ yAxisMax.onchange = () => {
 	lineChart.draw();
 };
 
+let xRangeMin = document.getElementById('xRangeMin') as HTMLInputElement;
+xRangeMin.valueAsNumber = lineChart.xScrollRangeMin;
+xRangeMin.onchange = () =>
+{
+	lineChart.xScrollRangeMin = xRangeMin.valueAsNumber;
+	lineChart.draw();
+};
+
+let xRangeMax = document.getElementById('xRangeMax') as HTMLInputElement;
+xRangeMax.valueAsNumber = lineChart.xScrollRangeMax;
+xRangeMax.onchange = () =>
+{
+	lineChart.xScrollRangeMax = xRangeMax.valueAsNumber;
+	lineChart.draw();
+};
+
+let yRangeMin = document.getElementById('yRangeMin') as HTMLInputElement;
+yRangeMin.valueAsNumber = lineChart.yScrollRangeMin;
+yRangeMin.onchange = () =>
+{
+	lineChart.yScrollRangeMin = yRangeMin.valueAsNumber;
+	lineChart.draw();
+};
+
+let yRangeMax = document.getElementById('yRangeMax') as HTMLInputElement;
+yRangeMax.valueAsNumber = lineChart.yScrollRangeMax;
+yRangeMax.onchange = () =>
+{
+	lineChart.yScrollRangeMax = yRangeMax.valueAsNumber;
+	lineChart.draw();
+};
+
 let showXticks = document.getElementById('showXticks') as HTMLInputElement;
 showXticks.checked = lineChart.showXTicks;
 showXticks.onchange = () => {
@@ -125,6 +171,22 @@ let showYCoords = document.getElementById('showYCoords') as HTMLInputElement;
 showYCoords.checked = lineChart.showYCoordinates;
 showYCoords.onchange = () => {
 	lineChart.showYCoordinates = showYCoords.checked;
+	lineChart.draw();
+};
+
+let showXRange = document.getElementById('showXRange') as HTMLInputElement;
+showXRange.checked = lineChart.showXRangeSelector;
+showXRange.onchange = () =>
+{
+	lineChart.showXRangeSelector = showXRange.checked;
+	lineChart.draw();
+};
+
+let showYRange = document.getElementById('showYRange') as HTMLInputElement;
+showYRange.checked = lineChart.showYRangeSelector;
+showYRange.onchange = () =>
+{
+	lineChart.showYRangeSelector = showYRange.checked;
 	lineChart.draw();
 };
 

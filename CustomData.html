@@ -10,7 +10,6 @@
 	<script type="text/javascript" src="common/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="common/samples.js"></script>
 	<script type="text/javascript" src="Scripts/config.js"></script>
-	<script data-main="CustomData" src="Scripts/require.js"></script>
 </head>
 <body>
 	<input type="hidden" id="collapsed" />
@@ -27,8 +26,8 @@
 			<h1>
 				About this sample
 			</h1>
-			<p>
-				This sample shows how a list of objects can be used directly 
+			<p id="pinfo">
+				This sample shows how a list of objects can be used directly
 				in a chart by means of a custom series class that implements the Series interface.
 			</p>
 		</div>
@@ -42,7 +41,6 @@
 	<div id="footer" style="height: 24px;">
 		<span id="copyright"></span>
 	</div>
-	<script type="text/javascript">
-	</script>
+	<script data-main="CustomData" src="Scripts/require.js"></script>
 </body>
 </html>

@@ -10,7 +10,8 @@ define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require,
     dashboardEl.width = dashboardEl.offsetParent.clientWidth;
     dashboardEl.height = dashboardEl.offsetParent.clientHeight;
     var dashboard = new Controls.Dashboard(dashboardEl);
-    dashboard.theme.plotBackground = new Drawing.Brush("lightBlue");
+    dashboard.theme.loadFrom('Resources/DefaultExt.xml');
+    dashboard.theme.plotBackground = new Drawing.Brush("#e0e9e9");
     dashboard.theme.commonSeriesFills = getFills();
     dashboard.theme.commonSeriesStrokes = getFills();
     var mainGrid = new Components.GridPanel();
@@ -30,9 +31,9 @@ define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require,
     plot1.gridColumn = 0;
     plot1.verticalScroll = false;
     plot1.allowPan = false;
-    plot1.highlightStroke = new Drawing.Brush("tomato");
+    plot1.highlightStroke = new Drawing.Brush("#000063");
     plot1.highlightStrokeThickness = 1;
-    var lineRenderer = new Charting.LineRenderer(getSeriesCollection());
+    var lineRenderer = new Charting.StepAreaRenderer(getSeriesCollection());
     plot1.seriesRenderers.add(lineRenderer);
     plotGrid.children.add(plot1);
     // add plot2
@@ -40,7 +41,7 @@ define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require,
     plot2.gridColumn = 1;
     plot2.allowPan = false;
     plot2.verticalScroll = false;
-    plot2.highlightStroke = new Drawing.Brush("tomato");
+    plot2.highlightStroke = new Drawing.Brush("#000063");
     plot2.highlightStrokeThickness = 1;
     var barRenderer = new Charting.BarRenderer(getSeriesCollection());
     plot2.seriesRenderers.add(barRenderer);
@@ -50,9 +51,9 @@ define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require,
     plot3.allowPan = false;
     plot3.gridColumn = 2;
     plot3.verticalScroll = false;
-    plot3.highlightStroke = new Drawing.Brush("tomato");
+    plot3.highlightStroke = new Drawing.Brush("#000063");
     plot1.highlightStrokeThickness = 1;
-    plot3.seriesRenderers.add(new Charting.StepRenderer(getSeriesCollection()));
+    plot3.seriesRenderers.add(new Charting.ScatterRenderer(getSeriesCollection()));
     plotGrid.children.add(plot3);
     // add axis
     var xa = new Charting.Axis();
@@ -67,12 +68,12 @@ define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require,
     yAxis.gridColumn = 0;
     yAxis.plotLeftSide = true;
     yAxis.labelsSource = plot1;
-    yAxis.axisStroke = new Drawing.Brush("steelBlue");
+    yAxis.axisStroke = new Drawing.Brush("#000063");
     yAxis.axisStrokeThickness = 1;
-    yAxis.titleBrush = new Drawing.Brush("steelBlue");
+    yAxis.titleBrush = new Drawing.Brush("#000063");
     yAxis.titleFontSize = 10;
     yAxis.titleFontStyle = Drawing.FontStyle.Bold;
-    yAxis.labelBrush = new Drawing.Brush("steelBlue");
+    yAxis.labelBrush = new Drawing.Brush("#000063");
     mainGrid.children.add(yAxis);
     // attach plots to axis
     plot1.xAxis = plot2.xAxis = plot3.xAxis = xa;
@@ -82,17 +83,17 @@ define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require,
         var s;
         for (var i = 0; i < 3; i++) {
             if (i == 0) {
-                s = new Charting.Series2D(new Collections.List([0, 1, 2, 3]), new Collections.List([25000, 50000, 40000, 55000]), new Collections.List(["January", "February", "March", "April"]));
+                s = new Charting.Series2D(new Collections.List([0, 1, 2, 3]), new Collections.List([25000, 50000, 40000, 55000]), new Collections.List(["Jan", "Feb", "Mar", "Apr"]));
                 s.title = "Series 1";
                 collection.add(s);
             }
             if (i == 1) {
-                s = new Charting.Series2D(new Collections.List([0, 1, 2, 3]), new Collections.List([30000, 70000, 65000, 15000]), new Collections.List(["May", "June", "July", "August"]));
+                s = new Charting.Series2D(new Collections.List([0, 1, 2, 3]), new Collections.List([30000, 70000, 65000, 15000]), new Collections.List(["May", "Jun", "Jul", "Aug"]));
                 s.title = "Series 2";
                 collection.add(s);
             }
             if (i == 2) {
-                s = new Charting.Series2D(new Collections.List([0, 1, 2, 3]), new Collections.List([25000, 45000, 35000, 65000]), new Collections.List(["September", "October", "November", "December"]));
+                s = new Charting.Series2D(new Collections.List([0, 1, 2, 3]), new Collections.List([25000, 45000, 35000, 65000]), new Collections.List(["Sep", "Oct", "Nov", "Dec"]));
                 s.title = "Series 3";
                 collection.add(s);
             }
@@ -101,9 +102,9 @@ define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require,
     }
     function getFills() {
         var fills = new Collections.List();
-        fills.add(new Drawing.Brush("orange"));
-        fills.add(new Drawing.Brush("orangeRed"));
-        fills.add(new Drawing.Brush("orchid"));
+        fills.add(new Drawing.Brush(Drawing.Color.fromArgb(0.6, 102, 154, 204)));
+        fills.add(new Drawing.Brush(Drawing.Color.fromArgb(0.6, 206, 0, 0)));
+        fills.add(new Drawing.Brush(Drawing.Color.fromArgb(0.6, 0, 52, 102)));
         return fills;
     }
 });

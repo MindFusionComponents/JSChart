@@ -11,6 +11,7 @@ let dashboardEl = <HTMLCanvasElement>document.getElementById('dashboard');
 dashboardEl.width = dashboardEl.offsetParent.clientWidth;
 dashboardEl.height = dashboardEl.offsetParent.clientHeight;
 let dashboard = new Controls.Dashboard(dashboardEl);
+dashboard.theme.loadFrom('Resources/DefaultExt.xml');
 
 var plot = new Charting.Plot2D();
 
@@ -32,12 +33,12 @@ lineSeries.title = "Pressure";
 
 // draw bars
 var barRenderer = new Charting.BarRenderer(new Collections.ObservableCollection<m.MindFusion.Charting.Series>([barSeries]));
-barRenderer.seriesStyle = new Charting.UniformSeriesStyle(new Drawing.Brush("lightSkyBlue"),new Drawing.Brush("black"),2);
+barRenderer.seriesStyle = new Charting.UniformSeriesStyle(new Drawing.Brush("#9caac6"), new Drawing.Brush("#616a7f"),2);
 
 // draw lines
 var lineRenderer = new Charting.LineRenderer(
 				new Collections.ObservableCollection<m.MindFusion.Charting.Series>([lineSeries]));
-lineRenderer.seriesStyle = new Charting.UniformSeriesStyle(new Drawing.Brush("darkOliveGreen"),new Drawing.Brush("darkOliveGreen"), 4);
+lineRenderer.seriesStyle = new Charting.UniformSeriesStyle(new Drawing.Brush("#ce0000"), new Drawing.Brush("#ce0000"), 4);
 
 // add graphics to plot
 plot.seriesRenderers.add(barRenderer);
@@ -89,7 +90,7 @@ lineRenderer.yAxis = annotationRenderer.yAxis = pascals;
 // add legend
 let legendRenderer = new Charting.LegendRenderer();
 legendRenderer.content = new Collections.ObservableCollection<m.MindFusion.Charting.SeriesRenderer>([barRenderer, lineRenderer]);
-legendRenderer.background = new Drawing.Brush("lightYellow");
+legendRenderer.background = new Drawing.Brush("#e0e9e9");
 dashboard.rootPanel.children.add(legendRenderer);
 
 // create dashboard layout

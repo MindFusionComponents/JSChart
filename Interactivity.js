@@ -10,6 +10,7 @@ define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require,
     barChartEl.height = barChartEl.offsetParent.clientHeight;
     // create the BarChart
     var barChart = new Controls.BarChart(barChartEl);
+    barChart.theme.loadFrom('Resources/DefaultExt.xml');
     barChart.series = getSeriesCollection();
     barChart.allowZoom = true;
     barChart.allowPan = true;
@@ -26,9 +27,12 @@ define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require,
     barChart.theme = new Charting.Theme();
     barChart.theme.commonSeriesFills = getBarFills();
     barChart.theme.commonSeriesStrokes = getBarFills();
-    barChart.theme.legendBackground = new Drawing.Brush("whiteSmoke");
-    barChart.theme.legendBorderStroke = new Drawing.Brush("teal");
-    barChart.theme.highlightStroke = new Drawing.Brush("cadetBlue");
+    barChart.theme.legendBackground = new Drawing.Brush("#e0e9e9");
+    barChart.theme.legendBorderStroke = new Drawing.Brush("#c0c0c0");
+    barChart.theme.highlightStroke = new Drawing.Brush("#c0c0c0");
+    barChart.gridType = Charting.GridType.Horizontal;
+    barChart.theme.gridColor1 = barChart.theme.gridColor2 = Drawing.Color.fromArgb(255, 255, 255);
+    barChart.theme.gridLineColor = Drawing.Color.fromArgb(192, 192, 192);
     // create the PieChart
     var pieChartEl = document.getElementById('pieChart');
     pieChartEl.width = pieChartEl.offsetParent.clientWidth;
@@ -42,10 +46,11 @@ define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require,
     pieChart.showDataLabels = Charting.LabelKinds.OuterLabel;
     pieChart.theme = new Charting.Theme();
     pieChart.theme.seriesFills = getPieFills();
-    pieChart.theme.uniformSeriesStroke = new Drawing.Brush("lightGray");
+    pieChart.theme.uniformSeriesStroke = new Drawing.Brush("#c0c0c0");
     pieChart.theme.seriesStrokeThicknesses = new Collections.List([new Collections.List([15])]);
     pieChart.theme.highlightStroke = new Drawing.Brush("white");
     pieChart.theme.highlightStrokeThickness = 10;
+    pieChart.theme.dataLabelsFontSize = 14;
     function getSeriesCollection() {
         var collection = new Collections.ObservableCollection();
         for (var i = 0; i < 3; i++) {
@@ -69,18 +74,18 @@ define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require,
     }
     function getBarFills() {
         var fills = new Collections.List();
-        fills.add(new Drawing.Brush("skyBlue"));
-        fills.add(new Drawing.Brush("teal"));
-        fills.add(new Drawing.Brush("powderBlue"));
+        fills.add(new Drawing.Brush("#669acc"));
+        fills.add(new Drawing.Brush("#616a7f"));
+        fills.add(new Drawing.Brush("#5a79a5"));
         return fills;
     }
     function getPieFills() {
         var fills = new Collections.List();
         fills.add(new Collections.List([
-            new Drawing.Brush("rosyBrown"),
-            new Drawing.Brush("coral"),
-            new Drawing.Brush("crimson"),
-            new Drawing.Brush("darkRed"),
+            new Drawing.Brush("#2d3956"),
+            new Drawing.Brush("#669acc"),
+            new Drawing.Brush("#ce0000"),
+            new Drawing.Brush("#9caac6"),
         ]));
         return fills;
     }

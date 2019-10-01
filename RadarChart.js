@@ -9,6 +9,7 @@ define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require,
     radarChartEl.width = radarChartEl.offsetParent.clientWidth;
     radarChartEl.height = radarChartEl.offsetParent.clientHeight;
     var radarChart = new Controls.RadarChart(radarChartEl);
+    radarChart.theme.loadFrom('Resources/DefaultExt.xml');
     // create sample data
     var data = new Collections.ObservableCollection();
     var series1 = new Charting.SimpleSeries(new Collections.List([20, 30, 43, 40, 44, 37, 35, 51]), new Collections.List(["20", "30", "43", "40", "44", "37", "35", "51"]));
@@ -20,7 +21,7 @@ define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require,
     radarChart.theme.axisLabelsBrush = new Drawing.Brush("black");
     radarChart.theme.axisLabelsFontStyle = Drawing.FontStyle.Bold;
     radarChart.theme.axisLabelsFontSize = 10;
-    radarChart.theme.axisStroke = new Drawing.Brush("lightGray");
+    radarChart.theme.axisStroke = new Drawing.Brush("#c0c0c0");
     radarChart.gridDivisions = 5;
     radarChart.defaultAxis.minValue = 0;
     radarChart.defaultAxis.maxValue = 55;
@@ -32,12 +33,15 @@ define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require,
     }
     // specify one color per series
     radarChart.plot.seriesStyle = new Charting.PerSeriesStyle(new Collections.List([
-        new Drawing.Brush("tomato"),
-        new Drawing.Brush("violet")
+        new Drawing.Brush("#ce0000"),
+        new Drawing.Brush("#2d3956")
     ]), new Collections.List([
-        new Drawing.Brush("tomato"),
-        new Drawing.Brush("violet")
+        new Drawing.Brush("#ce0000"),
+        new Drawing.Brush("#2d3956")
+    ]), new Collections.List([
+        4
     ]));
+    radarChart.theme.highlightStroke = new Drawing.Brush("#9caac6");
     radarChart.draw();
     // handlers
     var gridDivisions = document.getElementById('gridDivisions');

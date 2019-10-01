@@ -10,7 +10,7 @@
     <script type="text/javascript" src="common/jquery-ui.min.js"></script>
     <script type="text/javascript" src="common/samples.js"></script>
 	<script type="text/javascript" src="Scripts/config.js"></script>
-    <script data-main="ListBinding" src="Scripts/require.js"></script>
+
 </head>
 <body>
     <input type="hidden" id="collapsed" />
@@ -26,9 +26,9 @@
         <div id="infoTab" style="padding: 10px;">
             <h1>About this sample
             </h1>
-            <p>
-                This sample shows how to bind the chart to a list of custom objects by setting the list as DataSource.
-            </p>
+			<p id="pinfo">
+				This sample shows how to bind the chart to a list of custom objects by setting the list as DataSource.
+			</p>
         </div>
     </div>
     <div id="content" style="top: 60px; bottom: 24px; overflow-y: scroll;">
@@ -59,7 +59,6 @@
     <div id="footer" style="height: 24px;">
         <span id="copyright"></span>
     </div>
-    <script type="text/javascript">
-    </script>
+	<script data-main="ListBinding" src="Scripts/require.js"></script>
 </body>
 </html>

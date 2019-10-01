@@ -10,7 +10,7 @@
 	<script type="text/javascript" src="common/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="common/samples.js"></script>
 	<script type="text/javascript" src="Scripts/config.js"></script>
-	<script data-main="FunnelChart" src="Scripts/require.js"></script>
+
 </head>
 <body>
 	<input type="hidden" id="collapsed" />
@@ -27,7 +27,7 @@
 			<h1>
 				About this sample
 			</h1>
-			<p>
+			<p id="pinfo">
 				This sample demonstrates various properties of the FunnelChart control.
 				Change property values in this panel to see their effect in chart to the left.
 			</p>
@@ -41,7 +41,7 @@
 				Segment spacing<input type="range" id="segmentSpacing" min="0" max="25" value="0" />
 			</div>
 			<div style="display: inline-block">
-				Bottom base<input type="range" id="bottomBase" min="0" value="0" />
+				Stem width<input type="range" id="stemWidth" min="0" value="0" />
 			</div>			
 			<div style="display: inline-block">
 				Margin left<input type="range" id="marginLeft" min="0" value="0" max="200" />
@@ -88,7 +88,6 @@
 	<div id="footer" style="height: 24px;">
 		<span id="copyright"></span>
 	</div>
-	<script type="text/javascript">
-	</script>
+	<script data-main="FunnelChart" src="Scripts/require.js"></script>
 </body>
 </html>

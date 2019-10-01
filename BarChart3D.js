@@ -6,6 +6,7 @@ define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require,
     var Drawing = m.MindFusion.Charting.Drawing;
     var chartEl = document.getElementById('chart');
     var chart = new Controls.BarChart3D(chartEl, Charting.BarLayout.SideBySide);
+    chart.theme.loadFrom('Resources/DefaultExt.xml');
     var bgImage;
     chart.title = "Agricultural produce by type";
     // create sample data
@@ -23,13 +24,13 @@ define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require,
     chart.series = collection;
     // set one color per series
     chart.theme.commonSeriesFills = chart.theme.commonSeriesStrokes = new Collections.List([
-        new Drawing.Brush(new Drawing.Color("ForestGreen")),
-        new Drawing.Brush(new Drawing.Color("LemonChiffon")),
-        new Drawing.Brush(new Drawing.Color("LawnGreen"))
+        new Drawing.Brush(new Drawing.Color("#669acc")),
+        new Drawing.Brush(new Drawing.Color("#003466")),
+        new Drawing.Brush(new Drawing.Color("#ce0000"))
     ]);
     chart.theme.commonSeriesStrokeThicknesses = new Collections.List([10, 10, 10]);
     // background
-    chart.backColor = new Drawing.Color("WhiteSmoke");
+    chart.backColor = new Drawing.Color("#e0e9e9");
     chart.plotImageLocation = bgImage = 'Resources/bgimage.png';
     chart.plotImageAlign = Drawing.ImageAlign.MiddleLeft;
     chart.plotImageAutoSize = false;
@@ -40,10 +41,13 @@ define(["require", "exports", 'Scripts/MindFusion.Charting'], function (require,
     chart.theme.axisStrokeThickness = 1;
     // legend appearance
     chart.legendTitle = "Agricultural type";
-    chart.theme.legendBackground = new Drawing.Brush(new Drawing.Color("Wheat"));
-    chart.theme.legendBorderStroke = new Drawing.Brush(new Drawing.Color("SandyBrown"));
+    chart.theme.legendBackground = new Drawing.Brush(new Drawing.Color("#e0e9e9"));
+    chart.theme.legendBorderStroke = new Drawing.Brush(new Drawing.Color("DimGray"));
     chart.theme.legendBorderStrokeThickness = 1;
     chart.legendMargin = new Charting.Margins(80, 5, 5, 5);
+    chart.theme.axisTitleFontName = "Verdana";
+    chart.theme.axisLabelsFontName = "Verdana";
+    chart.theme.dataLabelsFontName = "Verdana";
     chart.layoutPanel.margin = new Charting.Margins(10, 10, 10, 10);
     chart.draw();
     document.getElementById('chbShowScatter').onchange = function () {

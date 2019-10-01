@@ -11,6 +11,7 @@ let dashboardEl = <HTMLCanvasElement>document.getElementById('dashboard');
 dashboardEl.width = dashboardEl.offsetParent.clientWidth;
 dashboardEl.height = dashboardEl.offsetParent.clientHeight;
 let dashboard = new Controls.Dashboard(dashboardEl);
+dashboard.theme.loadFrom('Resources/DefaultExt.xml');
 
 // set up grid panel
 var grid = new Components.GridPanel();
@@ -86,7 +87,7 @@ var barRenderer = new Charting.BarRenderer(
 		)]));
 
 
-var lineRenderer = new Charting.LineRenderer(
+var lineRenderer = new Charting.CurveAreaRenderer(
 				new Collections.ObservableCollection<m.MindFusion.Charting.Series>([
 		new Charting.Series2D(
 			new Collections.List < number > ([ 1, 2, 3, 4, 5, 6, 7]),
@@ -99,16 +100,25 @@ var lineRenderer = new Charting.LineRenderer(
 		)]));
 
 plot1.seriesStyle = new Charting.PerSeriesStyle(new Collections.List<m.MindFusion.Charting.Drawing.Brush>([
-	new Drawing.Brush("purple"),
-	new Drawing.Brush("lightBlue")
+    new Drawing.Brush("#003466"),
+    new Drawing.Brush("#ce0000")
 ]));
+plot1.gridType = Charting.GridType.Horizontal;
+plot1.gridColor1 = plot1.gridColor2 = Drawing.Color.fromArgb(255, 255, 255);
 
-plot2.seriesStyle = new Charting.PerSeriesStyle(null, new Collections.List<m.MindFusion.Charting.Drawing.Brush>
+plot2.seriesStyle = new Charting.PerSeriesStyle(new Collections.List<m.MindFusion.Charting.Drawing.Brush>
+    ([
+        new Drawing.Brush(Drawing.Color.fromArgb(0.7, 0, 52, 102)),
+        new Drawing.Brush(Drawing.Color.fromArgb(0.7, 206, 0, 0))
+    ]),
+    new Collections.List<m.MindFusion.Charting.Drawing.Brush>
 	([
-		new Drawing.Brush("purple"),
-		new Drawing.Brush("lightBlue")
+        new Drawing.Brush("#003466"),
+        new Drawing.Brush("#ce0000")
 	])
 );
+plot2.gridType = Charting.GridType.Horizontal;
+plot2.gridColor1 = plot2.gridColor2 = Drawing.Color.fromArgb(255, 255, 255);
 
 plot1.seriesRenderers.add(barRenderer);
 plot2.seriesRenderers.add(lineRenderer);
