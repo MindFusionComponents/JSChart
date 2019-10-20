@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <ProjectGuid>{2855F5EE-F17A-47AC-B471-68348FFEA7FC}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <OutputPath>bin</OutputPath>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="AreaChart.html" />
+    <Content Include="BarChart.html" />
+    <Content Include="BarChart3D.html" />
+    <Content Include="BubbleChart.html" />
+    <Content Include="CandlestickChart.html" />
+    <Content Include="CarGauges.html" />
+    <Content Include="chart_lic.txt" />
+    <Content Include="Clock.html" />
+    <Content Include="common\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="common\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="common\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="common\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="common\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="common\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="common\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="common\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="common\images\ui-icons_222222_256x240.png" />
+    <Content Include="common\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="common\images\ui-icons_454545_256x240.png" />
+    <Content Include="common\images\ui-icons_888888_256x240.png" />
+    <Content Include="common\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="common\jquery-ui.min.css" />
+    <Content Include="common\jquery-ui.min.js" />
+    <Content Include="common\jquery-ui.structure.min.css" />
+    <Content Include="common\jquery-ui.theme.min.css" />
+    <Content Include="common\jquery.min.js" />
+    <Content Include="common\samples.css" />
+    <Content Include="common\samples.js" />
+    <Content Include="Compass.html" />
+    <Content Include="Dashboard.html" />
+    <Content Include="Equalizer.html" />
+    <Content Include="Functions.html" />
+    <Content Include="FunnelChart.html" />
+    <Content Include="Resources\DefaultExt.xml" />
+    <Content Include="Scripts\config.js" />
+    <Content Include="CustomData.html" />
+    <Content Include="DateTimeSeries.html" />
+    <Content Include="GroupLabels.html" />
+    <Content Include="index.html" />
+    <Content Include="Interactivity.html" />
+    <Content Include="LineChart.html" />
+    <Content Include="ListBinding.html" />
+    <Content Include="MultipleAxes.html" />
+    <Content Include="MultiplePlots.html" />
+    <Content Include="PieChart.html" />
+    <Content Include="RadarChart.html" />
+    <Content Include="Resources\bgimage.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\jquery.js" />
+    <Content Include="Scripts\require.js" />
+    <Content Include="SynchronizedScroll.html" />
+    <Content Include="Thermometer.html" />
+    <Content Include="Tutorial1.html" />
+    <Content Include="web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="AreaChart.ts" />
+    <TypeScriptCompile Include="BarChart.ts" />
+    <TypeScriptCompile Include="BarChart3D.ts" />
+    <TypeScriptCompile Include="CandlestickChart.ts" />
+    <TypeScriptCompile Include="CarGauges.ts" />
+    <TypeScriptCompile Include="Clock.ts" />
+    <TypeScriptCompile Include="Compass.ts" />
+    <TypeScriptCompile Include="CustomData.ts" />
+    <TypeScriptCompile Include="Dashboard.ts" />
+    <TypeScriptCompile Include="DateTimeSeries.ts" />
+    <TypeScriptCompile Include="Equalizer.ts" />
+    <TypeScriptCompile Include="Functions.ts" />
+    <TypeScriptCompile Include="FunnelChart.ts" />
+    <TypeScriptCompile Include="GroupLabels.ts" />
+    <TypeScriptCompile Include="BubbleChart.ts" />
+    <TypeScriptCompile Include="Interactivity.ts" />
+    <TypeScriptCompile Include="LineChart.ts" />
+    <TypeScriptCompile Include="ListBinding.ts" />
+    <TypeScriptCompile Include="MultipleAxes.ts" />
+    <TypeScriptCompile Include="MultiplePlots.ts" />
+    <TypeScriptCompile Include="Patient.ts" />
+    <TypeScriptCompile Include="PieChart.ts" />
+    <TypeScriptCompile Include="RadarChart.ts" />
+    <TypeScriptCompile Include="Scripts\common.d.ts" />
+    <TypeScriptCompile Include="Scripts\gauge.d.ts" />
+    <TypeScriptCompile Include="Scripts\jquery.d.ts" />
+    <TypeScriptCompile Include="Scripts\require.d.ts" />
+    <TypeScriptCompile Include="SynchronizedScroll.ts" />
+    <TypeScriptCompile Include="Thermometer.ts" />
+    <TypeScriptCompile Include="Tutorial1.ts" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>Samples</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets')" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>52639</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:52639/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptModuleKind>AMD</TypeScriptModuleKind>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptModuleKind>AMD</TypeScriptModuleKind>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+</Project>
