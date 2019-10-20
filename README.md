@@ -65,10 +65,6 @@ MindFusion.Charting comes with the following examples, which demonstrate Differe
 * Thermometer - shows how to use a linear gauge to create a thermometer.
 
 
-##### version 1.0:
-  initial release
-
-
 ### Additional Information
 
 Stay in touch with MindFusion about our latest product announcements, tutorials and programming guidelines via  [Twitter](https://twitter.com/MindFusion_News) or [our company blog.](https://mindfusion.eu/blog/) A YouTube channel with interactive video tutorials is available [here.](https://www.youtube.com/channel/UCirPVdFWM2RTEnEAF5PK7Qg)
