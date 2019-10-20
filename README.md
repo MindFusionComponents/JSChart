@@ -99,7 +99,7 @@ Stay in touch with MindFusion about our latest product announcements, tutorials 
 
 ### Licensing
 
-The end-user license agreement for JS Scheduler is [here.](https://mindfusion.eu/eula.html)
+The end-user license agreement for JS Chart is [here.](https://mindfusion.eu/eula.html)
 
 
 
