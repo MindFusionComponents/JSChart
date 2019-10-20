@@ -1,7 +1,7 @@
 # MindFusion.Charting for JavaScript, version 1.1.1
 
 
-### ***** ABOUT MINDFUSION.CHARTING *****
+### ABOUT MINDFUSION.CHARTING
 
 The MindFusion.Charting library provides to HTML5 / JavaScript applications the ability to create and display various kinds of charts and gauges. The component supports bar, pie, doughnut, scatter, bubble, candlestick, line, area, radar and polar charts. Many features of the chart output can be customized in a way that suits your project best. Charts can have different styles, colors, fonts and pictures. The control's programming model comprises more than 200 methods and properties.
 
@@ -9,12 +9,12 @@ Official webpage
 [https://mindfusion.eu/javascript-chart.html](https://mindfusion.eu/javascript-chart.html)
 
 
-### ***** SOURCE CODE *****
+### SOURCE CODE
 
 A MindFusion.Charting license can be purchased with the control's complete source code. The control is being developed in TypeScript and transpiled to JavaScript. 
 
 
-### ***** SAMPLES *****
+### SAMPLES
 
 MindFusion.Charting comes with the following examples, which demonstrate Different aspects of the control’s functionality:
 
@@ -64,23 +64,6 @@ MindFusion.Charting comes with the following examples, which demonstrate Differe
 
 * Thermometer - shows how to use a linear gauge to create a thermometer.
 
-### ***** HISTORY *****
-
-##### version 1.1.1
-   interactive range selection
-   showSeriesElements property in LegendRenderer
-   labels property in SimpleSeries
-   showHighlights and showToolTips properties in Chart
-
-##### version 1.1:  
-  FunnelChart control
-  Theme XML serialization
-  label rotation for axes
-  PieChart outer labels fixed.
-  LegendRenderer borders fixed.
-  hit-testing in pie and radar charts fixed
-  bubbles in bubble charts alignments fixed
-  chart zoom buttons scaling fixed
 
 ##### version 1.0:
   initial release
