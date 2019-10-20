@@ -86,22 +86,20 @@ MindFusion.Charting comes with the following examples, which demonstrate Differe
   initial release
 
 
-### ***** CONTACT US *****
+### Additional Information
 
-for any questions you might have about using the control:
-support@mindfusion.eu
-
-for administrative and sales information:
-sales@mindfusion.eu
-
-our web site:
-[http://www.mindfusion.eu](http://www.mindfusion.eu)
-
-telephone for technical support:
-(+359) 889 199 729
+Stay in touch with MindFusion about our latest product announcements, tutorials and programming guidelines via  [Twitter](https://twitter.com/MindFusion_News) or [our company blog.](https://mindfusion.eu/blog/) A YouTube channel with interactive video tutorials is available [here.](https://www.youtube.com/channel/UCirPVdFWM2RTEnEAF5PK7Qg)
 
 
-### ***** COPYRIGHTS *****
+## Technical Support
 
-Copyright (C) 2019, MindFusion LLC, Bulgaria
-All rights reserved.
+* [Forum](https://mindfusion.eu/Forum/YaBB.pl)
+* [E-mail](support@mindfusion.eu)
+* [Help desk](http://www.mindfusion.eu/HelpDesk/index.php)
+
+### Licensing
+
+The end-user license agreement for JS Scheduler is [here.](https://mindfusion.eu/eula.html)
+
+
+
