@@ -16,6 +16,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <ItemGroup>
     <Content Include="AreaChart.html" />
@@ -51,6 +52,7 @@
     <Content Include="Equalizer.html" />
     <Content Include="Functions.html" />
     <Content Include="FunnelChart.html" />
+    <Content Include="LICENSE.txt" />
     <Content Include="Resources\DefaultExt.xml" />
     <Content Include="Scripts\config.js" />
     <Content Include="CustomData.html" />
@@ -75,6 +77,7 @@
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="README.md" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
