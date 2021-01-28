@@ -1,4 +1,4 @@
-# MindFusion.Charting for JavaScript, version 1.1.1
+# MindFusion.Charting for JavaScript, version 1.2
 
 
 ### ABOUT MINDFUSION.CHARTING
